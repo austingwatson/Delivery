@@ -219,10 +219,16 @@ root_node = NodePath("../..")
 anims/RESET = SubResource( 5 )
 anims/move = SubResource( 6 )
 
+[node name="BGWheelParticle" type="CPUParticles2D" parent="Sprites"]
+position = Vector2( -37, 10 )
+
 [node name="BGWheelBack" type="Sprite" parent="Sprites"]
 position = Vector2( -33, 5 )
 texture = ExtResource( 5 )
 hframes = 4
+
+[node name="FGWheelParticle" type="CPUParticles2D" parent="Sprites"]
+position = Vector2( -26, 15 )
 
 [node name="BGWheelFront" type="Sprite" parent="Sprites"]
 position = Vector2( 15, 5 )
