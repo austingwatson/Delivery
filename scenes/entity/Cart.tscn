@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/entity/Archer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/entity/Cart.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48, 16 )
+
+[node name="Cart" type="KinematicBody2D"]
+collision_mask = 6
+script = ExtResource( 3 )
+speed = 75.0
+world_bounds = 100.0
+trail_bounds = 50.0
+trail_slowdown = 0.25
+mud_slowdown = 0.25
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 100, 0 )
+current = true
+limit_top = -135
+limit_bottom = 135
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PoolVector2Array( 48, -16, 48, 16, -48, 16, -48, -16 )
+
+[node name="Archers" type="Node2D" parent="."]
+
+[node name="Archer" parent="Archers" instance=ExtResource( 2 )]
+position = Vector2( -39, -8 )
+
+[node name="Archer2" parent="Archers" instance=ExtResource( 2 )]
+position = Vector2( -21, -8 )
+
+[node name="Archer3" parent="Archers" instance=ExtResource( 2 )]
+position = Vector2( -3, -8 )
