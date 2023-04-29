@@ -1,8 +1,6 @@
-extends KinematicBody2D
+extends Area2D
 
 export var speed = 0.0
-export var world_bounds = 0.0
-export var trail_bounds = 0.0
 export var trail_slowdown = 0.0
 export var mud_slowdown = 0.0
 
@@ -10,14 +8,19 @@ var move_up = false
 var move_down = false
 var shoot = false
 
+var on_trail = true
 var mud_count = 0
 
 var archers = []
 
+onready var animation_player = $Sprites/AnimationPlayer
+
 
 func _ready():
-	for archer in $Archers.get_children():
+	for archer in $Sprites/Archers.get_children():
 		archers.append(archer)
+	
+	animation_player.play("move")
 
 
 func _unhandled_input(event):
@@ -39,11 +42,11 @@ func _unhandled_input(event):
 				break
 	
 
-func _physics_process(_delta):
-	move()
+func _physics_process(delta):
+	move(delta)
 	
 
-func move():
+func move(delta):
 	var velocity = Vector2.RIGHT
 	
 	if move_up:
@@ -52,17 +55,10 @@ func move():
 		velocity.y += 1
 	
 	# check if out of trail bounds
-	if position.y >= trail_bounds or position.y <= -trail_bounds:
-		velocity.y *= trail_slowdown
-		
+	if not on_trail:
+		velocity *= trail_slowdown
 	# check if on mud
-	if mud_count > 0:
-		velocity.x *= mud_slowdown
+	elif mud_count > 0:
+		velocity *= mud_slowdown
 	
-	velocity = move_and_slide(velocity * speed)
-	
-	# check if out of world bounds
-	if position.y >= world_bounds:
-		position.y = world_bounds
-	elif position.y <= -world_bounds:
-		position.y = -world_bounds
+	position += velocity * speed * delta

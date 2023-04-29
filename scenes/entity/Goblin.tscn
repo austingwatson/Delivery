@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/entity/Goblin.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 9 )
+
+[node name="Goblin" type="Area2D"]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource( 1 )
+speed = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color( 0.129412, 0.482353, 0.156863, 1 )
+polygon = PoolVector2Array( -16, -9, 16, -9, 16, 9, 0, 0, -16, 9 )

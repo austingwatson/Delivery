@@ -1,33 +1,49 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/environment/World.gd" type="Script" id=1]
 [ext_resource path="res://scenes/environment/RockSpawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/environment/MudSpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/trail_background.png" type="Texture" id=4]
+[ext_resource path="res://scenes/environment/GoblinSpawner.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 480, 41 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ -112.0 ]
+}
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Ground" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 480, 0 )
+motion_mirroring = Vector2( 1440, 0 )
 
-[node name="Grass" type="Polygon2D" parent="ParallaxBackground/Ground"]
-position = Vector2( -80, 0 )
-color = Color( 0.227451, 0.345098, 0.270588, 1 )
-polygon = PoolVector2Array( 0, -144, 0, 144, 944, 144, 944, -144 )
-
-[node name="Trail" type="Polygon2D" parent="ParallaxBackground/Ground"]
-position = Vector2( -80, 0 )
-color = Color( 0.188235, 0.172549, 0.176471, 1 )
-polygon = PoolVector2Array( 0, -45, 944, -45, 944, 45, 0, 45 )
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Ground"]
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1440, 540 )
 
 [node name="Foreground" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="RockSpawner" parent="." instance=ExtResource( 2 )]
-min_rock_timer = 5.0
-max_rock_timer = 15.0
 
 [node name="MudSpawner" parent="." instance=ExtResource( 3 )]
+
+[node name="GoblinSpawner" parent="." instance=ExtResource( 5 )]
+min_timer = 5.0
+max_timer = 15.0
+y_spawn = 270
+
+[node name="Trail" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trail"]
+position = Vector2( 0, -3 )
+shape = SubResource( 1 )
+
+[connection signal="area_entered" from="Trail" to="." method="_on_Trail_area_entered"]
+[connection signal="area_exited" from="Trail" to="." method="_on_Trail_area_exited"]

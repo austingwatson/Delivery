@@ -1,39 +1,258 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=12 format=2]
 
+[ext_resource path="res://assets/wheel1.png" type="Texture" id=1]
 [ext_resource path="res://scenes/entity/Archer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/entity/Cart.gd" type="Script" id=3]
+[ext_resource path="res://assets/cartbody_background.png" type="Texture" id=4]
+[ext_resource path="res://assets/wheel2.png" type="Texture" id=5]
+[ext_resource path="res://assets/cartbody_foreground.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 48, 16 )
+extents = Vector2( 36.5, 10 )
 
-[node name="Cart" type="KinematicBody2D"]
-collision_mask = 6
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/BGWheelBack:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/BGWheelFront:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/BGBody:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/FGBody:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprites/FGWheelBack:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprites/FGWheelFront:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprites/Archers:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "move"
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/BGWheelBack:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/BGWheelFront:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/BGBody:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/FGBody:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 2 ), Vector2( 0, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprites/FGWheelBack:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprites/FGWheelFront:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprites/Archers:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -1 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 5, 17, 82, 26 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 6 )
+region = Rect2( 5, 20, 82, 23 )
+
+[node name="Cart" type="Area2D"]
+collision_mask = 22
 script = ExtResource( 3 )
 speed = 75.0
-world_bounds = 100.0
-trail_bounds = 50.0
-trail_slowdown = 0.25
-mud_slowdown = 0.25
+trail_slowdown = 0.5
+mud_slowdown = 0.5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 100, 0 )
 current = true
-limit_top = -135
-limit_bottom = 135
+process_mode = 0
+limit_top = -270
+limit_bottom = 270
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -3.5, 8 )
 shape = SubResource( 1 )
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PoolVector2Array( 48, -16, 48, 16, -48, 16, -48, -16 )
+[node name="Sprites" type="Node2D" parent="."]
 
-[node name="Archers" type="Node2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites"]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 5 )
+anims/move = SubResource( 6 )
 
-[node name="Archer" parent="Archers" instance=ExtResource( 2 )]
-position = Vector2( -39, -8 )
+[node name="BGWheelBack" type="Sprite" parent="Sprites"]
+position = Vector2( -33, 5 )
+texture = ExtResource( 5 )
+hframes = 4
 
-[node name="Archer2" parent="Archers" instance=ExtResource( 2 )]
-position = Vector2( -21, -8 )
+[node name="BGWheelFront" type="Sprite" parent="Sprites"]
+position = Vector2( 15, 5 )
+texture = ExtResource( 5 )
+hframes = 4
 
-[node name="Archer3" parent="Archers" instance=ExtResource( 2 )]
-position = Vector2( -3, -8 )
+[node name="BGBody" type="Sprite" parent="Sprites"]
+texture = SubResource( 4 )
+
+[node name="Archers" type="Node2D" parent="Sprites"]
+
+[node name="Archer" parent="Sprites/Archers" instance=ExtResource( 2 )]
+position = Vector2( -26, -8 )
+
+[node name="Archer2" parent="Sprites/Archers" instance=ExtResource( 2 )]
+position = Vector2( -10, -8 )
+
+[node name="Archer3" parent="Sprites/Archers" instance=ExtResource( 2 )]
+position = Vector2( 6, -8 )
+
+[node name="FGBody" type="Sprite" parent="Sprites"]
+position = Vector2( 0, 2 )
+texture = SubResource( 7 )
+
+[node name="FGWheelBack" type="Sprite" parent="Sprites"]
+position = Vector2( -22, 11 )
+texture = ExtResource( 1 )
+hframes = 4
+
+[node name="FGWheelFront" type="Sprite" parent="Sprites"]
+position = Vector2( 26, 11 )
+texture = ExtResource( 1 )
+hframes = 4
