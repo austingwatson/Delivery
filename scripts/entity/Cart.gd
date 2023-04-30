@@ -91,3 +91,8 @@ func _on_FlashTimer_timeout():
 func _on_StunTimer_timeout():
 	stunned = false
 	animation_player.play("move")
+
+
+func _on_CartContents_body_entered(body):
+	print("add: ", body, " to cart")
+	body.queue_free()
