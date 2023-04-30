@@ -11,6 +11,7 @@ var move_down = false
 var shoot = false
 var camera_left = false
 var camera_right = false
+var input_blocked = false
 
 var speed = 0.0
 var on_trail = true
@@ -74,10 +75,11 @@ func move(delta):
 	var velocity = Vector2.RIGHT
 	speed = max_speed
 	
-	if move_up:
-		velocity.y -= 1
-	elif move_down:
-		velocity.y += 1
+	if not input_blocked:
+		if move_up:
+			velocity.y -= 1
+		elif move_down:
+			velocity.y += 1
 	
 	# check if out of trail bounds
 	if not on_trail:
@@ -94,7 +96,7 @@ func move(delta):
 
 
 func move_camera(delta):
-	if stunned:
+	if input_blocked or stunned:
 		return
 	
 	var dx = 0.0
@@ -128,6 +130,5 @@ func _on_StunTimer_timeout():
 	animation_player.play("move")
 
 
-func _on_CartContents_body_entered(body):
-	print("add: ", body, " to cart")
-	body.queue_free()
+func _on_CartContents_body_entered(_body):
+	Inventory.open_inventory(true)

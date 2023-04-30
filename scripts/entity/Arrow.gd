@@ -23,6 +23,8 @@ func set_velocity(position, target):
 	start_position = position
 	self.position = position
 	velocity = position.direction_to(target) * speed
+	
+	rotation = velocity.angle()
 
 
 func _on_Arrow_area_entered(area):

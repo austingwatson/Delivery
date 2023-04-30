@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/environment/WorldObjectSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/trail_background.png" type="Texture" id=4]
 [ext_resource path="res://scenes/environment/LevelEnd.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/entity/Box.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/entity/Cargo.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 480, 31 )
@@ -50,6 +50,9 @@ position = Vector2( 1000, 0 )
 
 [node name="Box" parent="." instance=ExtResource( 7 )]
 position = Vector2( 335, -88 )
+
+[node name="Box2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 904, -132 )
 
 [connection signal="area_entered" from="Trail" to="." method="_on_Trail_area_entered"]
 [connection signal="area_exited" from="Trail" to="." method="_on_Trail_area_exited"]

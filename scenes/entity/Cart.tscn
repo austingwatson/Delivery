@@ -281,13 +281,13 @@ texture = SubResource( 4 )
 [node name="Archers" type="Node2D" parent="Sprites"]
 
 [node name="Archer" parent="Sprites/Archers" instance=ExtResource( 2 )]
-position = Vector2( -26, -8 )
+position = Vector2( -30, -8 )
 
 [node name="Archer2" parent="Sprites/Archers" instance=ExtResource( 2 )]
-position = Vector2( -10, -8 )
+position = Vector2( -14, -8 )
 
 [node name="Archer3" parent="Sprites/Archers" instance=ExtResource( 2 )]
-position = Vector2( 6, -8 )
+position = Vector2( 2, -8 )
 
 [node name="FGBody" type="Sprite" parent="Sprites"]
 use_parent_material = true
