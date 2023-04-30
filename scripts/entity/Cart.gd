@@ -84,7 +84,7 @@ func move(delta):
 		speed *= trail_slowdown
 		animation_player.playback_speed = 1 * trail_slowdown
 	# check if on mud
-	elif mud_count > 0:
+	if mud_count > 0:
 		speed *= mud_slowdown
 		animation_player.playback_speed = 1 * mud_slowdown
 	else:
