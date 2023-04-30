@@ -33,6 +33,8 @@ config/icon="res://assets/icon.png"
 [autoload]
 
 Entities="*res://scenes/Entities.tscn"
+SceneManager="*res://scenes/SceneManager.tscn"
+SoundManager="*res://scripts/SoundManager.gd"
 
 [debug]
 

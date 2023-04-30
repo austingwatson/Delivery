@@ -3,10 +3,17 @@ extends Node2D
 const goblin_scene = preload("res://scenes/entity/Goblin.tscn")
 
 onready var y_sort = $YSort
-onready var cart = $YSort/Cart
+var cart = preload("res://scenes/entity/Cart.tscn").instance()
 
 
 func restart():
+	for child in y_sort.get_children():
+		if child == cart:
+			y_sort.remove_child(child)
+		else:
+			child.queue_free()
+	
+	y_sort.add_child(cart)
 	cart.position = Vector2(0, 0)
 
 

@@ -64,9 +64,13 @@ func move(delta):
 	# check if out of trail bounds
 	if not on_trail:
 		velocity *= trail_slowdown
+		animation_player.playback_speed = 1 * trail_slowdown
 	# check if on mud
 	elif mud_count > 0:
 		velocity *= mud_slowdown
+		animation_player.playback_speed = 1 * mud_slowdown
+	else:
+		animation_player.playback_speed = 1
 	
 	position += velocity * speed * delta
 	

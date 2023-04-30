@@ -3,7 +3,7 @@
 [ext_resource path="res://scripts/environment/MudSplat.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 7.0
+radius = 1.0
 
 [node name="MudSplat" type="Area2D"]
 collision_layer = 32

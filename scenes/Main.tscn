@@ -1,7 +1,3 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://scenes/TrailScene.tscn" type="PackedScene" id=2]
+[gd_scene format=2]
 
 [node name="Main" type="Node"]
-
-[node name="Game" parent="." instance=ExtResource( 2 )]

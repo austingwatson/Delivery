@@ -222,16 +222,16 @@ shape = SubResource( 1 )
 [node name="MudSplats" type="Node2D" parent="."]
 
 [node name="MudSplat" parent="MudSplats" instance=ExtResource( 8 )]
-position = Vector2( 26, 11 )
+position = Vector2( 26, 17 )
 
 [node name="MudSplat2" parent="MudSplats" instance=ExtResource( 8 )]
-position = Vector2( -33, 5 )
+position = Vector2( -33, 11 )
 
 [node name="MudSplat3" parent="MudSplats" instance=ExtResource( 8 )]
-position = Vector2( 15, 5 )
+position = Vector2( 15, 11 )
 
 [node name="MudSplat4" parent="MudSplats" instance=ExtResource( 8 )]
-position = Vector2( -22, 11 )
+position = Vector2( -22, 17 )
 
 [node name="Sprites" type="Node2D" parent="."]
 material = SubResource( 8 )
