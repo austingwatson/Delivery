@@ -1,10 +1,6 @@
 extends Node2D
 
 onready var trail = $Trail
-
-
-func _ready():
-	randomize()
 	
 
 func _physics_process(_delta):

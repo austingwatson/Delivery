@@ -7,7 +7,7 @@ extents = Vector2( 16, 9 )
 
 [node name="Goblin" type="Area2D"]
 collision_layer = 2
-collision_mask = 8
+collision_mask = 520
 script = ExtResource( 1 )
 speed = 100.0
 

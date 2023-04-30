@@ -1,54 +1,86 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/hud/InventorySlot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/ui_sheet.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 66, 15, 173, 120 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 75, 58 )
 
 [node name="InventoryGrid" type="Node2D"]
-position = Vector2( 39, 105 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Background" type="Sprite" parent="."]
+texture = SubResource( 1 )
 
 [node name="InventorySlot" parent="." instance=ExtResource( 1 )]
-position = Vector2( 6, 6 )
+position = Vector2( -61, -39 )
 
 [node name="InventorySlot2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 19, 6 )
+position = Vector2( -35, -39 )
 
 [node name="InventorySlot3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 32, 6 )
+position = Vector2( -9, -39 )
 
 [node name="InventorySlot4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 45, 6 )
+position = Vector2( 17, -39 )
 
 [node name="InventorySlot5" parent="." instance=ExtResource( 1 )]
-position = Vector2( 6, 19 )
+position = Vector2( -61, -13 )
 
 [node name="InventorySlot6" parent="." instance=ExtResource( 1 )]
-position = Vector2( 19, 19 )
+position = Vector2( -35, -13 )
 
 [node name="InventorySlot7" parent="." instance=ExtResource( 1 )]
-position = Vector2( 32, 19 )
+position = Vector2( -9, -13 )
 
 [node name="InventorySlot8" parent="." instance=ExtResource( 1 )]
-position = Vector2( 45, 19 )
+position = Vector2( 17, -13 )
 
 [node name="InventorySlot9" parent="." instance=ExtResource( 1 )]
-position = Vector2( 6, 32 )
+position = Vector2( -61, 13 )
 
 [node name="InventorySlot10" parent="." instance=ExtResource( 1 )]
-position = Vector2( 19, 32 )
+position = Vector2( -35, 13 )
 
 [node name="InventorySlot11" parent="." instance=ExtResource( 1 )]
-position = Vector2( 32, 32 )
+position = Vector2( -9, 13 )
 
 [node name="InventorySlot12" parent="." instance=ExtResource( 1 )]
-position = Vector2( 45, 32 )
+position = Vector2( 17, 13 )
 
 [node name="InventorySlot13" parent="." instance=ExtResource( 1 )]
-position = Vector2( 6, 45 )
+position = Vector2( -61, 39 )
 
 [node name="InventorySlot14" parent="." instance=ExtResource( 1 )]
-position = Vector2( 19, 45 )
+position = Vector2( -35, 39 )
 
 [node name="InventorySlot15" parent="." instance=ExtResource( 1 )]
-position = Vector2( 32, 45 )
+position = Vector2( -9, 39 )
 
 [node name="InventorySlot16" parent="." instance=ExtResource( 1 )]
-position = Vector2( 45, 45 )
+position = Vector2( 17, 39 )
+
+[node name="InventorySlot17" parent="." instance=ExtResource( 1 )]
+position = Vector2( 51, -39 )
+
+[node name="InventorySlot18" parent="." instance=ExtResource( 1 )]
+position = Vector2( 51, -13 )
+
+[node name="InventorySlot19" parent="." instance=ExtResource( 1 )]
+position = Vector2( 51, 13 )
+
+[node name="InventorySlot20" parent="." instance=ExtResource( 1 )]
+position = Vector2( 51, 39 )
+
+[node name="MouseHover" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 1024
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseHover"]
+position = Vector2( -5, 0 )
+shape = SubResource( 2 )

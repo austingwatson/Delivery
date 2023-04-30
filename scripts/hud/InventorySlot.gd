@@ -2,12 +2,18 @@ extends Area2D
 
 var has_room = true
 
-onready var sprite = $Sprite
+onready var status = $Status
+onready var icon = $Icon
 
 
 func give_item(texture, slots, dir):
 	has_room = false
-	sprite.texture = texture
+	#status.texture = status_textures.full
+	
+	if texture == null:
+		return
+		
+	icon.texture = texture
 	
 	var midpoint = self.global_position
 	for slot in slots:
@@ -17,6 +23,22 @@ func give_item(texture, slots, dir):
 			midpoint += slot.global_position
 	midpoint /= slots.size()
 	
-	sprite.global_position = midpoint
-	sprite.rotation = dir * (PI / 2)
-	print(sprite.rotation)
+	icon.global_position = midpoint
+	icon.visible = true
+	#sprite.rotation = dir * (PI / 2)
+	#print(sprite.rotation)
+
+
+func set_yes():
+	#status.texture = status_textures.yes
+	pass
+	
+
+func set_no():
+	#status.texture = status_textures.no
+	pass
+
+
+func set_clear():
+	#status.texture = null
+	pass

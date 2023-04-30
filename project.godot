@@ -10,6 +10,21 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
+"class": "Cargo",
+"language": "GDScript",
+"path": "res://resources/cargo/Cargo.gd"
+}, {
+"base": "Resource",
+"class": "CargoGen",
+"language": "GDScript",
+"path": "res://resources/cargo/CargoGen.gd"
+}, {
+"base": "Resource",
+"class": "Inventory",
+"language": "GDScript",
+"path": "res://resources/inventory/Inventory.gd"
+}, {
+"base": "Resource",
 "class": "WorldObject",
 "language": "GDScript",
 "path": "res://resources/WorldObject.gd"
@@ -20,6 +35,9 @@ _global_script_classes=[ {
 "path": "res://resources/WorldObjects.gd"
 } ]
 _global_script_class_icons={
+"Cargo": "",
+"CargoGen": "",
+"Inventory": "",
 "WorldObject": "",
 "WorldObjects": ""
 }
@@ -35,11 +53,11 @@ config/icon="res://assets/icon.png"
 Entities="*res://scenes/Entities.tscn"
 SceneManager="*res://scenes/SceneManager.tscn"
 SoundManager="*res://scripts/SoundManager.gd"
-Inventory="*res://scenes/hud/Inventory.tscn"
 
 [debug]
 
 settings/fps/force_fps=60
+gdscript/warnings/shadowed_variable=false
 
 [display]
 
@@ -127,6 +145,8 @@ rotate={
 2d_physics/layer_7="Supplies"
 2d_physics/layer_8="CartContents"
 2d_physics/layer_9="Inventory"
+2d_physics/layer_10="Neutral"
+2d_physics/layer_11="MouseHover"
 
 [physics]
 

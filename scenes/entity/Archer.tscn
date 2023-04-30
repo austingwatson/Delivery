@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/actor_sheet.png" type="Texture" id=1]
 [ext_resource path="res://scripts/entity/Archer.gd" type="Script" id=2]
@@ -80,7 +80,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 2 ), Vector2( 0, 1 ) ]
+"values": [ Vector2( 0, -1 ), Vector2( 0, 0 ), Vector2( 0, 2 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -125,6 +125,52 @@ tracks/2/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 60 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ArrowSpawnPoint:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 10, -1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "attack"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 60, 61, 62, 63 ]
+}
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 95.021
+
 [node name="Archer" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -134,6 +180,8 @@ anims/backward = SubResource( 2 )
 anims/forward = SubResource( 3 )
 
 [node name="Attack" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/attack = SubResource( 5 )
 
 [node name="Body" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -146,7 +194,25 @@ hframes = 20
 vframes = 11
 frame = 60
 
+[node name="ArrowSpawnPoint" type="Position2D" parent="."]
+position = Vector2( 10, -1 )
+
 [node name="ReloadTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="IdleTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="LookArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 512
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LookArea"]
+shape = SubResource( 6 )
+
+[connection signal="animation_finished" from="Attack" to="." method="_on_Attack_animation_finished"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_IdleTimer_timeout"]
+[connection signal="area_entered" from="LookArea" to="." method="_on_LookArea_area_entered"]

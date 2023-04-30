@@ -1,5 +1,8 @@
 extends Area2D
 
+const inventory = preload("res://resources/inventory/inventory.tres")
+const archer_scene = preload("res://scenes/entity/Archer.tscn")
+
 export var max_speed = 0.0
 export var trail_slowdown = 0.0
 export var mud_slowdown = 0.0
@@ -22,15 +25,13 @@ var archers = []
 
 onready var camera = $Camera2D
 onready var sprites = $Sprites
+onready var slots = $Sprites/Slots
 onready var animation_player = $Sprites/AnimationPlayer
 onready var flash_timer = $FlashTimer
 onready var stun_timer = $StunTimer
 
 
 func _ready():
-	for archer in $Sprites/Archers.get_children():
-		archers.append(archer)
-	
 	animation_player.play("move")
 
 
@@ -130,5 +131,31 @@ func _on_StunTimer_timeout():
 	animation_player.play("move")
 
 
-func _on_CartContents_body_entered(_body):
-	Inventory.open_inventory(true)
+func _on_CartContents_body_entered(body):
+	var result = inventory.add_next_slot(body)
+	
+	if not result.empty():
+		body.disable()
+		body.get_parent().remove_child(body)
+		
+		var midpoint = Vector2.ZERO
+		var children = slots.get_children()
+		for i in result:
+			midpoint += children[i].global_position
+		midpoint /= result.size()
+		
+		children[result[0]].call_deferred("add_child", body)
+		body.set_deferred("global_position", midpoint)
+		
+		if body.get_type() == 0:
+			body.set_as_icon()
+		elif body.get_type() == 1:
+			body.visible = false
+			var archer = archer_scene.instance()
+			slots.get_children()[result[0]].call_deferred("add_child", archer)
+			archer.set_deferred("global_position", midpoint + Vector2(0, -5))
+			archers.append(archer)
+	
+	
+	
+	

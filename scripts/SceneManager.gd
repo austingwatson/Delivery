@@ -17,6 +17,7 @@ func change_scene(scene_name):
 		"MenuScene":
 			add_child(menu_scene)
 		"TrailScene":
+			randomize()
 			add_child(trail_scene)
 		"SettlementScene":
 			add_child(settlement_scene)

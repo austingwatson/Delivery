@@ -1,10 +1,10 @@
 extends RigidBody2D
 
+const cargo_gen = preload("res://resources/cargo/cargo_gen.tres")
 const SPRING_CONSTANT = 500
 const LIFT_CONSTANT = 2000
 
-export var inventory_size = Vector2(2, 2)
-export(Texture) var icon
+var info = {}
 
 var mouse_inside = false
 var mouse_down = false
@@ -16,16 +16,19 @@ onready var right_emitter = $RightEmitter
 onready var sprite = $Sprite
 
 
+func _ready():
+	info = cargo_gen.gen_info()
+	sprite.texture = info.world_texture
+
+
 func _unhandled_input(event):
 	if mouse_inside and event.is_action_pressed("grab"):
 		mouse_down = true
 		apply_central_impulse(Vector2(0, -LIFT_CONSTANT))
-		Inventory.current_cargo = self
 	elif mouse_down and event.is_action_released("grab"):
 		mouse_down = false
 		apply_central_impulse(Vector2(0, LIFT_CONSTANT))
 		emit_particle = true
-		Inventory.close_inventory()
 
 
 func _physics_process(delta):
@@ -43,13 +46,31 @@ func _physics_process(delta):
 		left_emitter.emitting = true
 		right_emitter.emitting = true
 		
+		
+func set_as_world_object():
+	z_index = 1000
+
+
+func set_as_icon():
+	z_index = 0
+		
 
 func disable():
-	mode = RigidBody2D.MODE_KINEMATIC
+	collision_shape.set_deferred("disabled", true)
+	set_deferred("mode", RigidBody2D.MODE_KINEMATIC)
 	
 
 func enable():
-	mode = RigidBody2D.MODE_RIGID
+	collision_shape.set_deferred("disabled", false)
+	set_deferred("mode", RigidBody2D.MODE_RIGID)
+	
+
+func get_size():
+	return info.size
+	
+
+func get_type():
+	return info.type
 
 
 func _on_Box_mouse_entered():

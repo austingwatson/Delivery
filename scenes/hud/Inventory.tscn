@@ -11,13 +11,19 @@ visible = false
 script = ExtResource( 2 )
 
 [node name="InventoryGrid" parent="." instance=ExtResource( 1 )]
+position = Vector2( 58, 140 )
 
 [node name="Selector" type="Area2D" parent="."]
-collision_layer = 256
-collision_mask = 256
+collision_layer = 1280
+collision_mask = 1280
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Selector"]
 shape = SubResource( 1 )
+disabled = true
 
+[connection signal="area_entered" from="InventoryGrid/MouseHover" to="." method="_on_MouseHover_area_entered"]
+[connection signal="area_exited" from="InventoryGrid/MouseHover" to="." method="_on_MouseHover_area_exited"]
 [connection signal="area_entered" from="Selector" to="." method="_on_Selector_area_entered"]
 [connection signal="area_exited" from="Selector" to="." method="_on_Selector_area_exited"]
+
+[editable path="InventoryGrid"]

@@ -3,18 +3,19 @@
 [ext_resource path="res://scripts/entity/Cargo.gd" type="Script" id=1]
 [ext_resource path="res://assets/environment_sheet.png" type="Texture" id=2]
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
 region = Rect2( 2, 242, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 252, 12, 12 )
 
 [sub_resource type="RectangleShape2D" id=1]
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 2 )
-region = Rect2( 2, 242, 20, 20 )
+resource_local_to_scene = true
 
 [node name="Cargo" type="RigidBody2D"]
-z_index = 1
+z_index = 1000
 collision_layer = 64
 collision_mask = 128
 input_pickable = true
@@ -22,13 +23,15 @@ mass = 10.0
 gravity_scale = 0.0
 linear_damp = 10.0
 script = ExtResource( 1 )
-icon = SubResource( 3 )
+size = 2
+world_object = SubResource( 6 )
+icon = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="LeftEmitter" type="CPUParticles2D" parent="."]
-position = Vector2( -10, 5 )
+position = Vector2( -9, 9 )
 emitting = false
 amount = 4
 lifetime = 0.1
@@ -42,7 +45,7 @@ scale_amount = 4.0
 color = Color( 0.411765, 0.356863, 0.34902, 1 )
 
 [node name="RightEmitter" type="CPUParticles2D" parent="."]
-position = Vector2( 10, 5 )
+position = Vector2( 9, 9 )
 emitting = false
 amount = 4
 lifetime = 0.1
@@ -55,7 +58,6 @@ scale_amount = 4.0
 color = Color( 0.411765, 0.356863, 0.34902, 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = SubResource( 2 )
 
 [connection signal="mouse_entered" from="." to="." method="_on_Box_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Box_mouse_exited"]
