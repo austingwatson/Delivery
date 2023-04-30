@@ -24,7 +24,8 @@ text = "Play"
 margin_top = 24.0
 margin_right = 40.0
 margin_bottom = 40.0
-value = 100.0
+min_value = -60.0
+max_value = 0.0
 
 [node name="Label" type="Label" parent="VBoxContainer/Music"]
 margin_right = 40.0
@@ -35,7 +36,8 @@ text = "Music"
 margin_top = 44.0
 margin_right = 40.0
 margin_bottom = 60.0
-value = 100.0
+min_value = -60.0
+max_value = 0.0
 
 [node name="Label" type="Label" parent="VBoxContainer/Sound"]
 margin_right = 40.0
