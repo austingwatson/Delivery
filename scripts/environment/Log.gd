@@ -31,7 +31,7 @@ func enable():
 	position.x = round(Entities.cart.position.x) + 480.0
 	position.y = round(rand_range(min_rock_location, max_rock_location))
 	
-	var rock = world_objects.get_random_rock()
+	var rock = world_objects.get_random_log()
 	sprite.texture = rock.texture
 	collision_shape.shape.extents = rock.size / 2
 
@@ -42,6 +42,6 @@ func disable():
 	collision_shape.set_deferred("disabled", true)
 
 
-func _on_Rock_area_entered(area):
+func _on_Log_area_entered(area):
 	area.hit_rock()
 	disable()

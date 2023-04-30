@@ -13,13 +13,13 @@ onready var sprite = $Sprite
 
 func _ready():
 	disable()
-
+	
 
 func _physics_process(_delta):
 	if not visible:
 		return
 	
-	if position.x < Entities.cart.position.x - 270:
+	if position.x - Entities.cart.position.x < -500:
 		disable()
 		
 

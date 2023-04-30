@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/environment/World.gd" type="Script" id=1]
-[ext_resource path="res://scenes/environment/RockSpawner.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/environment/MudSpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/environment/WorldObjectSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/trail_background.png" type="Texture" id=4]
-[ext_resource path="res://scenes/environment/GoblinSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/environment/LevelEnd.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/entity/Box.tscn" type="PackedScene" id=7]
 
@@ -31,14 +29,14 @@ region_rect = Rect2( 0, 0, 1440, 540 )
 
 [node name="Foreground" type="ParallaxLayer" parent="ParallaxBackground"]
 
-[node name="RockSpawner" parent="." instance=ExtResource( 2 )]
+[node name="RockSpawner" parent="." instance=ExtResource( 3 )]
 
 [node name="MudSpawner" parent="." instance=ExtResource( 3 )]
+object_name = 1
 
-[node name="GoblinSpawner" parent="." instance=ExtResource( 5 )]
-min_timer = 5.0
-max_timer = 15.0
-y_spawn = 270
+[node name="LogSpawner" parent="." instance=ExtResource( 3 )]
+total = 1
+object_name = 2
 
 [node name="Trail" type="Area2D" parent="."]
 collision_layer = 4

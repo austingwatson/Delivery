@@ -1,19 +1,25 @@
 extends Area2D
 
-export var speed = 0.0
+export var max_speed = 0.0
 export var trail_slowdown = 0.0
 export var mud_slowdown = 0.0
+export var min_camera_offset = 100.0
+export var max_camera_offset = 100.0
 
 var move_up = false
 var move_down = false
 var shoot = false
+var camera_left = false
+var camera_right = false
 
+var speed = 0.0
 var on_trail = true
 var mud_count = 0
 var stunned = false
 
 var archers = []
 
+onready var camera = $Camera2D
 onready var sprites = $Sprites
 onready var animation_player = $Sprites/AnimationPlayer
 onready var flash_timer = $FlashTimer
@@ -45,9 +51,20 @@ func _unhandled_input(event):
 				archer.shoot(get_global_mouse_position())
 				break
 	
+	if event.is_action_pressed("camera_left"):
+		camera_left = true
+	elif event.is_action_released("camera_left"):
+		camera_left = false
+	
+	if event.is_action_pressed("camera_right"):
+		camera_right = true
+	elif event.is_action_released("camera_right"):
+		camera_right = false
+	
 
 func _physics_process(delta):
 	move(delta)
+	move_camera(delta)
 	
 
 func move(delta):
@@ -55,6 +72,7 @@ func move(delta):
 		return
 	
 	var velocity = Vector2.RIGHT
+	speed = max_speed
 	
 	if move_up:
 		velocity.y -= 1
@@ -63,16 +81,33 @@ func move(delta):
 	
 	# check if out of trail bounds
 	if not on_trail:
-		velocity *= trail_slowdown
+		speed *= trail_slowdown
 		animation_player.playback_speed = 1 * trail_slowdown
 	# check if on mud
 	elif mud_count > 0:
-		velocity *= mud_slowdown
+		speed *= mud_slowdown
 		animation_player.playback_speed = 1 * mud_slowdown
 	else:
 		animation_player.playback_speed = 1
 	
 	position += velocity * speed * delta
+
+
+func move_camera(delta):
+	if stunned:
+		return
+	
+	var dx = 0.0
+	if camera_left:
+		dx -= 2
+	if camera_right:
+		dx += 1
+		
+	camera.offset.x += dx * speed * delta
+	if camera.offset.x < min_camera_offset:
+		camera.offset.x = min_camera_offset
+	elif camera.offset.x > max_camera_offset:
+		camera.offset.x = max_camera_offset
 	
 
 func hit_rock():

@@ -207,9 +207,11 @@ region = Rect2( 5, 20, 82, 23 )
 [node name="Cart" type="Area2D"]
 collision_mask = 22
 script = ExtResource( 3 )
-speed = 75.0
+max_speed = 75.0
 trail_slowdown = 0.5
 mud_slowdown = 0.5
+min_camera_offset = -200.0
+max_camera_offset = 200.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 100, 0 )
