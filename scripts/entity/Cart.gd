@@ -77,6 +77,7 @@ func hit_rock():
 	
 	stunned = true
 	stun_timer.start()
+	animation_player.stop()
 
 
 func _on_FlashTimer_timeout():
@@ -85,3 +86,4 @@ func _on_FlashTimer_timeout():
 
 func _on_StunTimer_timeout():
 	stunned = false
+	animation_player.play("move")
