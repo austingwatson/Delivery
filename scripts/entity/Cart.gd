@@ -2,8 +2,11 @@ extends Area2D
 
 const inventory = preload("res://resources/inventory/inventory.tres")
 const archer_scene = preload("res://scenes/entity/Archer.tscn")
+const ox_scene = preload("res://scenes/entity/Ox.tscn")
 
 export var max_speed = 0.0
+export var oxen_speed_increase = 0.25
+export var max_ox_distance = 8
 export var trail_slowdown = 0.0
 export var mud_slowdown = 0.0
 export var min_camera_offset = 100.0
@@ -22,6 +25,9 @@ var mud_count = 0
 var stunned = false
 
 var archers = []
+var ox_distance = 0
+var ox_weave = 1
+var oxs = []
 
 onready var camera = $Camera2D
 onready var sprites = $Sprites
@@ -29,9 +35,13 @@ onready var slots = $Sprites/Slots
 onready var animation_player = $Sprites/AnimationPlayer
 onready var flash_timer = $FlashTimer
 onready var stun_timer = $StunTimer
+onready var cart_rope_position = $CartRopePosition
+onready var oxen = $Oxen
 
 
 func _ready():
+	oxs.append(oxen.get_child(0))
+	
 	animation_player.play("move")
 
 
@@ -62,11 +72,17 @@ func _unhandled_input(event):
 		camera_right = true
 	elif event.is_action_released("camera_right"):
 		camera_right = false
+		
+	if event.is_action_released("test"):
+		add_ox()
 	
 
 func _physics_process(delta):
 	move(delta)
 	move_camera(delta)
+	
+	for ox in oxen.get_children():
+		ox.set_rope(cart_rope_position.global_position)
 	
 
 func move(delta):
@@ -82,19 +98,34 @@ func move(delta):
 		elif move_down:
 			velocity.y += 1
 	
+	animation_player.playback_speed = 1
 	# check if out of trail bounds
 	if not on_trail:
 		speed *= trail_slowdown
-		animation_player.playback_speed = 1 * trail_slowdown
+		animation_player.playback_speed *= trail_slowdown
 	# check if on mud
 	if mud_count > 0:
 		speed *= mud_slowdown
-		animation_player.playback_speed = 1 * mud_slowdown
-	else:
-		animation_player.playback_speed = 1
+		animation_player.playback_speed *= mud_slowdown
+		
+	for ox in oxen.get_children():
+		ox.set_playback_speed(animation_player.playback_speed)
 	
 	position += velocity * speed * delta
-
+	
+	oxen.position.y += velocity.y * speed * delta * oxen_speed_increase
+	if abs(oxen.global_position.y - global_position.y) > max_ox_distance:
+		oxen.position.y -= velocity.y * speed * delta * oxen_speed_increase
+	
+	if velocity.y == 0 and abs(oxen.position.y) > -2:
+		var dy = oxen.position.y - 2
+		if dy > 0:
+			dy = -1
+		elif dy < 0:
+			dy = 1
+		
+		oxen.position.y += dy * speed * delta * oxen_speed_increase
+	
 
 func move_camera(delta):
 	if input_blocked or stunned:
@@ -120,6 +151,28 @@ func hit_rock():
 	stunned = true
 	stun_timer.start()
 	animation_player.stop()
+	
+	for ox in oxen.get_children():
+		ox.play_anim("hurt")
+		ox.set_playback_speed(1)
+		
+
+func add_ox():
+	ox_distance += 2
+	ox_weave *= -1
+	
+	var ox = ox_scene.instance()
+	oxen.add_child(ox)
+	ox.position.y = ox_distance * ox_weave
+	
+	print(oxs)
+	oxs.append(ox)
+	oxs.sort_custom(OxSorter, "sort_ox")
+	
+	var dx = 0
+	for oxx in oxs:
+		oxx.position.x = dx
+		dx += 4
 
 
 func _on_FlashTimer_timeout():
@@ -129,6 +182,10 @@ func _on_FlashTimer_timeout():
 func _on_StunTimer_timeout():
 	stunned = false
 	animation_player.play("move")
+	
+	for ox in oxen.get_children():
+		ox.play_anim("move")
+		ox.set_playback_speed(animation_player.playback_speed)
 
 
 func _on_CartContents_body_entered(body):
@@ -144,6 +201,9 @@ func _on_CartContents_body_entered(body):
 			midpoint += children[i].global_position
 		midpoint /= result.size()
 		
+		midpoint.x = round(midpoint.x)
+		midpoint.y = round(midpoint.y)
+		
 		children[result[0]].call_deferred("add_child", body)
 		body.set_deferred("global_position", midpoint)
 		
@@ -155,7 +215,14 @@ func _on_CartContents_body_entered(body):
 			slots.get_children()[result[0]].call_deferred("add_child", archer)
 			archer.set_deferred("global_position", midpoint + Vector2(0, -5))
 			archers.append(archer)
-	
+
+class OxSorter:
+	static func sort_ox(a, b):
+		if a.position.y < b.position.y:
+			return true
+		else:
+			return false
+
 	
 	
 	

@@ -1,6 +1,7 @@
 extends Area2D
 
 export var max_size = 10
+export var min_size = 5
 
 var size = max_size
 
@@ -28,7 +29,7 @@ func _on_Timer_timeout():
 	trail.scale_amount = size
 	size -= 1
 	
-	if size <= 5:
+	if size <= min_size:
 		trail.emitting = false
 		size = max_size
 	else:
