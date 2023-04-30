@@ -10,10 +10,14 @@ var shoot = false
 
 var on_trail = true
 var mud_count = 0
+var stunned = false
 
 var archers = []
 
+onready var sprites = $Sprites
 onready var animation_player = $Sprites/AnimationPlayer
+onready var flash_timer = $FlashTimer
+onready var stun_timer = $StunTimer
 
 
 func _ready():
@@ -47,6 +51,9 @@ func _physics_process(delta):
 	
 
 func move(delta):
+	if stunned:
+		return
+	
 	var velocity = Vector2.RIGHT
 	
 	if move_up:
@@ -62,3 +69,19 @@ func move(delta):
 		velocity *= mud_slowdown
 	
 	position += velocity * speed * delta
+	
+
+func hit_rock():
+	sprites.material.set_shader_param("flash", true)
+	flash_timer.start()
+	
+	stunned = true
+	stun_timer.start()
+
+
+func _on_FlashTimer_timeout():
+	sprites.material.set_shader_param("flash", false)
+
+
+func _on_StunTimer_timeout():
+	stunned = false

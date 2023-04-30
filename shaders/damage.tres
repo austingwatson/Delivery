@@ -1,0 +1,16 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform bool flash = false;
+uniform vec4 color: hint_color;
+
+void fragment()
+{
+	COLOR = texture(TEXTURE, UV);
+	if(flash && COLOR.a > 0.0)
+	{
+		COLOR.rgb = mix(COLOR.rgb, color.rgb, 0.5);
+	}
+}"

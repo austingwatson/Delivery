@@ -43,5 +43,5 @@ func disable():
 
 
 func _on_Rock_area_entered(area):
-	print(area)
+	area.hit_rock()
 	disable()
