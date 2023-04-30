@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/actor_sheet.png" type="Texture" id=1]
 [ext_resource path="res://scripts/entity/Chicken.gd" type="Script" id=2]
+[ext_resource path="res://assets/effects_sheet.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -79,6 +80,10 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 4, 16, 4, 4 )
+
 [node name="Chicken" type="Area2D"]
 z_index = 1
 collision_layer = 2048
@@ -98,4 +103,20 @@ animation = "move"
 wait_time = 3.0
 autostart = true
 
+[node name="Feathers" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 3
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+texture = SubResource( 17 )
+spread = 90.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+angle_random = 1.0
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="StateTimer" to="." method="_on_StateTimer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

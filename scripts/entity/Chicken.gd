@@ -11,7 +11,9 @@ export var speed = 0.0
 var state = State.IDLE
 var direction = Vector2.ZERO
 
+onready var collision_shape = $CollisionShape2D
 onready var animated_sprite = $AnimatedSprite
+onready var feathers = $Feathers
 
 
 func _ready():
@@ -24,7 +26,13 @@ func _physics_process(delta):
 		
 
 func damage(damage):
-	queue_free()
+	#queue_free()
+	feathers.direction = Entities.cart.global_position.direction_to(global_position)
+	feathers.emitting = true
+	
+	collision_shape.set_deferred("disabled", true)
+	animated_sprite.visible = false
+	$DeathTimer.start()
 
 
 func _on_StateTimer_timeout():
@@ -44,3 +52,7 @@ func _on_StateTimer_timeout():
 				animated_sprite.flip_h = true
 		State.EAT:
 			animated_sprite.play("eat")
+
+
+func _on_DeathTimer_timeout():
+	queue_free()

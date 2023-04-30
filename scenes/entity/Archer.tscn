@@ -186,12 +186,12 @@ anims/attack = SubResource( 5 )
 [node name="Body" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 20
-vframes = 11
+vframes = 22
 
 [node name="Bow" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 20
-vframes = 11
+vframes = 22
 frame = 60
 
 [node name="ArrowSpawnPoint" type="Position2D" parent="."]

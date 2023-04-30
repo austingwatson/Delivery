@@ -79,8 +79,10 @@ func _on_IdleTimer_timeout():
 	rng = randi() % 2
 	if rng == 0:
 		body.flip_h = false
+		bow.rotation = 0
 	else:
 		body.flip_h = true
+		bow.rotation = PI
 	
 	idle_timer.start()
 

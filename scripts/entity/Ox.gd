@@ -24,3 +24,7 @@ func set_playback_speed(playback_speed):
 func set_rope(global_position):
 	rope.set_point_position(0, global_position - self.global_position)
 	rope.set_point_position(1, rope_position.global_position - self.global_position)
+
+
+func _on_Area2D_area_entered(area):
+	area.damage(0)
