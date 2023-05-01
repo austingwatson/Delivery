@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/ui_sheet.png" type="Texture" id=1]
+[ext_resource path="res://scripts/hud/WagonUI.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 168, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 24, 168, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 168, 24, 24 )
+
+[node name="WagonUI" type="TextureRect"]
+margin_right = 24.0
+margin_bottom = 24.0
+script = ExtResource( 2 )
+closed = SubResource( 1 )
+open = SubResource( 2 )
+full = SubResource( 3 )

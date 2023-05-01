@@ -1,6 +1,37 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/hud/PauseMenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/ui_sheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/volume_bg.png" type="Texture" id=3]
+[ext_resource path="res://assets/PressStartK-EX89.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 324, 24, 96, 24 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 324, 48, 96, 24 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 324, 72, 96, 24 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 12
+font_data = ExtResource( 4 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 444, 72, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 444, 24, 24, 24 )
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 96, 24 )
 
 [node name="PauseMenu" type="CanvasLayer"]
 visible = false
@@ -11,49 +42,89 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -32.0
-margin_top = -42.0
-margin_right = 32.0
-margin_bottom = 42.0
+margin_left = -48.0
+margin_top = -58.0
+margin_right = 48.0
+margin_bottom = 58.0
 
-[node name="Resume" type="Button" parent="VBoxContainer"]
-margin_right = 64.0
-margin_bottom = 20.0
-text = "Close"
+[node name="Resume" type="TextureButton" parent="VBoxContainer"]
+margin_right = 96.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 96, 24 )
+texture_normal = SubResource( 1 )
+texture_pressed = SubResource( 2 )
+texture_hover = SubResource( 3 )
+
+[node name="Label" type="Label" parent="VBoxContainer/Resume"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.180392, 0.0666667, 0.105882, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Resume"
+align = 1
+valign = 1
 
 [node name="Music" type="HSlider" parent="VBoxContainer"]
-margin_top = 24.0
-margin_right = 64.0
-margin_bottom = 40.0
+margin_top = 28.0
+margin_right = 96.0
+margin_bottom = 52.0
+custom_icons/grabber_highlight = SubResource( 5 )
+custom_icons/grabber = SubResource( 6 )
+custom_styles/slider = SubResource( 7 )
+custom_styles/grabber_area_highlight = SubResource( 7 )
+custom_styles/grabber_area = SubResource( 7 )
 min_value = -60.0
 max_value = 0.0
+rounded = true
 
 [node name="Label" type="Label" parent="VBoxContainer/Music"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.180392, 0.0666667, 0.105882, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Music"
 align = 1
 valign = 1
 
 [node name="Sound" type="HSlider" parent="VBoxContainer"]
-margin_top = 44.0
-margin_right = 64.0
-margin_bottom = 60.0
+margin_top = 56.0
+margin_right = 96.0
+margin_bottom = 80.0
+custom_icons/grabber_highlight = SubResource( 5 )
+custom_icons/grabber = SubResource( 6 )
+custom_styles/slider = SubResource( 7 )
+custom_styles/grabber_area_highlight = SubResource( 7 )
+custom_styles/grabber_area = SubResource( 7 )
 min_value = -60.0
 max_value = 0.0
+rounded = true
 
 [node name="Label" type="Label" parent="VBoxContainer/Sound"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.180392, 0.0666667, 0.105882, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Sound"
 align = 1
 valign = 1
 
-[node name="Exit" type="Button" parent="VBoxContainer"]
-margin_top = 64.0
-margin_right = 64.0
-margin_bottom = 84.0
+[node name="Exit" type="TextureButton" parent="VBoxContainer"]
+margin_top = 84.0
+margin_right = 96.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 96, 24 )
+texture_normal = SubResource( 1 )
+texture_pressed = SubResource( 2 )
+texture_hover = SubResource( 3 )
+
+[node name="Label" type="Label" parent="VBoxContainer/Exit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.180392, 0.0666667, 0.105882, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Exit"
+align = 1
+valign = 1
 
 [connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="value_changed" from="VBoxContainer/Music" to="." method="_on_Music_value_changed"]

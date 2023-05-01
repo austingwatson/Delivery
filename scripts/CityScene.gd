@@ -4,13 +4,12 @@ const inventory = preload("res://resources/inventory/inventory.tres")
 
 onready var cart = $Cart
 onready var pause_menu = $PauseMenu
-onready var label = $CanvasLayer/Label
 
 
 func _ready():
 	cart.freeze()
 	
-	label.text = "Wagon Size \n" + str(inventory.current_size.x) + "x" + str(inventory.current_size.y)
+	ToolTip.show_wagon()
 
 
 func _unhandled_input(event):
@@ -25,5 +24,6 @@ func _unhandled_input(event):
 		
 
 func leave():
+	ToolTip.hide_wagon()
 	cart.remove_all_cargo()
 	SceneManager.cart_direction = Vector2.RIGHT

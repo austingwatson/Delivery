@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/goblin_laugh1.wav-ddb4c7db09dd5e852a9c7f06a00db739.sample"
+
+[deps]
+
+source_file="res://assets/sounds/goblin_laugh1.wav"
+dest_files=[ "res://.import/goblin_laugh1.wav-ddb4c7db09dd5e852a9c7f06a00db739.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

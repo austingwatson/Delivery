@@ -366,6 +366,10 @@ position = Vector2( 17, -5 )
 width = 1.0
 default_color = Color( 0.478431, 0.301961, 0.192157, 1 )
 
+[node name="SnortTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_entered" from="Charge" to="." method="_on_Charge_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="SnortTimer" to="." method="_on_SnortTimer_timeout"]

@@ -11,7 +11,6 @@ var info = {}
 var mouse_inside = false
 var mouse_down = false
 var emit_particle = false
-var tooltip = ""
 
 onready var collision_shape = $CollisionShape2D
 onready var left_emitter = $LeftEmitter
@@ -60,10 +59,6 @@ func gen_info(gold):
 
 func setup():
 	sprite.texture = info.world_texture
-	
-	tooltip = info.name + "\n" + str(info.size) + "\n" + str(info.gold) + "\n" + str(info.stats[0]) + "\n" + str(info.stats[1]) + "\n" + str(info.stats[2])
-	if info.type == 1:
-		tooltip = info.name + "\n" + str(info.size)
 	
 	if info.type == 2:
 		sprite.hframes = 40
@@ -118,7 +113,7 @@ func get_offset():
 
 func _on_Box_mouse_entered():
 	mouse_inside = true
-	ToolTip.show_tooltip(tooltip)
+	ToolTip.show_tooltip(info.size, info.gold, info.stats[0], info.stats[1], info.stats[2])
 
 
 func _on_Box_mouse_exited():

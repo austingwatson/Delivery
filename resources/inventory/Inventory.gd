@@ -1,9 +1,21 @@
 class_name Inventory
 extends Resource
 
+signal item_changed(side, i, j, full)
+
 export var wagon_items = []
 export var front_items = []
 export var current_size = Vector2.ZERO
+
+
+func remove_wagon_item(i, j):
+	wagon_items[i][j] = null
+	emit_signal("item_changed", 0, i, j, false)
+	
+
+func remove_front_item(i):
+	front_items[i] = null
+	emit_signal("item_changed", 1, i, 0, false)
 
 
 func add_next_slot(new_item) -> Array:
@@ -28,6 +40,7 @@ func add_next_slot(new_item) -> Array:
 					
 				for k in result:
 					wagon_items[i][k] = new_item
+					emit_signal("item_changed", 0, i, k, true)
 					
 				result.push_front(wagon_items[i].size())
 				result.push_front(i)
@@ -35,9 +48,11 @@ func add_next_slot(new_item) -> Array:
 	
 	if front_items[0] == null:
 		front_items[0] = new_item
+		emit_signal("item_changed", 1, 0, 0, true)
 		return [1, 16, 0]
 	elif front_items[1] == null:
 		front_items[1] = new_item
+		emit_signal("item_changed", 1, 1, 0, true)
 		return [1, 16, 1]
 	
 	return []
@@ -46,9 +61,11 @@ func add_next_slot(new_item) -> Array:
 func look_front_first(new_item):
 	if front_items[0] == null:
 		front_items[0] = new_item
+		emit_signal("item_changed", 1, 0, 0, true)
 		return [1, 16, 0]
 	elif front_items[1] == null:
 		front_items[1] = new_item
+		emit_signal("item_changed", 1, 1, 0, true)
 		return [1, 16, 1]
 	
 	return null

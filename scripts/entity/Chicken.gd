@@ -55,6 +55,9 @@ func _on_StateTimer_timeout():
 				animated_sprite.flip_h = true
 		State.EAT:
 			animated_sprite.play("eat")
+			
+			if global_position.distance_to(Entities.cart.global_position) < 480:
+				SoundManager.play_chicken()
 
 
 func _on_DeathTimer_timeout():

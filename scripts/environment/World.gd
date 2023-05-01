@@ -32,10 +32,13 @@ func _physics_process(_delta):
 
 func _on_Trail_area_entered(area):
 	area.on_trail = true
+	SoundManager.loop_wagon_move()
 
 
 func _on_Trail_area_exited(area):
 	area.on_trail = false
+	SoundManager.play_wagon_creak()
+	SoundManager.stop_wagon_move()
 
 
 func _on_LevelEnd_area_entered(_area):

@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/goblin_babble.wav-e1bb5a4e7f10d510d7b89b3db8f34a5f.sample"
+
+[deps]
+
+source_file="res://assets/sounds/goblin_babble.wav"
+dest_files=[ "res://.import/goblin_babble.wav-e1bb5a4e7f10d510d7b89b3db8f34a5f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

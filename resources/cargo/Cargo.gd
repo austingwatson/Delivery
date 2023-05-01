@@ -32,7 +32,9 @@ func make_random():
 func gen_gold(stats):
 	var stat_amount = stats[0] + stats[1] + stats[2]
 	
-	if stat_amount == 0 and type == 2:
+	if type == 1:
+		return 0
+	elif stat_amount == 0 and type == 2:
 		if size == 1:
 			return 1
 		elif size == 3:

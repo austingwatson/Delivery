@@ -4,11 +4,14 @@ onready var animation_player = $AnimationPlayer
 onready var rope_position = $RopePosition
 onready var rope = $Rope
 onready var charge_shape = $Charge/CollisionShape2D
+onready var snort_timer = $SnortTimer
+
 
 func _ready():
 	play_anim("move_right")
 	rope.add_point(Vector2(0, 0))
 	rope.add_point(Vector2(0, 0))
+	snort_timer.start(rand_range(15, 30))
 	
 
 func play_anim(anim_name):
@@ -18,6 +21,9 @@ func play_anim(anim_name):
 		animation_player.advance(rand_range(0, 0.8))
 	elif anim_name == "charge":
 		charge_shape.set_deferred("disabled", false)
+		SoundManager.play_oxen_snort()
+	elif anim_name == "hurt":
+		SoundManager.play_oxen_hurt()
 	
 
 func set_playback_speed(playback_speed):
@@ -56,3 +62,9 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_Charge_area_entered(area):
 	area.disable()
+	SoundManager.play_wood_impact()
+
+
+func _on_SnortTimer_timeout():
+	SoundManager.play_oxen_snort()
+	snort_timer.start(rand_range(15, 30))

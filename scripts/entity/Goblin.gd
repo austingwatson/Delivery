@@ -52,9 +52,11 @@ func damage(amount):
 	if health <= 0:
 		animated_sprite.play("death")
 		state = State.DEATH
+		SoundManager.play_goblin_death()
 	else:
 		animated_sprite.play("hurt")
 		state = State.HURT
+		SoundManager.play_goblin_hurt()
 
 
 func _on_AnimatedSprite_animation_finished():
@@ -78,6 +80,7 @@ func _on_AnimatedSprite_animation_finished():
 			action_done()
 			animated_sprite.play("taunt")
 			state = State.TAUNT
+			SoundManager.play_goblin_laugh()
 		
 			if global_position.x > Entities.cart.global_position.x:
 				animated_sprite.flip_h = false
@@ -97,6 +100,7 @@ func _on_IdleTimer_timeout():
 	else:
 		animated_sprite.play("taunt")
 		state = State.TAUNT
+		SoundManager.play_goblin_laugh()
 		
 		if global_position.x > Entities.cart.global_position.x:
 			animated_sprite.flip_h = false

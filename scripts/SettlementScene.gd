@@ -21,7 +21,7 @@ func _ready():
 				remove_item(item)
 				last_item = item
 			
-			wagon_items[i][j] = null
+			inventory.remove_wagon_item(i, j)
 	
 	
 	var item = inventory.front_items[0]
@@ -29,8 +29,8 @@ func _ready():
 	item = inventory.front_items[1]
 	remove_item(item)
 	
-	inventory.front_items[0] = null
-	inventory.front_items[1] = null
+	inventory.remove_front_item(0)
+	inventory.remove_front_item(1)
 	
 	while score.current_gold > 0:
 		if score.current_gold >= 3:

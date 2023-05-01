@@ -67,6 +67,8 @@ func _on_Attack_animation_finished(anim_name):
 		arrow.set_velocity(arrow_spawn_point.global_position, target + (arrow_spawn_point.global_position - start_position))
 		target = null
 		reload_timer.start()
+		
+		SoundManager.play_arrow()
 
 
 func _on_IdleTimer_timeout():
