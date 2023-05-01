@@ -1,5 +1,7 @@
 extends Node
 
+var cart_direction = Vector2.RIGHT
+
 onready var menu_scene = preload("res://scenes/MenuScene.tscn")
 onready var city_scene = preload("res://scenes/CityScene.tscn")
 onready var trail_scene = preload("res://scenes/TrailScene.tscn")

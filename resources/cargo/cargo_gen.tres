@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=12 format=2]
+[gd_resource type="Resource" load_steps=14 format=2]
 
 [ext_resource path="res://resources/cargo/CargoGen.gd" type="Script" id=1]
 [ext_resource path="res://resources/cargo/barrel.tres" type="Resource" id=2]
@@ -11,7 +11,10 @@
 [ext_resource path="res://resources/cargo/small_box.tres" type="Resource" id=9]
 [ext_resource path="res://resources/cargo/logs.tres" type="Resource" id=10]
 [ext_resource path="res://resources/cargo/small_bag.tres" type="Resource" id=11]
+[ext_resource path="res://resources/cargo/gold.tres" type="Resource" id=12]
+[ext_resource path="res://resources/cargo/ore.tres" type="Resource" id=13]
 
 [resource]
 script = ExtResource( 1 )
 cargos = [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 7 ) ]
+golds = [ ExtResource( 13 ), ExtResource( 12 ) ]

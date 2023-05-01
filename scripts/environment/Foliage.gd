@@ -1,14 +1,11 @@
-extends Area2D
+extends Sprite
 
-const world_objects = preload("res://resources/world_objects.tres")
+const frames = [160, 161, 162, 163, 200, 201, 202, 203, 204, 205]
 
 export var min_rock_location = -135.0
 export var max_rock_location = 135.0
 
 var in_use = false
-
-onready var collision_shape = $CollisionShape2D
-onready var sprite = $Sprite
 
 
 func _ready():
@@ -26,7 +23,6 @@ func _physics_process(_delta):
 func enable():
 	visible = true
 	in_use = true
-	collision_shape.set_deferred("disabled", false)
 	
 	var dir = 1
 	if SceneManager.cart_direction != Vector2.RIGHT:
@@ -35,17 +31,9 @@ func enable():
 	position.x = round(Entities.cart.position.x) + 480.0 * dir
 	position.y = round(rand_range(min_rock_location, max_rock_location))
 	
-	var rock = world_objects.get_random_rock()
-	sprite.texture = rock.texture
-	collision_shape.shape.extents = rock.size / 2
+	frame = frames[randi() % frames.size()]
 
 
 func disable():
 	visible = false
 	in_use = false
-	collision_shape.set_deferred("disabled", true)
-
-
-func _on_Rock_area_entered(area):
-	area.hit_rock()
-	disable()

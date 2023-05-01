@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/environment/World.gd" type="Script" id=1]
 [ext_resource path="res://scenes/environment/GoblinSpawner.tscn" type="PackedScene" id=2]
@@ -6,10 +6,25 @@
 [ext_resource path="res://assets/trail_background.png" type="Texture" id=4]
 [ext_resource path="res://assets/tree_card_lower.png" type="Texture" id=5]
 [ext_resource path="res://scenes/environment/LevelEnd.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/environment_sheet.png" type="Texture" id=7]
 [ext_resource path="res://assets/tree_card_upper.png" type="Texture" id=8]
+[ext_resource path="res://scenes/environment/FoilageSpawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/environment/ChickenSpawner.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 480, 31 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 7 )
+region = Rect2( 50, 0, 20, 24 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 7 )
+region = Rect2( 74, 3, 19, 21 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 7 )
+region = Rect2( 102, 0, 15, 24 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -65,16 +80,32 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 1440, 132 )
 
 [node name="MudSpawner" parent="." instance=ExtResource( 3 )]
+total = 25
+min_timer = 3.0
+max_timer = 6.0
 object_name = 1
 
 [node name="LogSpawner" parent="." instance=ExtResource( 3 )]
+total = 25
+min_timer = 3.0
+max_timer = 6.0
 object_name = 2
 
 [node name="RockSpawner" parent="." instance=ExtResource( 3 )]
+total = 25
+max_timer = 3.0
 
 [node name="GoblinSpawner" parent="." instance=ExtResource( 2 )]
-min_timer = 10.0
-max_timer = 15.0
+min_timer = 5.0
+max_timer = 10.0
+y_spawn = 200
+
+[node name="ChickenSpawner" parent="." instance=ExtResource( 10 )]
+min_timer = 2.0
+max_timer = 20.0
+
+[node name="FoliageSpawner" parent="." instance=ExtResource( 9 )]
+total = 100
 
 [node name="Trail" type="Area2D" parent="."]
 collision_layer = 4
@@ -84,10 +115,22 @@ position = Vector2( 0, -6 )
 shape = SubResource( 1 )
 
 [node name="LevelEnd" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1000, 0 )
+position = Vector2( 3000, 0 )
 
 [node name="LevelEndTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="FirstMarker" type="Sprite" parent="."]
+position = Vector2( 0, -62 )
+texture = SubResource( 2 )
+
+[node name="SecondMarker" type="Sprite" parent="."]
+position = Vector2( 0, -62 )
+texture = SubResource( 3 )
+
+[node name="LastMarker" type="Sprite" parent="."]
+position = Vector2( 0, -62 )
+texture = SubResource( 4 )
 
 [connection signal="area_entered" from="Trail" to="." method="_on_Trail_area_entered"]
 [connection signal="area_exited" from="Trail" to="." method="_on_Trail_area_exited"]

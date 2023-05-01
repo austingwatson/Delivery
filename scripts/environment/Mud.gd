@@ -2,8 +2,8 @@ extends Area2D
 
 const world_objects = preload("res://resources/world_objects.tres")
 
-export var min_location = -100.0
-export var max_location = 100.0
+export var min_location = -70.0
+export var max_location = 50.0
 
 var in_use = false
 
@@ -27,7 +27,12 @@ func enable():
 	visible = true
 	in_use = true
 	collision_shape.set_deferred("disabled", false)
-	position.x = round(Entities.cart.position.x) + 480.0
+	
+	var dir = 1
+	if SceneManager.cart_direction != Vector2.RIGHT:
+		dir = -1
+	
+	position.x = round(Entities.cart.position.x) + 480.0 * dir
 	position.y = round(rand_range(min_location, max_location))
 	
 	var mud = world_objects.get_random_mud()

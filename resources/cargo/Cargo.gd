@@ -4,7 +4,7 @@ extends Resource
 export var name = ""
 export var size = 0
 export(Texture) var world_texture
-export(int, "world", "human") var type = 0
+export(int, "world", "human", "gold") var type = 0
 export var offset = Vector2.ZERO
 
 export var food = 0
@@ -32,7 +32,12 @@ func make_random():
 func gen_gold(stats):
 	var stat_amount = stats[0] + stats[1] + stats[2]
 	
-	if size == stat_amount:
+	if stat_amount == 0 and type == 2:
+		if size == 1:
+			return 1
+		elif size == 3:
+			return 3
+	elif size == stat_amount:
 		return 1
 	elif size > stat_amount:
 		return 2

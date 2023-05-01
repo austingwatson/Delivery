@@ -59,6 +59,7 @@ config/icon="res://assets/icon.png"
 Entities="*res://scenes/Entities.tscn"
 SceneManager="*res://scenes/SceneManager.tscn"
 SoundManager="*res://scripts/SoundManager.gd"
+ToolTip="*res://scenes/hud/ToolTip.tscn"
 
 [debug]
 

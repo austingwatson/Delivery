@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://resources/cargo/Cargo.gd" type="Script" id=1]
+[ext_resource path="res://assets/environment_sheet.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 2, 219, 20, 21 )
+
+[resource]
+script = ExtResource( 1 )
+name = "Ore"
+size = 3
+world_texture = SubResource( 1 )
+type = 0
+offset = Vector2( 0, 0 )
+food = 0
+defense = 0
+attack = 0
+max_stats = 0
+random_stats = false

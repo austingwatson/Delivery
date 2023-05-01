@@ -44,7 +44,11 @@ func add_to_ysort(entity):
 func add_random_goblin(y_spawn):
 	var goblin = goblin_scene.instance()
 	add_to_ysort(goblin)
-	goblin.position.x = cart.position.x + rand_range(-240, 480 * 2)
+	
+	if SceneManager.cart_direction == Vector2.RIGHT:
+		goblin.position.x = cart.position.x + rand_range(-240, 480 * 2)
+	else:
+		goblin.position.x = cart.position.x - rand_range(-240, 480 * 2)
 	
 	var rng = randi() % 2
 	if rng == 0:

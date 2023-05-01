@@ -3,13 +3,19 @@ extends Resource
 
 export var wagon_items = []
 export var front_items = []
+export var current_size = Vector2.ZERO
 
 
 func add_next_slot(new_item) -> Array:
+	if new_item.get_type() == 1:
+		var front = look_front_first(new_item)
+		if front != null:
+			return front
+	
 	var found = 0
-	for i in wagon_items.size():
+	for i in wagon_items.size() - (wagon_items.size() - current_size.x):
 		found = 0
-		for j in wagon_items[i].size():
+		for j in wagon_items[i].size() - (wagon_items[i].size() - current_size.y):
 			if wagon_items[i][j] == null:
 				found += 1
 			else:
@@ -36,3 +42,13 @@ func add_next_slot(new_item) -> Array:
 	
 	return []
 	
+
+func look_front_first(new_item):
+	if front_items[0] == null:
+		front_items[0] = new_item
+		return [1, 16, 0]
+	elif front_items[1] == null:
+		front_items[1] = new_item
+		return [1, 16, 1]
+	
+	return null

@@ -24,6 +24,9 @@ func _physics_process(delta):
 	if state == State.MOVE:
 		position += direction * speed * delta
 		
+		if global_position.distance_to(Entities.cart.global_position) > 1000:
+			queue_free()
+		
 
 func damage(damage):
 	#queue_free()

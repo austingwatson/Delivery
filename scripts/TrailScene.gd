@@ -1,10 +1,12 @@
 extends Node
 
 onready var pause_menu = $PauseMenu
+onready var world = $World
 
 
 func _ready():
 	Entities.restart()
+	world.restart()
 	
 	
 func _unhandled_input(event):

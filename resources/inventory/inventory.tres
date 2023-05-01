@@ -6,3 +6,4 @@
 script = ExtResource( 1 )
 wagon_items = [ [ null, null, null, null ], [ null, null, null, null ], [ null, null, null, null ], [ null, null, null, null ] ]
 front_items = [ null, null ]
+current_size = Vector2( 2, 2 )

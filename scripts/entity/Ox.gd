@@ -6,7 +6,7 @@ onready var rope = $Rope
 onready var charge_shape = $Charge/CollisionShape2D
 
 func _ready():
-	animation_player.play("move")
+	play_anim("move_right")
 	rope.add_point(Vector2(0, 0))
 	rope.add_point(Vector2(0, 0))
 	
@@ -14,7 +14,7 @@ func _ready():
 func play_anim(anim_name):
 	animation_player.play(anim_name)
 	
-	if anim_name == "move":
+	if anim_name == "move_right" or anim_name == "move_left":
 		animation_player.advance(rand_range(0, 0.8))
 	elif anim_name == "charge":
 		charge_shape.set_deferred("disabled", false)
@@ -30,7 +30,10 @@ func set_rope(global_position):
 	
 
 func freeze():
-	animation_player.play("move")
+	if SceneManager.cart_direction == Vector2.RIGHT:
+		animation_player.play("move_right")
+	else:
+		animation_player.play("move_left")
 	animation_player.advance(0)
 	animation_player.stop()
 
@@ -45,7 +48,10 @@ func _on_Area2D_area_entered(area):
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "charge":
-		play_anim("move")
+		if SceneManager.cart_direction == Vector2.RIGHT:
+			play_anim("move_right")
+		else:
+			play_anim("move_left")
 
 
 func _on_Charge_area_entered(area):

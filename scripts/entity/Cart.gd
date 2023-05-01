@@ -56,7 +56,18 @@ func _ready():
 	
 	oxs.append(oxen.get_child(0))
 	
-	animation_player.play("move_right")
+	if SceneManager.cart_direction == Vector2.RIGHT:
+		animation_player.play("move_right")
+		for ox in oxen.get_children():
+			ox.play_anim("move_right")
+	else:
+		animation_player.play("move_left")
+		for ox in oxen.get_children():
+			ox.play_anim("move_left")
+		
+		camera.offset.x *= -1
+	
+	sprites.material.set_shader_param("flash", false)
 
 
 func _unhandled_input(event):
@@ -107,6 +118,10 @@ func _physics_process(delta):
 		ox.set_rope(cart_rope_position.global_position)
 		
 
+func set_direction(direction):
+	pass
+		
+
 func populate_wagon():
 	var wagon_items = inventory.wagon_items
 	var last_item = null
@@ -145,7 +160,7 @@ func move(delta):
 	if stunned:
 		return
 	
-	var velocity = Vector2.RIGHT
+	var velocity = SceneManager.cart_direction
 	speed = max_speed
 	
 	if not input_blocked:
@@ -256,6 +271,10 @@ func freeze():
 		mudsplat.freeze()
 
 
+func set_oxen_x(value):
+	oxen.position.x = value
+
+
 func remove_all_cargo():
 	for slot in slots.get_children():
 		for slot_child in slot.get_children():
@@ -271,10 +290,16 @@ func _on_FlashTimer_timeout():
 
 func _on_StunTimer_timeout():
 	stunned = false
-	animation_player.play("move_right")
+	if SceneManager.cart_direction == Vector2.RIGHT:
+		animation_player.play("move_right")
+	else:
+		animation_player.play("move_left")
 	
 	for ox in oxen.get_children():
-		ox.play_anim("move")
+		if SceneManager.cart_direction == Vector2.RIGHT:
+			ox.play_anim("move_right")
+		else:
+			ox.play_anim("move_left")
 		ox.set_playback_speed(animation_player.playback_speed)
 
 

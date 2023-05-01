@@ -190,7 +190,7 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=40]
 radius = 14.0
 
-[node name="Goblin" type="Area2D"]
+[node name="Goblin" type="Area2D" groups=["Goblin"]]
 collision_layer = 2
 collision_mask = 520
 script = ExtResource( 1 )
