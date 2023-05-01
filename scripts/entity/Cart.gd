@@ -180,6 +180,13 @@ func add_ox():
 	for oxx in oxs:
 		oxx.position.x = dx
 		dx += 4
+		
+func freeze():
+	set_physics_process(false)
+	animation_player.stop()
+	for ox in oxen.get_children():
+		ox.freeze()
+		ox.set_rope(global_position)
 
 
 func _on_FlashTimer_timeout():
@@ -202,16 +209,21 @@ func _on_CartContents_body_entered(body):
 		body.disable()
 		body.get_parent().remove_child(body)
 		
+		var width = result[1]
 		var midpoint = Vector2.ZERO
 		var children = slots.get_children()
-		for i in result:
-			midpoint += children[i].global_position
-		midpoint /= result.size()
+		
+		for i in range(2, result.size()):
+			midpoint += children[result[0] * width + result[i]].global_position
+		midpoint /= result.size() - 2
+		
+		if width > 10:
+			midpoint = slots.get_children()[result[0] * width + result[2]].global_position
 		
 		midpoint.x = round(midpoint.x)
 		midpoint.y = round(midpoint.y)
 		
-		children[result[0]].call_deferred("add_child", body)
+		slots.call_deferred("add_child", body)
 		body.set_deferred("global_position", midpoint)
 		
 		if body.get_type() == 0:
@@ -219,7 +231,7 @@ func _on_CartContents_body_entered(body):
 		elif body.get_type() == 1:
 			body.visible = false
 			var archer = archer_scene.instance()
-			slots.get_children()[result[0]].call_deferred("add_child", archer)
+			slots.get_children()[result[0] * width + result[2]].call_deferred("add_child", archer)
 			archer.set_deferred("global_position", midpoint + Vector2(0, -5))
 			archers.append(archer)
 
