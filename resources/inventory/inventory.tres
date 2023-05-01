@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource( 1 )
-wagon_items = [ null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null ]
-front_items = [ null, null, null, null ]
+wagon_items = [ [ null, null, null, null ], [ null, null, null, null ], [ null, null, null, null ], [ null, null, null, null ] ]
+front_items = [ null, null ]
