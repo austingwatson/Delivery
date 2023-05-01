@@ -236,13 +236,15 @@ trail_slowdown = 0.5
 mud_slowdown = 0.5
 min_camera_offset = -200.0
 max_camera_offset = 200.0
+min_world_height = -160.0
+max_world_height = 175.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 100, 0 )
 current = true
 process_mode = 0
-limit_top = -270
-limit_bottom = 270
+limit_top = -220
+limit_bottom = 220
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -3.5, 8 )

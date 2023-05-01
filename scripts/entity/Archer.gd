@@ -48,8 +48,10 @@ func play_idle(position):
 func flip(position):
 	if position.x >= global_position.x:
 		body.flip_h = false
+		bow.rotation = 0
 	else:
 		body.flip_h = true
+		bow.rotation = PI
 
 
 func _on_ReloadTimer_timeout():

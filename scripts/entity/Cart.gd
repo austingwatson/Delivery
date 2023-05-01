@@ -11,6 +11,8 @@ export var trail_slowdown = 0.0
 export var mud_slowdown = 0.0
 export var min_camera_offset = 100.0
 export var max_camera_offset = 100.0
+export var min_world_height = -100.0
+export var max_world_height = 100.0
 
 var move_up = false
 var move_down = false
@@ -112,6 +114,11 @@ func move(delta):
 		ox.set_playback_speed(animation_player.playback_speed)
 	
 	position += velocity * speed * delta
+	
+	if position.y < min_world_height:
+		position.y -= velocity.y * speed * delta
+	elif position.y > max_world_height:
+		position.y -= velocity.y * speed * delta
 	
 	oxen.position.y += velocity.y * speed * delta * oxen_speed_increase
 	if abs(oxen.global_position.y - global_position.y) > max_ox_distance:
