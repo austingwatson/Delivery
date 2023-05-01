@@ -19,11 +19,22 @@ func make_random():
 		print("bad data: ", name)
 		return
 	
-	var v1 = randi() % food
-	var v2 = randi() % defense
-	var v3 = randi() % attack
+	var v1 = randi() % food + 1
+	var v2 = randi() % defense + 1
+	var v3 = randi() % attack + 1
 	
 	var r1 = v1
-	var r2 = min(v2, max_stats - v1)
-	var r3 = min(v3, max_stats - v1 - v2)
+	var r2 = max(0, min(v2, max_stats - v1))
+	var r3 = max(0, min(v3, max_stats - v1 - v2))
 	return [r1, r2, r3]
+
+
+func gen_gold(stats):
+	var stat_amount = stats[0] + stats[1] + stats[2]
+	
+	if size == stat_amount:
+		return 1
+	elif size > stat_amount:
+		return 2
+	else:
+		return 0

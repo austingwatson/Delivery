@@ -16,5 +16,6 @@ func gen_info():
 		info.stats = cargo.make_random()
 	else:
 		info.stats = [cargo.food, cargo.defense, cargo.attack]
+	info.gold = cargo.gen_gold(info.stats)
 	
 	return info

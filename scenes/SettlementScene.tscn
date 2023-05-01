@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/entity/Cart.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/SettlementScene.gd" type="Script" id=2]
+[ext_resource path="res://scenes/hud/PauseMenu.tscn" type="PackedScene" id=3]
 
 [node name="SettlementScene" type="Node"]
 script = ExtResource( 2 )
@@ -12,5 +13,7 @@ script = ExtResource( 2 )
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="PauseMenu" parent="." instance=ExtResource( 3 )]
 
 [connection signal="timeout" from="WaitTimer" to="." method="_on_WaitTimer_timeout"]

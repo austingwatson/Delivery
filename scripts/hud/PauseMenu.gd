@@ -1,16 +1,19 @@
-extends Node
+extends CanvasLayer
 
-var music_started = false
-
-
-func _input(_event):
-	if not music_started:
-		music_started = true
-		$Music.play()
+onready var music = $VBoxContainer/Music
+onready var sound = $VBoxContainer/Sound
 
 
-func _on_Play_pressed():
-	SceneManager.change_scene("CityScene")
+func open_close():
+	visible = not visible
+	
+	if visible:
+		music.value = AudioServer.get_bus_volume_db(SoundManager.music_db)
+		sound.value = AudioServer.get_bus_volume_db(SoundManager.sound_db)
+
+
+func _on_Resume_pressed():
+	visible = false
 
 
 func _on_Music_value_changed(value):
@@ -30,4 +33,4 @@ func _on_Sound_value_changed(value):
 
 
 func _on_Exit_pressed():
-	get_tree().quit()
+	SceneManager.change_scene("MenuScene")

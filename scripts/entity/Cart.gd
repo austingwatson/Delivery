@@ -4,11 +4,15 @@ const inventory = preload("res://resources/inventory/inventory.tres")
 const archer_scene = preload("res://scenes/entity/Archer.tscn")
 const ox_scene = preload("res://scenes/entity/Ox.tscn")
 
+const dirt_color = Color(89.0 / 255.0, 77.0 / 255.0, 77.0 / 255.0)
+const grass_color = Color(93.0 / 255.0, 155.0 / 255.0, 121.0 / 255.0)
+
 export var max_speed = 0.0
 export var oxen_speed_increase = 0.25
 export var max_ox_distance = 8
 export var trail_slowdown = 0.0
 export var mud_slowdown = 0.0
+export var charge_speed = 0.0
 export var min_camera_offset = 100.0
 export var max_camera_offset = 100.0
 export var min_world_height = -100.0
@@ -25,6 +29,8 @@ var speed = 0.0
 var on_trail = true
 var mud_count = 0
 var stunned = false
+var can_charge = true
+var charge = false
 
 var archers = []
 var ox_distance = 0
@@ -39,6 +45,10 @@ onready var flash_timer = $FlashTimer
 onready var stun_timer = $StunTimer
 onready var cart_rope_position = $CartRopePosition
 onready var oxen = $Oxen
+onready var fg_wheel_particles = $Sprites/FGWheelParticle
+onready var bg_wheel_particles = $Sprites/BGWheelParticle
+onready var charge_timer = $ChargeTimer
+onready var charge_cd = $ChargeCD
 
 
 func _ready():
@@ -46,7 +56,7 @@ func _ready():
 	
 	oxs.append(oxen.get_child(0))
 	
-	animation_player.play("move")
+	animation_player.play("move_right")
 
 
 func _unhandled_input(event):
@@ -55,31 +65,39 @@ func _unhandled_input(event):
 	elif event.is_action_released("move_up"):
 		move_up = false
 	
-	if event.is_action_pressed("move_down"):
+	elif event.is_action_pressed("move_down"):
 		move_down = true
 	elif event.is_action_released("move_down"):
 		move_down = false
 	
-	if event.is_action_pressed("shoot"):
+	elif event.is_action_pressed("shoot"):
 		archers.shuffle()
 		for archer in archers:
 			if archer.can_shoot:
 				archer.shoot(get_global_mouse_position())
 				break
 	
-	if event.is_action_pressed("camera_left"):
+	elif event.is_action_pressed("camera_left"):
 		camera_left = true
 	elif event.is_action_released("camera_left"):
 		camera_left = false
 	
-	if event.is_action_pressed("camera_right"):
+	elif event.is_action_pressed("camera_right"):
 		camera_right = true
 	elif event.is_action_released("camera_right"):
 		camera_right = false
 		
-	if event.is_action_released("test"):
+	elif event.is_action_released("test"):
 		add_ox()
-	
+		
+	elif event.is_action_pressed("charge") and can_charge:
+		can_charge = false
+		charge = true
+		charge_timer.start()
+		
+		for ox in oxen.get_children():
+			ox.play_anim("charge")
+		
 
 func _physics_process(delta):
 	move(delta)
@@ -141,10 +159,18 @@ func move(delta):
 	if not on_trail:
 		speed *= trail_slowdown
 		animation_player.playback_speed *= trail_slowdown
+		fg_wheel_particles.color = grass_color
+		bg_wheel_particles.color = grass_color
+	else:
+		fg_wheel_particles.color = dirt_color
+		bg_wheel_particles.color = dirt_color
 	# check if on mud
 	if mud_count > 0:
 		speed *= mud_slowdown
 		animation_player.playback_speed *= mud_slowdown
+	if charge:
+		speed *= charge_speed
+		animation_player.playback_speed *= charge_speed
 		
 	for ox in oxen.get_children():
 		ox.set_playback_speed(animation_player.playback_speed)
@@ -205,7 +231,7 @@ func add_ox():
 	ox_weave *= -1
 	
 	var ox = ox_scene.instance()
-	oxen.add_child(ox)
+	oxen.call_deferred("add_child", ox)
 	ox.position.y = ox_distance * ox_weave
 	
 	print(oxs)
@@ -223,6 +249,11 @@ func freeze():
 	for ox in oxen.get_children():
 		ox.freeze()
 		ox.set_rope(global_position)
+	fg_wheel_particles.emitting = false
+	bg_wheel_particles.emitting = false
+	
+	for mudsplat in $MudSplats.get_children():
+		mudsplat.freeze()
 
 
 func remove_all_cargo():
@@ -240,7 +271,7 @@ func _on_FlashTimer_timeout():
 
 func _on_StunTimer_timeout():
 	stunned = false
-	animation_player.play("move")
+	animation_player.play("move_right")
 	
 	for ox in oxen.get_children():
 		ox.play_anim("move")
@@ -286,3 +317,15 @@ class OxSorter:
 			return true
 		else:
 			return false
+
+
+func _on_ChargeTimer_timeout():
+	charge = false
+	charge_cd.start()
+	
+	for ox in oxen.get_children():
+		ox.stop_charge()
+
+
+func _on_ChargeCD_timeout():
+	can_charge = true

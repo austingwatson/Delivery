@@ -4,6 +4,7 @@ export var max_size = 10
 export var min_size = 5
 
 var size = max_size
+var dont_use = false
 
 onready var trail = $Trail
 onready var timer = $Timer
@@ -18,9 +19,16 @@ func set_direction(velocity):
 	direction.x *= -1
 	direction.y *= -1
 	trail.direction = direction
+	
+
+func freeze():
+	dont_use = true
 
 
 func _on_MudSplat_area_exited(_area):
+	if dont_use:
+		return
+	
 	trail.emitting = true
 	timer.start()
 

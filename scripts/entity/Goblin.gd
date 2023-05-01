@@ -104,11 +104,11 @@ func _on_IdleTimer_timeout():
 			animated_sprite.flip_h = true
 
 
-func _on_ActionRange_area_entered(area):
+func _on_ActionRange_area_entered(_area):
 	animated_sprite.play("action")
 	state = State.ACTION
 	in_action_range = true
 
 
-func _on_ActionRange_area_exited(area):
+func _on_ActionRange_area_exited(_area):
 	in_action_range = false

@@ -1,8 +1,10 @@
 extends Node
 
 const inventory = preload("res://resources/inventory/inventory.tres")
+const score = preload("res://resources/score/score.tres")
 
 onready var cart = $Cart
+onready var pause_menu = $PauseMenu
 
 
 func _ready():
@@ -34,14 +36,18 @@ func _unhandled_input(event):
 	if event.is_action_released("print_inv"):
 		print(inventory.wagon_items)
 	
-	if event.is_action_pressed("test_go"):
+	elif event.is_action_pressed("test_go"):
 		SceneManager.change_scene("CityScene")
+	
+	elif event.is_action_pressed("menu"):
+		pause_menu.open_close()
 		
 	
 func remove_item(item):
 	if item != null:
 		if item.get_type() == 0:
-			print("sold for gold")
+			score.add_to_score(item.info.gold, item.info.stats[0], item.info.stats[1], item.info.stats[2])
+			score.print_score()
 			item.queue_free()
 		elif item.get_type() == 1:
 			item.global_position = Vector2(200, rand_range(-100, 100))

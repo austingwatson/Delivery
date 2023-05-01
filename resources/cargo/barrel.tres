@@ -17,5 +17,5 @@ offset = Vector2( 0, 0 )
 food = 3
 defense = 3
 attack = 3
-max_stats = 5
+max_stats = 6
 random_stats = true

@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://resources/inventory/Inventory.gd"
 }, {
 "base": "Resource",
+"class": "Score",
+"language": "GDScript",
+"path": "res://resources/score/Score.gd"
+}, {
+"base": "Resource",
 "class": "WorldObject",
 "language": "GDScript",
 "path": "res://resources/WorldObject.gd"
@@ -38,6 +43,7 @@ _global_script_class_icons={
 "Cargo": "",
 "CargoGen": "",
 "Inventory": "",
+"Score": "",
 "WorldObject": "",
 "WorldObjects": ""
 }
@@ -148,6 +154,16 @@ test_go={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777244,"unicode":0,"echo":false,"script":null)
  ]
 }
+charge={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+menu={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777217,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -164,6 +180,7 @@ test_go={
 2d_physics/layer_11="MouseHover"
 2d_physics/layer_12="Chicken"
 2d_physics/layer_13="GoblinAttack"
+2d_physics/layer_14="OXCharge"
 
 [physics]
 

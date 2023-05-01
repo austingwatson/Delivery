@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://resources/score/Score.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+target_food = 10
+target_defense = 10
+target_attack = 10

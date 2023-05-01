@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/environment/World.gd" type="Script" id=1]
-[ext_resource path="res://scenes/entity/Chicken.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/environment/GoblinSpawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/environment/WorldObjectSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/trail_background.png" type="Texture" id=4]
 [ext_resource path="res://assets/tree_card_lower.png" type="Texture" id=5]
 [ext_resource path="res://scenes/environment/LevelEnd.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/entity/Cargo.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/tree_card_upper.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -65,14 +64,17 @@ texture = ExtResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1440, 132 )
 
-[node name="RockSpawner" parent="." instance=ExtResource( 3 )]
-
 [node name="MudSpawner" parent="." instance=ExtResource( 3 )]
 object_name = 1
 
 [node name="LogSpawner" parent="." instance=ExtResource( 3 )]
-total = 1
 object_name = 2
+
+[node name="RockSpawner" parent="." instance=ExtResource( 3 )]
+
+[node name="GoblinSpawner" parent="." instance=ExtResource( 2 )]
+min_timer = 10.0
+max_timer = 15.0
 
 [node name="Trail" type="Area2D" parent="."]
 collision_layer = 4
@@ -84,29 +86,10 @@ shape = SubResource( 1 )
 [node name="LevelEnd" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1000, 0 )
 
-[node name="Box" parent="." instance=ExtResource( 7 )]
-position = Vector2( 335, -88 )
-
-[node name="Box2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 904, -132 )
-
-[node name="Box3" parent="." instance=ExtResource( 7 )]
-position = Vector2( 611, -132 )
-
-[node name="Archer" parent="." instance=ExtResource( 7 )]
-position = Vector2( 492, -150 )
-
-[node name="Chicken" parent="." instance=ExtResource( 2 )]
-position = Vector2( 737, -13 )
-
-[node name="Chicken2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 756, -38 )
-
-[node name="Chicken3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 766, -13 )
-
-[node name="Chicken4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 753, 12 )
+[node name="LevelEndTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="area_entered" from="Trail" to="." method="_on_Trail_area_entered"]
 [connection signal="area_exited" from="Trail" to="." method="_on_Trail_area_exited"]
+[connection signal="area_entered" from="LevelEnd" to="." method="_on_LevelEnd_area_entered"]
+[connection signal="timeout" from="LevelEndTimer" to="." method="_on_LevelEndTimer_timeout"]

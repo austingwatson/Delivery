@@ -7,7 +7,7 @@ var cart
 onready var y_sort = $YSort
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var children = y_sort.get_children()
 	
 	children.sort_custom(EntitiesSorter, "sort_entities")
@@ -19,6 +19,13 @@ func _physics_process(delta):
 		elif child == cart:
 			found_cart = true
 			child.z_index = 10
+			
+func clear():
+	for child in get_children():
+		child.queue_free()
+	
+	y_sort = Node2D.new()
+	add_child(y_sort)
 
 
 func restart():
@@ -28,8 +35,6 @@ func restart():
 	cart = preload("res://scenes/entity/Cart.tscn").instance()
 	y_sort.add_child(cart)
 	cart.position = Vector2(0, 0)
-	
-	add_random_goblin(100)
 
 
 func add_to_ysort(entity):
