@@ -13,11 +13,11 @@ export var speed = 10.0
 export var health = 1
 
 var state = State.IDLE
+var in_action_range = false
 
 onready var animated_sprite = $AnimatedSprite
 onready var remove_timer = $RemoveTimer
 onready var idle_timer = $IdleTimer
-onready var attack_range_shape = $AttackRange/CollisionShape2D
 
 
 func _ready():
@@ -68,9 +68,12 @@ func _on_AnimatedSprite_animation_finished():
 			state = State.IDLE
 			idle_timer.start()
 		State.TAUNT:
-			animated_sprite.play("move")
-			state = State.MOVE
-			attack_range_shape.set_deferred("disabled", false)
+			if in_action_range:
+				animated_sprite.play("action")
+				state = State.ACTION
+			else:
+				animated_sprite.play("move")
+				state = State.MOVE
 		State.ACTION:
 			action_done()
 			animated_sprite.play("taunt")
@@ -101,7 +104,11 @@ func _on_IdleTimer_timeout():
 			animated_sprite.flip_h = true
 
 
-func _on_AttackRange_area_entered(area):
+func _on_ActionRange_area_entered(area):
 	animated_sprite.play("action")
 	state = State.ACTION
-	attack_range_shape.set_deferred("disabled", true)
+	in_action_range = true
+
+
+func _on_ActionRange_area_exited(area):
+	in_action_range = false

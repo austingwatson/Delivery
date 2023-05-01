@@ -19,6 +19,14 @@ onready var sprite = $Sprite
 func _ready():
 	info = cargo_gen.gen_info()
 	sprite.texture = info.world_texture
+	
+	collision_shape.shape.extents = sprite.texture.get_size() / 2
+	collision_shape.shape.extents.x = max(10, collision_shape.shape.extents.x)
+	collision_shape.shape.extents.y = max(10, collision_shape.shape.extents.y)
+	
+	right_emitter.position = sprite.texture.get_size() / 2
+	left_emitter.position = right_emitter.position
+	left_emitter.position.x -= sprite.texture.get_size().x
 
 
 func _unhandled_input(event):
