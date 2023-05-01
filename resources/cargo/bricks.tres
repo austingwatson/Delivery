@@ -9,6 +9,13 @@ region = Rect2( 73, 241, 22, 20 )
 
 [resource]
 script = ExtResource( 1 )
+name = "Bricks"
 size = 3
 world_texture = SubResource( 1 )
 type = 0
+offset = Vector2( 0, 0 )
+food = 0
+defense = 3
+attack = 0
+max_stats = 0
+random_stats = false

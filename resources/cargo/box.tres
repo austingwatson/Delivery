@@ -9,6 +9,13 @@ region = Rect2( 2, 242, 20, 20 )
 
 [resource]
 script = ExtResource( 1 )
+name = "Large Crate o' Goods"
 size = 2
 world_texture = SubResource( 2 )
 type = 0
+offset = Vector2( 0, 0 )
+food = 2
+defense = 2
+attack = 2
+max_stats = 4
+random_stats = true

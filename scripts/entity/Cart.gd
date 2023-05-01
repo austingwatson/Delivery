@@ -42,6 +42,8 @@ onready var oxen = $Oxen
 
 
 func _ready():
+	populate_wagon()
+	
 	oxs.append(oxen.get_child(0))
 	
 	animation_player.play("move")
@@ -85,6 +87,40 @@ func _physics_process(delta):
 	
 	for ox in oxen.get_children():
 		ox.set_rope(cart_rope_position.global_position)
+		
+
+func populate_wagon():
+	var wagon_items = inventory.wagon_items
+	var last_item = null
+	for i in wagon_items.size():
+		for j in wagon_items[i].size():
+			if wagon_items[i][j] != null and wagon_items[i][j] != last_item:
+				slots.get_children()[i * wagon_items[j].size() + j].add_child(wagon_items[i][j])
+				
+				if wagon_items[i][j].get_type() == 1:
+					var archer = archer_scene.instance()
+					slots.get_children()[i * wagon_items[j].size() + j].add_child(archer)
+					archer.global_position = slots.get_children()[i * wagon_items[j].size() + j].global_position + wagon_items[i][j].get_offset()
+					archers.append(archer)
+				
+				last_item = wagon_items[i][j]
+				
+	if inventory.front_items[0] != null:
+		slots.get_children()[slots.get_child_count() - 2].add_child(inventory.front_items[0])
+		
+		if inventory.front_items[0].get_type() == 1:
+			var archer = archer_scene.instance()
+			slots.get_children()[slots.get_child_count() - 2].add_child(archer)
+			archer.global_position = slots.get_children()[slots.get_child_count() - 2].global_position + inventory.front_items[0].get_offset()
+			archers.append(archer)
+	if inventory.front_items[1] != null:
+		slots.get_children()[slots.get_child_count() - 1].add_child(inventory.front_items[1])
+		
+		if inventory.front_items[1].get_type() == 1:
+			var archer = archer_scene.instance()
+			slots.get_children()[slots.get_child_count() - 1].add_child(archer)
+			archer.global_position = slots.get_children()[slots.get_child_count() - 1].global_position + inventory.front_items[1].get_offset()
+			archers.append(archer)
 	
 
 func move(delta):
@@ -189,6 +225,15 @@ func freeze():
 		ox.set_rope(global_position)
 
 
+func remove_all_cargo():
+	for slot in slots.get_children():
+		for slot_child in slot.get_children():
+			slot.remove_child(slot_child)
+	for archer in archers:
+		archer.queue_free()
+	archers.clear()
+
+
 func _on_FlashTimer_timeout():
 	sprites.material.set_shader_param("flash", false)
 
@@ -223,7 +268,7 @@ func _on_CartContents_body_entered(body):
 		midpoint.x = round(midpoint.x)
 		midpoint.y = round(midpoint.y)
 		
-		slots.call_deferred("add_child", body)
+		slots.get_children()[result[0] * width + result[2]].call_deferred("add_child", body)
 		body.set_deferred("global_position", midpoint)
 		
 		if body.get_type() == 0:
@@ -232,7 +277,7 @@ func _on_CartContents_body_entered(body):
 			body.visible = false
 			var archer = archer_scene.instance()
 			slots.get_children()[result[0] * width + result[2]].call_deferred("add_child", archer)
-			archer.set_deferred("global_position", midpoint + Vector2(0, -5))
+			archer.set_deferred("global_position", midpoint + body.get_offset())
 			archers.append(archer)
 
 class OxSorter:
@@ -241,7 +286,3 @@ class OxSorter:
 			return true
 		else:
 			return false
-
-	
-	
-	

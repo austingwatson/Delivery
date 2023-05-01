@@ -9,7 +9,7 @@ func _input(_event):
 
 
 func _on_Play_pressed():
-	SceneManager.change_scene("TrailScene")
+	SceneManager.change_scene("CityScene")
 
 
 func _on_Music_value_changed(value):

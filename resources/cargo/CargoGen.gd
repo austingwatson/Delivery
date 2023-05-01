@@ -10,5 +10,11 @@ func gen_info():
 	info.size = cargo.size
 	info.world_texture = cargo.world_texture
 	info.type = cargo.type
+	info.offset = cargo.offset
+	
+	if cargo.random_stats:
+		info.stats = cargo.make_random()
+	else:
+		info.stats = [cargo.food, cargo.defense, cargo.attack]
 	
 	return info

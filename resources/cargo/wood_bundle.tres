@@ -9,6 +9,13 @@ region = Rect2( 144, 254, 24, 10 )
 
 [resource]
 script = ExtResource( 1 )
+name = "Bundle o' Bows"
 size = 2
 world_texture = SubResource( 1 )
 type = 0
+offset = Vector2( 0, 0 )
+food = 0
+defense = 0
+attack = 2
+max_stats = 0
+random_stats = false

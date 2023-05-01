@@ -81,6 +81,10 @@ func get_type():
 	return info.type
 
 
+func get_offset():
+	return info.offset
+
+
 func _on_Box_mouse_entered():
 	mouse_inside = true
 

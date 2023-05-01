@@ -9,6 +9,13 @@ region = Rect2( 108, 252, 12, 12 )
 
 [resource]
 script = ExtResource( 1 )
+name = "Small Bag"
 size = 1
 world_texture = SubResource( 1 )
 type = 0
+offset = Vector2( 0, 0 )
+food = 1
+defense = 1
+attack = 1
+max_stats = 3
+random_stats = true

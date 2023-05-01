@@ -9,6 +9,13 @@ region = Rect2( 51, 243, 18, 19 )
 
 [resource]
 script = ExtResource( 1 )
+name = "Barrel o' Goods"
 size = 3
 world_texture = SubResource( 1 )
 type = 0
+offset = Vector2( 0, 0 )
+food = 3
+defense = 3
+attack = 3
+max_stats = 5
+random_stats = true

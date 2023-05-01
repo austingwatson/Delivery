@@ -9,6 +9,13 @@ region = Rect2( 7, 1, 9, 23 )
 
 [resource]
 script = ExtResource( 1 )
+name = "Archer"
 size = 1
 world_texture = SubResource( 1 )
 type = 1
+offset = Vector2( 0, -5 )
+food = 0
+defense = 0
+attack = 0
+max_stats = 0
+random_stats = false
