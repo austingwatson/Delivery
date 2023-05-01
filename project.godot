@@ -153,6 +153,7 @@ test={
 2d_physics/layer_10="Neutral"
 2d_physics/layer_11="MouseHover"
 2d_physics/layer_12="Chicken"
+2d_physics/layer_13="GoblinAttack"
 
 [physics]
 
