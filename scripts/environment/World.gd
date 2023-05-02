@@ -28,8 +28,6 @@ func _ready():
 func restart():
 	foliage_spawner.force_spawn(10)
 	mud_spawner.force_spawn(2)
-	rock_spawner.force_spawn(4)
-	log_spawner.force_spawn(1)
 
 
 func _physics_process(_delta):

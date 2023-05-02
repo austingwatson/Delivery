@@ -10,7 +10,7 @@ onready var goblin_spawn_timer = $GoblinSpawnTimer
 
 
 func _ready():
-	goblin_spawn_timer.start(rand_range(min_timer.interpolate(SceneManager.current_trail), max_timer.interpolate(SceneManager.current_trail)))
+	goblin_spawn_timer.start(rand_range(min_timer.interpolate(1.0 - SceneManager.current_trail), max_timer.interpolate(SceneManager.current_trail)))
 
 
 func _on_GoblinSpawnTimer_timeout():
@@ -19,4 +19,4 @@ func _on_GoblinSpawnTimer_timeout():
 		return
 	
 	Entities.add_random_goblin(y_spawn)
-	goblin_spawn_timer.start(rand_range(min_timer, max_timer))
+	goblin_spawn_timer.start(rand_range(min_timer.interpolate(1.0 - SceneManager.current_trail), max_timer.interpolate(SceneManager.current_trail)))

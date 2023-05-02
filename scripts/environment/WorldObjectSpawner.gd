@@ -40,4 +40,4 @@ func _on_SpawnTimer_timeout():
 			object.enable()
 			break
 	
-	spawn_timer.start(rand_range(min_timer.interpolate(SceneManager.current_trail), max_timer.interpolate(SceneManager.current_trail)))
+	spawn_timer.start(rand_range(min_timer.interpolate(1.0 - SceneManager.current_trail), max_timer.interpolate(SceneManager.current_trail)))

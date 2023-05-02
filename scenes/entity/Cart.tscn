@@ -870,6 +870,18 @@ tracks/24/keys = {
 "method": "set_oxen_x"
 } ]
 }
+tracks/25/type = "value"
+tracks/25/path = NodePath("Oxen:position")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -8, 2 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "move_right"
@@ -1416,6 +1428,18 @@ tracks/44/keys = {
 "args": [ 48 ],
 "method": "set_oxen_x"
 } ]
+}
+tracks/45/type = "value"
+tracks/45/path = NodePath("Oxen:position")
+tracks/45/interp = 1
+tracks/45/loop_wrap = true
+tracks/45/imported = false
+tracks/45/enabled = true
+tracks/45/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 48, 2 ) ]
 }
 
 [sub_resource type="Curve" id=13]

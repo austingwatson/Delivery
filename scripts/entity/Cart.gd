@@ -125,7 +125,22 @@ func _physics_process(delta):
 		
 
 func set_direction(direction):
-	pass
+	if direction == Vector2.RIGHT:
+		animation_player.play("move_right")
+		animation_player.advance(0)
+		animation_player.stop()
+		
+		for ox in oxen.get_children():
+			ox.play_anim("move_right")
+			ox.freeze()
+	else:
+		animation_player.play("move_left")
+		animation_player.advance(0)
+		animation_player.stop()
+		
+		for ox in oxen.get_children():
+			ox.play_anim("move_left")
+			ox.freeze()
 		
 
 func populate_wagon():
