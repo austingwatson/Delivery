@@ -5,6 +5,7 @@ onready var rope_position = $RopePosition
 onready var rope = $Rope
 onready var charge_shape = $Charge/CollisionShape2D
 onready var snort_timer = $SnortTimer
+onready var sprite = $Sprite
 
 
 func _ready():
@@ -25,6 +26,9 @@ func play_anim(anim_name):
 	elif anim_name == "hurt":
 		SoundManager.play_oxen_hurt()
 	
+func flip_h(flip_h):
+	sprite.flip_h = flip_h
+
 
 func set_playback_speed(playback_speed):
 	animation_player.playback_speed = playback_speed

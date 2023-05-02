@@ -99,6 +99,13 @@ func hide_tooltip():
 	attack_icon.visible = false
 	
 
+func show_hide_wagon():
+	if wagon.visible:
+		hide_wagon()
+	else:
+		show_wagon()
+	
+
 func _on_item_changed(side, i, j, full):
 	if side == 0:
 		if full:

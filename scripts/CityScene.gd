@@ -72,6 +72,9 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("menu"):
 		pause_menu.open_close()
 		
+	elif event.is_action_pressed("inv"):
+		ToolTip.show_hide_wagon()
+		
 
 func leave():
 	ToolTip.hide_wagon()

@@ -55,6 +55,15 @@ func _ready():
 	
 	oxs.append(oxen.get_child(0))
 	
+	sprites.material.set_shader_param("flash", false)
+	
+	fg_wheel_particles.color = dirt_color
+	bg_wheel_particles.color = dirt_color
+	
+	if inventory.current_oxen > 1:
+		for _i in inventory.current_oxen - 1:
+			add_ox()
+	
 	if SceneManager.cart_direction == Vector2.RIGHT:
 		animation_player.play("move_right")
 		for ox in oxen.get_children():
@@ -65,15 +74,6 @@ func _ready():
 			ox.play_anim("move_left")
 		
 		camera.offset.x *= -1
-	
-	sprites.material.set_shader_param("flash", false)
-	
-	fg_wheel_particles.color = dirt_color
-	bg_wheel_particles.color = dirt_color
-	
-	if inventory.current_oxen > 1:
-		for _i in inventory.current_oxen - 1:
-			add_ox()
 
 
 func _unhandled_input(event):
@@ -129,18 +129,22 @@ func set_direction(direction):
 		animation_player.play("move_right")
 		animation_player.advance(0)
 		animation_player.stop()
+		set_oxen_x(48)
 		
 		for ox in oxen.get_children():
-			ox.play_anim("move_right")
+			#ox.play_anim("move_right")
 			ox.freeze()
+			ox.flip_h(false)
 	else:
 		animation_player.play("move_left")
 		animation_player.advance(0)
 		animation_player.stop()
+		set_oxen_x(-8)
 		
 		for ox in oxen.get_children():
-			ox.play_anim("move_left")
+			#ox.play_anim("move_left")
 			ox.freeze()
+			ox.flip_h(true)
 		
 
 func populate_wagon():
@@ -275,7 +279,6 @@ func add_ox():
 	oxen.call_deferred("add_child", ox)
 	ox.position.y = ox_distance * ox_weave
 	
-	print(oxs)
 	oxs.append(ox)
 	oxs.sort_custom(OxSorter, "sort_ox")
 	
