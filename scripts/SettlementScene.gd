@@ -77,6 +77,8 @@ func _ready():
 	food_bar.value = score.current_food
 	defense_bar.value = score.current_defense
 	attack_bar.value = score.current_attack
+	
+	cart.get_node("Camera2D").offset = Vector2(-75, 0)
 
 
 func _unhandled_input(event):

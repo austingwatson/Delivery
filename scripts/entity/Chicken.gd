@@ -35,6 +35,9 @@ func damage(damage):
 	
 	collision_shape.set_deferred("disabled", true)
 	animated_sprite.visible = false
+	
+	SoundManager.play_chicken()
+	
 	$DeathTimer.start()
 
 

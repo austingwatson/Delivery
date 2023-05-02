@@ -39,6 +39,8 @@ func _ready():
 	ToolTip.show_health()
 	
 	ToolTip.connect("update_oxen", self, "_on_update_oxen")
+	
+	cart.get_node("Camera2D").offset = Vector2(20, 0)
 
 
 func remove_item(item):
