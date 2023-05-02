@@ -17,6 +17,7 @@ onready var food_icon = $HBoxContainer/VBoxContainer/Food
 onready var defense_icon = $HBoxContainer/VBoxContainer/Defense
 onready var attack_icon = $HBoxContainer/VBoxContainer/Attack
 
+onready var stats_bg = $StatsBG
 onready var weight = $HBoxContainer/VBoxContainer/Weight/Label
 onready var gold = $HBoxContainer/VBoxContainer/Gold/Label
 onready var food = $HBoxContainer/VBoxContainer/Food/Label
@@ -31,12 +32,17 @@ onready var wagon_frant_2 = $Wagon/WagonFront2
 onready var health = $Health
 onready var upgrade = $Upgrades
 
+onready var gold_bg = $GoldBG
+onready var gold_node = $Gold
+onready var gold_label = $Gold/Label
+
 var max_health = 5
 var health_amount = 5
 
 
 func _ready():
 	inventory.connect("item_changed", self, "_on_item_changed")
+	score.connect("gold_changed", self, "_on_gold_changed")
 	
 	for i in inventory.current_size.x:
 		for j in inventory.current_size.y:
@@ -52,6 +58,11 @@ func _ready():
 	wagon_frant_2.color = open_color
 	
 
+func show_gold_ui():
+	gold_bg.visible = true
+	gold_node.visible = true
+	
+
 func show_wagon():
 	wagon.visible = true
 	upgrade.visible = true
@@ -64,6 +75,8 @@ func hide_wagon():
 
 
 func show_tooltip(weight, gold, food, defense, attack):
+	stats_bg.visible = true
+	
 	self.weight.text = str(weight)
 	self.gold.text = str(gold)
 	self.food.text = str(food)
@@ -92,6 +105,7 @@ func show_health():
 
 
 func hide_tooltip():
+	stats_bg.visible = false
 	weight_icon.visible = false
 	gold_icon.visible = false
 	food_icon.visible = false
@@ -129,7 +143,7 @@ func _on_health_button_pressed():
 	if score.current_gold < score.health_upg_cost or max_health > max_health_amount:
 		return
 	else:
-		score.current_gold -= score.health_upg_cost
+		score.add_gold(-score.health_upg_cost)
 	
 	max_health += 1
 	health_amount = max_health
@@ -152,7 +166,7 @@ func _on_oxen_button_pressed():
 	if score.current_gold < score.oxen_upg_cost or inventory.current_oxen > max_oxen:
 		return
 	else:
-		score.current_gold -= score.oxen_upg_cost
+		score.add_gold(-score.oxen_upg_cost)
 	
 	inventory.current_oxen += 1
 	
@@ -167,7 +181,7 @@ func _on_carry_button_pressed():
 	if score.current_gold < score.carry_upg_cost or inventory.current_size.x > 4:
 		return
 	else:
-		score.current_gold -= score.carry_upg_cost
+		score.add_gold(-score.carry_upg_cost)
 	
 	inventory.current_size.x += 1
 	inventory.current_size.y += 1
@@ -187,6 +201,10 @@ func _on_speedboost_button_pressed():
 	if score.current_gold < score.speed_upg_cost or inventory.has_speed_boost:
 		return
 	else:
-		score.current_gold -= score.speed_upg_cost
+		score.add_gold(-score.speed_upg_cost)
 	
 	inventory.has_speed_boost = true
+
+
+func _on_gold_changed():
+	gold_label.text = str(score.current_gold)

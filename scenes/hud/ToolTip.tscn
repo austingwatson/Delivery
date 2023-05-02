@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scripts/hud/ToolTip.gd" type="Script" id=1]
 [ext_resource path="res://assets/PressStartK-EX89.ttf" type="DynamicFontData" id=2]
@@ -6,9 +6,13 @@
 [ext_resource path="res://assets/environment_sheet.png" type="Texture" id=4]
 [ext_resource path="res://scenes/hud/WagonUI.tscn" type="PackedScene" id=5]
 
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 3 )
+region = Rect2( 242, 122, 236, 140 )
+
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 3 )
-region = Rect2( 123, 207, 18, 18 )
+region = Rect2( 123, 243, 18, 18 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -20,15 +24,15 @@ region = Rect2( 26, 218, 8, 8 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 3 )
-region = Rect2( 172, 206, 17, 19 )
+region = Rect2( 172, 242, 17, 19 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 3 )
-region = Rect2( 148, 207, 16, 18 )
+region = Rect2( 148, 243, 16, 18 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 3 )
-region = Rect2( 200, 205, 9, 22 )
+region = Rect2( 200, 241, 9, 22 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 3 )
@@ -50,8 +54,31 @@ region = Rect2( 123, 207, 18, 18 )
 atlas = ExtResource( 3 )
 region = Rect2( 25, 209, 22, 14 )
 
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 3 )
+region = Rect2( 242, 122, 236, 140 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 3 )
+region = Rect2( 220, 208, 16, 16 )
+
 [node name="ToolTip" type="CanvasLayer"]
 script = ExtResource( 1 )
+
+[node name="StatsBG" type="TextureRect" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -55.0
+margin_top = -70.0
+margin_right = 181.0
+margin_bottom = 70.0
+rect_scale = Vector2( 0.2, 1 )
+mouse_filter = 2
+texture = SubResource( 14 )
+stretch_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_left = 1.0
@@ -62,14 +89,17 @@ margin_left = -30.0
 margin_top = -50.5
 margin_right = 30.0
 margin_bottom = 50.5
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 margin_bottom = 101.0
+mouse_filter = 2
 
 [node name="Weight" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
 visible = false
 margin_right = 18.0
 margin_bottom = 18.0
+mouse_filter = 2
 texture = SubResource( 2 )
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Weight"]
@@ -87,6 +117,7 @@ valign = 1
 visible = false
 margin_right = 17.0
 margin_bottom = 8.0
+mouse_filter = 2
 texture = SubResource( 3 )
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Gold"]
@@ -104,6 +135,7 @@ valign = 1
 visible = false
 margin_right = 17.0
 margin_bottom = 19.0
+mouse_filter = 2
 texture = SubResource( 4 )
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Food"]
@@ -121,6 +153,7 @@ valign = 1
 visible = false
 margin_right = 16.0
 margin_bottom = 18.0
+mouse_filter = 2
 texture = SubResource( 5 )
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Defense"]
@@ -138,6 +171,7 @@ valign = 1
 visible = false
 margin_right = 9.0
 margin_bottom = 22.0
+mouse_filter = 2
 texture = SubResource( 6 )
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Attack"]
@@ -283,6 +317,7 @@ margin_bottom = 3.0
 alignment = 1
 
 [node name="Upgrades" type="HBoxContainer" parent="."]
+visible = false
 margin_left = 67.0
 margin_top = 189.0
 margin_right = 154.0
@@ -314,3 +349,32 @@ margin_top = 67.0
 margin_right = 22.0
 margin_bottom = 81.0
 texture = SubResource( 13 )
+
+[node name="GoldBG" type="TextureRect" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.2, 0.2 )
+texture = SubResource( 16 )
+
+[node name="Gold" type="HBoxContainer" parent="."]
+visible = false
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 34.0
+margin_bottom = 22.0
+
+[node name="Icon" type="TextureRect" parent="Gold"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = SubResource( 15 )
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Gold"]
+margin_left = 20.0
+margin_top = 4.0
+margin_right = 28.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 0.180392, 0.0666667, 0.105882, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0"

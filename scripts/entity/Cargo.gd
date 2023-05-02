@@ -3,6 +3,7 @@ extends RigidBody2D
 const cargo_gen = preload("res://resources/cargo/cargo_gen.tres")
 const SPRING_CONSTANT = 500
 const LIFT_CONSTANT = 2000
+const score = preload("res://resources/score/score.tres")
 
 export var force_archer = false
 
@@ -31,6 +32,11 @@ func _ready():
 
 func _unhandled_input(event):
 	if mouse_inside and event.is_action_pressed("grab"):
+		if info.type == 2:
+			score.add_gold(1)
+			SoundManager.play_coin_sound()
+			queue_free()
+		
 		mouse_down = true
 		apply_central_impulse(Vector2(0, -LIFT_CONSTANT))
 	elif mouse_down and event.is_action_released("grab"):

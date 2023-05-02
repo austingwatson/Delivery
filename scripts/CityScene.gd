@@ -2,6 +2,7 @@ extends Node
 
 const inventory = preload("res://resources/inventory/inventory.tres")
 const cargo_scene = preload("res://scenes/entity/Cargo.tscn")
+const score = preload("res://resources/score/score.tres")
 
 onready var cart = $Cart
 onready var pause_menu = $PauseMenu
@@ -14,6 +15,8 @@ func _ready():
 	cart.freeze()
 	cart.remove_all_cargo()
 	cart.set_direction(Vector2.RIGHT)
+	
+	ToolTip.show_gold_ui()
 
 	var wagon_items = inventory.wagon_items
 	var last_item = null
@@ -48,15 +51,11 @@ func remove_item(item):
 		return
 	
 	if item.get_gold() == 2:
-		var cargo = cargo_scene.instance()
-		add_child(cargo)
-		cargo.position = marker.position + Vector2(rand_range(-40, 50), rand_range(-40, 50))
-		cargo.gen_info(3)
+		score.add_gold(2)
+		SoundManager.play_coin_sound()
 	elif item.get_gold() == 1:
-		var cargo = cargo_scene.instance()
-		add_child(cargo)
-		cargo.position = marker.position + Vector2(rand_range(-40, 50), rand_range(-40, 50))
-		cargo.gen_info(1)
+		score.add_gold(1)
+		SoundManager.play_coin_sound()
 	else:
 		item.position = marker.position + Vector2(rand_range(-40, 50), rand_range(-40, 50))
 		item.visible = true

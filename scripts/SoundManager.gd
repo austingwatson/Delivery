@@ -18,6 +18,7 @@ var wagon_collision: AudioStreamPlayer
 var wagon_move: AudioStreamPlayer
 var wagon_creak: AudioStreamPlayer
 var wood_impact: AudioStreamPlayer
+var gold: AudioStreamPlayer
 
 
 func _ready():
@@ -62,6 +63,8 @@ func _ready():
 	wagon_creak = load_sound("res://assets/sounds/wooden_creak1.wav")
 	
 	wood_impact = load_sound("res://assets/sounds/wooden_impact1.wav")
+	
+	gold = load_sound("res://assets/sounds/Pickup_Coin5.wav")
 	
 	wagon_move.play()
 	stop_wagon_move()
@@ -141,3 +144,7 @@ func play_wagon_creak():
 
 func play_wood_impact():
 	wood_impact.play()
+
+
+func play_coin_sound():
+	gold.play()
