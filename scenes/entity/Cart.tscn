@@ -1743,7 +1743,7 @@ tracks/45/keys = {
 }
 
 [sub_resource type="Curve" id=13]
-_data = [ Vector2( 0, 0.275 ), 0.0, 0.0, 0, 0, Vector2( 0.247159, 1 ), 4.18182, 4.18182, 0, 0, Vector2( 1, 0.493182 ), -0.421053, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.745454 ), 0.0, 0.0, 0, 0, Vector2( 0.238636, 1 ), 4.18182, 4.18182, 0, 0, Vector2( 1, 0.136364 ), -4.73044, 0.0, 0, 0 ]
 
 [node name="Cart" type="Area2D"]
 collision_mask = 4118
@@ -1810,7 +1810,7 @@ gravity = Vector2( 0, 4 )
 initial_velocity = 0.5
 initial_velocity_random = 0.25
 damping = 5.0
-scale_amount = 2.0
+scale_amount = 3.0
 scale_amount_random = 0.25
 scale_amount_curve = SubResource( 13 )
 color = Color( 0.866667, 0.807843, 0.74902, 0.784314 )
@@ -1831,7 +1831,7 @@ spread = 15.0
 gravity = Vector2( 0, 5 )
 initial_velocity = 1.0
 damping = 5.0
-scale_amount = 2.0
+scale_amount = 3.0
 scale_amount_curve = SubResource( 13 )
 color = Color( 0.866667, 0.807843, 0.74902, 0.784314 )
 
