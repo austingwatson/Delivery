@@ -3,10 +3,12 @@ extends Node
 const inventory = preload("res://resources/inventory/inventory.tres")
 const cargo_scene = preload("res://scenes/entity/Cargo.tscn")
 const score = preload("res://resources/score/score.tres")
+const chicken_scene = preload("res://scenes/entity/Chicken.tscn")
 
 onready var cart = $Cart
 onready var pause_menu = $PauseMenu
 onready var marker = $Position2D
+onready var animation_player = $AnimationPlayer
 
 var mouse_in = false
 
@@ -15,6 +17,11 @@ func _ready():
 	cart.freeze()
 	cart.remove_all_cargo()
 	cart.set_direction(Vector2.RIGHT)
+	Entities.cart = cart
+	
+	var chicken = chicken_scene.instance()
+	chicken.position = Vector2(107, 69)
+	Entities.add_to_ysort(chicken)
 	
 	ToolTip.show_gold_ui()
 
@@ -38,7 +45,7 @@ func _ready():
 	inventory.remove_front_item(1)
 
 	
-	ToolTip.show_wagon()
+	ToolTip.show_wagon(false)
 	ToolTip.show_health()
 	
 	ToolTip.connect("update_oxen", self, "_on_update_oxen")
@@ -68,7 +75,7 @@ func _unhandled_input(event):
 		print(inventory.wagon_items)
 	
 	elif event.is_action_pressed("charge"):
-		SceneManager.change_scene("TrailScene")
+		animation_player.play("cutscene")
 		
 	elif event.is_action_pressed("menu"):
 		pause_menu.open_close()
@@ -81,6 +88,15 @@ func leave():
 	ToolTip.hide_wagon()
 	cart.remove_all_cargo()
 	SceneManager.cart_direction = Vector2.RIGHT
+
+
+func start_cutscene():
+	cart.play_anim("move_right")
+	cart.get_node("Camera2D").current = false
+	
+
+func end_cutscene():
+	SceneManager.change_scene("TrailScene")
 
 
 func _on_update_oxen():

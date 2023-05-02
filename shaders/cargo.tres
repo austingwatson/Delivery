@@ -1,0 +1,15 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform bool launch = false;
+
+void fragment()
+{
+	COLOR = texture(TEXTURE, UV);
+	if (launch && COLOR.a > 0.0)
+	{
+		COLOR.a = 0.5;
+	}
+}"

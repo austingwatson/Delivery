@@ -9,6 +9,19 @@ export var current_size = Vector2.ZERO
 
 var current_oxen = 1
 var has_speed_boost = false
+var front_unlocked = false
+
+
+func restart():
+	for i in wagon_items.size():
+		for j in wagon_items[i].size():
+			wagon_items[i][j] = null
+	front_items[0] = null
+	front_items[1] = null
+	
+	current_oxen = 1
+	has_speed_boost = false
+	front_unlocked = false
 
 
 func remove_wagon_item(i, j):
@@ -109,7 +122,7 @@ func add_next_slot(new_item) -> Array:
 		front_items[0] = new_item
 		emit_signal("item_changed", 1, 0, 0, true)
 		return [1, 16, 0]
-	elif front_items[1] == null:
+	elif front_unlocked and front_items[1] == null:
 		front_items[1] = new_item
 		emit_signal("item_changed", 1, 1, 0, true)
 		return [1, 16, 1]
@@ -122,7 +135,7 @@ func look_front_first(new_item):
 		front_items[0] = new_item
 		emit_signal("item_changed", 1, 0, 0, true)
 		return [1, 16, 0]
-	elif front_items[1] == null:
+	elif front_unlocked and front_items[1] == null:
 		front_items[1] = new_item
 		emit_signal("item_changed", 1, 1, 0, true)
 		return [1, 16, 1]

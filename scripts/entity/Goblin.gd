@@ -105,6 +105,9 @@ func _on_RemoveTimer_timeout():
 
 
 func _on_IdleTimer_timeout():
+	if health <= 0:
+		return
+	
 	var rng = randi() % 2
 	if rng == 0:
 		animated_sprite.play("move")

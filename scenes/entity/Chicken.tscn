@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/actor_sheet.png" type="Texture" id=1]
 [ext_resource path="res://scripts/entity/Chicken.gd" type="Script" id=2]
@@ -84,6 +84,9 @@ animations = [ {
 atlas = ExtResource( 3 )
 region = Rect2( 4, 16, 4, 4 )
 
+[sub_resource type="CircleShape2D" id=18]
+radius = 1.5
+
 [node name="Chicken" type="Area2D" groups=["Chicken"]]
 z_index = 1
 collision_layer = 2048
@@ -118,5 +121,13 @@ angle_random = 1.0
 [node name="DeathTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="ChickenSpot" type="Area2D" parent="."]
+collision_layer = 16384
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChickenSpot"]
+shape = SubResource( 18 )
+
 [connection signal="timeout" from="StateTimer" to="." method="_on_StateTimer_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="area_exited" from="ChickenSpot" to="." method="_on_ChickenSpot_area_exited"]

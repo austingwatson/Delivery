@@ -27,10 +27,14 @@ onready var attack = $HBoxContainer/VBoxContainer/Attack/Label
 onready var wagon = $Wagon
 onready var grid = $Wagon/WagonGrid
 onready var wagon_front_1 = $Wagon/WagonFront1
-onready var wagon_frant_2 = $Wagon/WagonFront2
+onready var wagon_front_2 = $Wagon/WagonFront2
 
 onready var health = $Health
 onready var upgrade = $Upgrades
+onready var health_upg = $Upgrades/Health
+onready var oxen_upg = $Upgrades/Oxen
+onready var carrr_upg = $Upgrades/Carry
+onready var charge_upg = $Upgrades/Charge
 
 onready var gold_bg = $GoldBG
 onready var gold_node = $Gold
@@ -55,7 +59,11 @@ func _ready():
 	health.margin_top = 10
 	
 	wagon_front_1.color = open_color
-	wagon_frant_2.color = open_color
+	
+
+func restart():
+	max_health = 5
+	health_amount = max_health
 	
 
 func show_gold_ui():
@@ -63,10 +71,11 @@ func show_gold_ui():
 	gold_node.visible = true
 	
 
-func show_wagon():
+func show_wagon(only_wagon):
 	wagon.visible = true
-	upgrade.visible = true
-	health.visible = true
+	if not only_wagon:
+		upgrade.visible = true
+		health.visible = true
 	
 
 func hide_wagon():
@@ -102,6 +111,25 @@ func reduce_health():
 		
 func show_health():
 	health.visible = true
+	
+
+func hide_health():
+	health.visible = false
+	
+
+func heal_to_full():
+	health_amount = max_health
+	for health in self.get_children():
+		health.visible = true
+	
+
+func show_hide_gold():
+	if gold_node.visible:
+		gold_bg.visible = false
+		gold_node.visible = false
+	else:
+		gold_bg.visible = true
+		gold_node.visible = true
 
 
 func hide_tooltip():
@@ -116,8 +144,14 @@ func hide_tooltip():
 func show_hide_wagon():
 	if wagon.visible:
 		hide_wagon()
+		health.visible = false
+		gold_bg.visible = false
+		gold_node.visible = false
 	else:
-		show_wagon()
+		show_wagon(false)
+		health.visible = true
+		gold_bg.visible = true
+		gold_node.visible = true
 	
 
 func _on_item_changed(side, i, j, full):
@@ -134,13 +168,17 @@ func _on_item_changed(side, i, j, full):
 				wagon_front_1.color = open_color
 		else:
 			if full:
-				wagon_frant_2.color = full_color
+				wagon_front_2.color = full_color
 			else:
-				wagon_frant_2.color = open_color
+				wagon_front_2.color = open_color
 
 
-func _on_health_button_pressed():
-	if score.current_gold < score.health_upg_cost or max_health > max_health_amount:
+func _on_gold_changed():
+	gold_label.text = str(score.current_gold)
+
+
+func _on_Health_pressed():
+	if score.current_gold < score.health_upg_cost:
 		return
 	else:
 		score.add_gold(-score.health_upg_cost)
@@ -148,9 +186,10 @@ func _on_health_button_pressed():
 	max_health += 1
 	health_amount = max_health
 	
-	if max_health > max_health_amount:
+	if max_health >= max_health_amount:
 		max_health = max_health_amount
 		health_amount = max_health
+		health_upg.visible = false
 		return
 	
 	for child in health.get_children():
@@ -162,7 +201,34 @@ func _on_health_button_pressed():
 	health.set_anchors_preset(Control.PRESET_CENTER_TOP, true)
 
 
-func _on_oxen_button_pressed():
+func _on_Carry_pressed():
+	if score.current_gold < score.carry_upg_cost or inventory.current_size.x > 4:
+		return
+	else:
+		score.add_gold(-score.carry_upg_cost)
+	
+	inventory.current_size.x += 1
+	if inventory.current_size.x > 4:
+		inventory.current_size.x = 4
+		inventory.current_size.y += 1
+		
+		if inventory.current_size.y > 4:
+			inventory.current_size.y = 4
+			inventory.front_unlocked = true
+			wagon_front_2.color = open_color
+		
+	print(inventory.current_size)
+	
+	for i in inventory.current_size.x:
+		for j in inventory.current_size.y:
+			if grid.get_children()[i * inventory.wagon_items.size() + j].current != 2:
+				grid.get_children()[i * inventory.wagon_items.size() + j].change_texture(1)
+	
+	if inventory.front_unlocked:
+		carrr_upg.visible = false
+
+
+func _on_Oxen_pressed():
 	if score.current_gold < score.oxen_upg_cost or inventory.current_oxen > max_oxen:
 		return
 	else:
@@ -170,41 +236,19 @@ func _on_oxen_button_pressed():
 	
 	inventory.current_oxen += 1
 	
-	if inventory.current_oxen > max_oxen:
+	if inventory.current_oxen >= max_oxen:
 		inventory.current_oxen = max_oxen
+		oxen_upg.visible = false
 		return
 	
 	emit_signal("update_oxen")
 
 
-func _on_carry_button_pressed():
-	if score.current_gold < score.carry_upg_cost or inventory.current_size.x > 4:
-		return
-	else:
-		score.add_gold(-score.carry_upg_cost)
-	
-	inventory.current_size.x += 1
-	inventory.current_size.y += 1
-	
-	if inventory.current_size.x > 4:
-		inventory.current_size.x = 4
-		inventory.current_size.y = 4
-		return
-	
-	for i in inventory.current_size.x:
-		for j in inventory.current_size.y:
-			if grid.get_children()[i * inventory.wagon_items.size() + j].current != 2:
-				grid.get_children()[i * inventory.wagon_items.size() + j].change_texture(1)
-
-
-func _on_speedboost_button_pressed():
+func _on_Charge_pressed():
 	if score.current_gold < score.speed_upg_cost or inventory.has_speed_boost:
 		return
 	else:
 		score.add_gold(-score.speed_upg_cost)
 	
 	inventory.has_speed_boost = true
-
-
-func _on_gold_changed():
-	gold_label.text = str(score.current_gold)
+	charge_upg.visible = false

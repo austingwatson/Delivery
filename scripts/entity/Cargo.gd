@@ -65,12 +65,13 @@ func _physics_process(delta):
 		launch_y -= 200 * delta
 		if launch_y < -100:
 			add_launch_force = false
+			sprite.material.set_shader_param("launch", false)
 			enable()
 		
 		if SceneManager.cart_direction == Vector2.RIGHT:
-			position.x -= 50 * delta
+			position.x -= 75 * delta
 		else:
-			position.x += 50 * delta
+			position.x += 75 * delta
 		
 
 func gen_info(gold):
@@ -126,6 +127,8 @@ func drop_from_inventory():
 	visible = true
 	add_launch_force = true
 	launch_y = 100.0
+	
+	sprite.material.set_shader_param("launch", true)
 	
 
 func get_size():

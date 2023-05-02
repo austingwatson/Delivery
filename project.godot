@@ -188,6 +188,7 @@ inv={
 2d_physics/layer_12="Chicken"
 2d_physics/layer_13="GoblinAttack"
 2d_physics/layer_14="OXCharge"
+2d_physics/layer_15="ChickenCoop"
 
 [physics]
 

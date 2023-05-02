@@ -6,6 +6,8 @@ onready var world = $World
 
 func _ready():
 	ToolTip.hide_tooltip()
+	ToolTip.show_health()
+	ToolTip.hide_wagon()
 	
 	Entities.restart()
 	world.restart()

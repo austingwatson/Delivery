@@ -7,7 +7,8 @@ func _unhandled_input(event):
 	if not can_use_input:
 		return
 	
-	SceneManager.change_scene("MenuScene")
+	if event is InputEventKey and event.is_pressed():
+		SceneManager.change_scene("MenuScene")
 
 
 func _on_Timer_timeout():

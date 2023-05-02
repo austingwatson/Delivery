@@ -18,8 +18,16 @@ var current_defense = 0
 var current_attack = 0
 
 
+func restart():
+	current_gold = 0
+	current_food = 0
+	current_defense = 0
+	current_attack = 0
+	emit_signal("gold_changed")
+
+
 func add_to_score(gold, food, defense, attack):
-	current_gold += gold
+	add_gold(gold)
 	current_food += food
 	current_defense += defense
 	current_attack += attack

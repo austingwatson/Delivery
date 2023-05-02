@@ -1,6 +1,15 @@
 extends Node
 
+const inventory = preload("res://resources/inventory/inventory.tres")
+const score = preload("res://resources/score/score.tres")
+
 var music_started = false
+
+
+func _ready():
+	inventory.restart()
+	score.restart()
+	ToolTip.restart()
 
 
 func _input(_event):

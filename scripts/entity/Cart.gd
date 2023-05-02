@@ -300,6 +300,12 @@ func freeze():
 		mudsplat.freeze()
 
 
+func play_anim(anim_name):
+	animation_player.play(anim_name)
+	for ox in oxen.get_children():
+		ox.play_anim(anim_name)
+
+
 func set_oxen_x(value):
 	oxen.position.x = value
 

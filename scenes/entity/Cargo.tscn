@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/entity/Cargo.gd" type="Script" id=1]
+[ext_resource path="res://shaders/cargo.tres" type="Shader" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 2 )
+shader_param/launch = false
 
 [node name="Cargo" type="RigidBody2D"]
 z_index = 1000
@@ -46,6 +51,7 @@ scale_amount = 4.0
 color = Color( 0.411765, 0.356863, 0.34902, 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 3 )
 
 [node name="CoinTimer" type="Timer" parent="."]
 wait_time = 0.1

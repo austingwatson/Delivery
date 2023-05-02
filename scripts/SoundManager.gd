@@ -5,7 +5,8 @@ var sound_db = 0
 
 var arrows = []
 var goblin_attack = []
-var chicken = []
+var chicken_eat: AudioStreamPlayer
+var chicken_death: AudioStreamPlayer
 var congrats = []
 var gate: AudioStreamPlayer
 var goblin_death = []
@@ -31,8 +32,8 @@ func _ready():
 	goblin_attack.append(load_sound("res://assets/sounds/attack1.wav"))
 	goblin_attack.append(load_sound("res://assets/sounds/hiyah.wav"))
 	
-	chicken.append(load_sound("res://assets/sounds/chicken_bawk.wav"))
-	chicken.append(load_sound("res://assets/sounds/chicken_cluck.wav"))
+	chicken_eat = load_sound("res://assets/sounds/chicken_cluck.wav")
+	chicken_death = load_sound("res://assets/sounds/chicken_bawk.wav")
 	
 	congrats.append(load_sound("res://assets/sounds/congrats1.wav"))
 	congrats.append(load_sound("res://assets/sounds/congrats2.wav"))
@@ -90,8 +91,12 @@ func play_goblin_attack():
 	get_random_sound(goblin_attack).play()
 	
 
-func play_chicken():
-	get_random_sound(chicken).play()
+func play_chicken_eat():
+	chicken_eat.play()
+	
+
+func play_chicken_death():
+	chicken_death.play()
 
 
 func play_congrats():
