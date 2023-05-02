@@ -132,6 +132,9 @@ func get_type():
 
 func get_offset():
 	return info.offset
+	
+func get_gold():
+	return info.gold
 
 
 func _on_Box_mouse_entered():

@@ -10,6 +10,7 @@ onready var pause_menu = $PauseMenu
 onready var food_bar = $ScoreProgress/VBoxContainer/Food
 onready var defense_bar = $ScoreProgress/VBoxContainer/Defense
 onready var attack_bar = $ScoreProgress/VBoxContainer/Attack
+onready var marker = $Position2D
 
 
 func _ready():
@@ -43,30 +44,30 @@ func _ready():
 			if rng < 75:
 				var cargo = cargo_scene.instance()
 				add_child(cargo)
-				cargo.position = cart.position - Vector2(100, rand_range(-100, 100))
+				cargo.position = marker.position + Vector2(rand_range(-50, 50), rand_range(-50, 50))
 				cargo.gen_info(3)
 				score.current_gold -= 3
 			else:
 				var cargo = cargo_scene.instance()
 				add_child(cargo)
-				cargo.position = cart.position - Vector2(100, rand_range(-100, 100))
+				cargo.position = marker.position + Vector2(rand_range(-50, 50), rand_range(-50, 50))
 				cargo.gen_info(1)
 				score.current_gold -= 1
 		else:
 			var cargo = cargo_scene.instance()
 			add_child(cargo)
-			cargo.position = cart.position - Vector2(100, rand_range(-100, 100))
+			cargo.position = marker.position + Vector2(rand_range(-50, 50), rand_range(-50, 50))
 			cargo.gen_info(1)
 			score.current_gold -= 1
 			
 	var cargo = cargo_scene.instance()
 	add_child(cargo)
-	cargo.position = cart.position - Vector2(100, rand_range(-100, 100))
+	cargo.position = marker.position + Vector2(rand_range(-50, 50), rand_range(-50, 50))
 	cargo.gen_info(3)
 	
 	cargo = cargo_scene.instance()
 	add_child(cargo)
-	cargo.position = cart.position - Vector2(100, rand_range(-100, 100))
+	cargo.position = marker.position + Vector2(rand_range(-50, 50), rand_range(-50, 50))
 	cargo.gen_info(1)
 	
 	food_bar.max_value = score.target_food
@@ -81,6 +82,7 @@ func _ready():
 func _unhandled_input(event):
 	if event.is_action_released("print_inv"):
 		print(inventory.wagon_items)
+		print(inventory.front_items)
 	
 	elif event.is_action_pressed("charge"):
 		SceneManager.change_scene("TrailScene")
@@ -96,7 +98,8 @@ func remove_item(item):
 			score.print_score()
 			item.queue_free()
 		elif item.get_type() == 1:
-			item.global_position = Vector2(-100, rand_range(-100, 100))
+			print("archer")
+			item.global_position = marker.position + Vector2(rand_range(-50, 50), rand_range(-50, 50))
 			item.visible = true
 			add_child(item)
 

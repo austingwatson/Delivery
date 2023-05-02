@@ -58,6 +58,9 @@ position = Vector2( -302, 0 )
 texture = ExtResource( 5 )
 flip_h = true
 
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( -133, 30 )
+
 [connection signal="timeout" from="WaitTimer" to="." method="_on_WaitTimer_timeout"]
 
 [editable path="Cart"]

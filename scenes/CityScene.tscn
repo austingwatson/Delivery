@@ -22,20 +22,20 @@ texture = ExtResource( 5 )
 offset = Vector2( 20, 0 )
 
 [node name="Cargo" parent="." instance=ExtResource( 3 )]
-position = Vector2( 146, -36 )
+position = Vector2( 134, -57 )
 force_archer = true
 
 [node name="Cargo2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 163, 53 )
+position = Vector2( 172, 11 )
 
 [node name="Cargo3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 77, -63 )
 
 [node name="Cargo4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 75, 112 )
+position = Vector2( -56, -106 )
 
 [node name="Cargo5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 218, 73 )
+position = Vector2( 204, 60 )
 force_archer = true
 
 [node name="Cargo6" parent="." instance=ExtResource( 3 )]
@@ -45,13 +45,13 @@ position = Vector2( 200, -103 )
 position = Vector2( 194, -43 )
 
 [node name="Cargo8" parent="." instance=ExtResource( 3 )]
-position = Vector2( 38, 85 )
+position = Vector2( -120, -104 )
 
 [node name="Cargo9" parent="." instance=ExtResource( 3 )]
 position = Vector2( 19, -69 )
 
 [node name="Cargo10" parent="." instance=ExtResource( 3 )]
-position = Vector2( 100, 36 )
+position = Vector2( 106, -14 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 4 )]
 
@@ -66,5 +66,8 @@ texture = ExtResource( 7 )
 [node name="StoneWallBody" type="Sprite" parent="."]
 position = Vector2( 248, 0 )
 texture = ExtResource( 6 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 66, 76 )
 
 [editable path="Cart"]
