@@ -12,10 +12,11 @@ func _ready():
 	ToolTip.restart()
 
 
-func _input(_event):
+func _input(event):
 	if not music_started:
-		music_started = true
-		$Music.play()
+		if event is InputEventKey or event is InputEventMouseButton:
+			music_started = true
+			SoundManager.play_menu_music()
 
 
 func _on_Play_pressed():

@@ -11,6 +11,7 @@ signal update_oxen
 export var max_health_amount = 10
 export var max_oxen = 5
 
+onready var hbox = $HBoxContainer
 onready var weight_icon = $HBoxContainer/VBoxContainer/Weight
 onready var gold_icon = $HBoxContainer/VBoxContainer/Gold
 onready var food_icon = $HBoxContainer/VBoxContainer/Food
@@ -42,6 +43,7 @@ onready var gold_label = $Gold/Label
 
 var max_health = 5
 var health_amount = 5
+var tooltip_opposite = false
 
 
 func _ready():
@@ -102,6 +104,18 @@ func show_tooltip(weight, gold, food, defense, attack):
 	if attack > 0:
 		attack_icon.visible = true
 	
+	if tooltip_opposite:
+		if stats_bg.get_global_mouse_position().x <= 480 / 2:
+			stats_bg.rect_global_position = Vector2(430, 65)
+			hbox.rect_global_position = Vector2(450, 84)
+		else:
+			stats_bg.rect_global_position = Vector2(0, 65)
+			hbox.rect_global_position = Vector2(20, 84)
+	else:
+		stats_bg.rect_global_position = Vector2(430, 65)
+		hbox.rect_global_position = Vector2(450, 84)
+			
+	
 func reduce_health():
 	health.get_children()[health_amount - 1].visible = false
 	health_amount -= 1
@@ -130,6 +144,11 @@ func show_hide_gold():
 	else:
 		gold_bg.visible = true
 		gold_node.visible = true
+
+
+func hide_gold():
+	gold_bg.visible = false
+	gold_node.visible = false
 
 
 func hide_tooltip():
@@ -216,8 +235,6 @@ func _on_Carry_pressed():
 			inventory.current_size.y = 4
 			inventory.front_unlocked = true
 			wagon_front_2.color = open_color
-		
-	print(inventory.current_size)
 	
 	for i in inventory.current_size.x:
 		for j in inventory.current_size.y:

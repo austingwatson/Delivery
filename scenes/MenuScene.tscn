@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/MenuScene.gd" type="Script" id=1]
-[ext_resource path="res://assets/sounds/menusong.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/game_cover.png" type="Texture" id=3]
 [ext_resource path="res://assets/title.png" type="Texture" id=4]
 [ext_resource path="res://assets/ui_sheet.png" type="Texture" id=5]
@@ -136,10 +135,6 @@ custom_fonts/font = SubResource( 2 )
 text = "Exit"
 align = 1
 valign = 1
-
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
-bus = "Music"
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_Play_pressed"]
 [connection signal="value_changed" from="VBoxContainer/Music" to="." method="_on_Music_value_changed"]

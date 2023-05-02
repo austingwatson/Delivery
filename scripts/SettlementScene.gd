@@ -22,8 +22,12 @@ var wagon_shown = true
 
 
 func _ready():
+	SoundManager.play_menu_music()
+	
 	ToolTip.hide_health()
 	ToolTip.show_wagon(true)
+	ToolTip.show_gold_ui()
+	ToolTip.tooltip_opposite = false
 	
 	cart.freeze()
 	cart.remove_all_cargo()
@@ -143,6 +147,10 @@ func _unhandled_input(event):
 func start_cutscene():
 	cart.play_anim("move_left")
 	cart.get_node("Camera2D").current = false
+	ToolTip.hide_wagon()
+	ToolTip.hide_gold()
+	ToolTip.hide_health()
+	score_progress.visible = false
 	
 
 func end_cutscene():

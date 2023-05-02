@@ -98,6 +98,7 @@ anims/cutscene = SubResource( 9 )
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( -75, 0 )
+z_index = -1
 texture = ExtResource( 4 )
 
 [node name="Cart" parent="." instance=ExtResource( 1 )]
@@ -204,11 +205,12 @@ flip_h = true
 
 [node name="WallFG" type="Sprite" parent="."]
 position = Vector2( -302, 0 )
+z_index = 10
 texture = ExtResource( 5 )
 flip_h = true
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( -133, 30 )
+position = Vector2( -121, 60 )
 
 [node name="ChickenSpot" type="Area2D" parent="."]
 collision_layer = 16384

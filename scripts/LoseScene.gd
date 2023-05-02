@@ -3,6 +3,13 @@ extends Node
 var can_use_input = false
 
 
+func _ready():
+	ToolTip.hide_gold()
+	ToolTip.hide_health()
+	ToolTip.hide_tooltip()
+	ToolTip.hide_wagon()
+
+
 func _unhandled_input(event):
 	if not can_use_input:
 		return

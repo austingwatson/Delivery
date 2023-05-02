@@ -248,6 +248,9 @@ func move_camera(delta):
 		camera.offset.x = max_camera_offset
 		
 func remove_archer(side, i, j):
+	if i < 0 or i > 1:
+		return
+	
 	var child = slots.get_children()[16 + 1 * i]
 	for children in child.get_children():
 		children.queue_free()

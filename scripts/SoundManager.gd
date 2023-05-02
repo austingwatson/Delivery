@@ -21,6 +21,9 @@ var wagon_creak: AudioStreamPlayer
 var wood_impact: AudioStreamPlayer
 var gold: AudioStreamPlayer
 
+var menu_music: AudioStreamPlayer
+var trail_music: AudioStreamPlayer
+
 
 func _ready():
 	music_db = AudioServer.get_bus_index("Music")
@@ -67,14 +70,21 @@ func _ready():
 	
 	gold = load_sound("res://assets/sounds/Pickup_Coin5.wav")
 	
+	menu_music = load_sound("res://assets/sounds/menusong.wav", true)
+	trail_music = load_sound("res://assets/sounds/Song1.wav", true)
+	
 	wagon_move.play()
 	stop_wagon_move()
 	
 	
-func load_sound(loc):
+func load_sound(loc, music = false):
 	var sound = AudioStreamPlayer.new()
 	sound.stream = load(loc)
-	sound.bus = "Sound"
+	
+	if not music:
+		sound.bus = "Sound"
+	else:
+		sound.bus = "Music"
 	add_child(sound)
 	return sound
 	
@@ -153,3 +163,17 @@ func play_wood_impact():
 
 func play_coin_sound():
 	gold.play()
+	
+
+func play_menu_music():
+	if not menu_music.playing:
+		if trail_music.playing:
+			trail_music.stop()
+		menu_music.play()
+
+
+func play_trail_music():
+	if not trail_music.playing:
+		if menu_music.playing:
+			menu_music.stop()
+		trail_music.play()

@@ -5,9 +5,12 @@ onready var world = $World
 
 
 func _ready():
+	SoundManager.play_trail_music()
+	
 	ToolTip.hide_tooltip()
 	ToolTip.show_health()
 	ToolTip.hide_wagon()
+	ToolTip.tooltip_opposite = true
 	
 	Entities.restart()
 	world.restart()

@@ -90,6 +90,7 @@ anims/cutscene = SubResource( 2 )
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 21, 1 )
+z_index = -1
 texture = ExtResource( 5 )
 
 [node name="StoneWallInterior" type="Sprite" parent="."]

@@ -12,7 +12,7 @@ shader = ExtResource( 2 )
 shader_param/launch = false
 
 [node name="Cargo" type="RigidBody2D"]
-z_index = 1000
+z_index = -1
 collision_layer = 64
 collision_mask = 128
 input_pickable = true

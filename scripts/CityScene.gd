@@ -14,6 +14,9 @@ var mouse_in = false
 
 
 func _ready():
+	SoundManager.play_menu_music()
+	ToolTip.tooltip_opposite = false
+	
 	cart.freeze()
 	cart.remove_all_cargo()
 	cart.set_direction(Vector2.RIGHT)
@@ -93,6 +96,9 @@ func leave():
 func start_cutscene():
 	cart.play_anim("move_right")
 	cart.get_node("Camera2D").current = false
+	ToolTip.hide_wagon()
+	ToolTip.show_hide_gold()
+	ToolTip.hide_health()
 	
 
 func end_cutscene():
