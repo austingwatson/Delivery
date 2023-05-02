@@ -100,6 +100,8 @@ func remove_item(item):
 		elif item.get_type() == 1:
 			print("archer")
 			item.global_position = marker.position + Vector2(rand_range(-50, 50), rand_range(-50, 50))
+			item.global_position = marker.position + Vector2(rand_range(-50, 50), rand_range(-50, 50))
+			item.global_position = marker.position + Vector2(rand_range(-50, 50), rand_range(-50, 50))
 			item.visible = true
 			add_child(item)
 

@@ -14,7 +14,7 @@ func _ready():
 	cart.freeze()
 	cart.remove_all_cargo()
 	cart.set_direction(Vector2.RIGHT)
-	
+
 	var wagon_items = inventory.wagon_items
 	var last_item = null
 	for i in wagon_items.size():
@@ -33,6 +33,7 @@ func _ready():
 	
 	inventory.remove_front_item(0)
 	inventory.remove_front_item(1)
+
 	
 	ToolTip.show_wagon()
 	ToolTip.show_health()
@@ -44,18 +45,21 @@ func remove_item(item):
 	if item == null:
 		return
 	
-	if item.get_gold() == 3:
+	if item.get_gold() == 2:
 		var cargo = cargo_scene.instance()
 		add_child(cargo)
-		cargo.global_position = marker.global_position + Vector2(rand_range(-50, 50), rand_range(-50, 50))
+		cargo.position = marker.position + Vector2(rand_range(-40, 50), rand_range(-40, 50))
 		cargo.gen_info(3)
 	elif item.get_gold() == 1:
 		var cargo = cargo_scene.instance()
 		add_child(cargo)
-		cargo.global_position = marker.global_position + Vector2(rand_range(-50, 50), rand_range(-50, 50))
+		cargo.position = marker.position + Vector2(rand_range(-40, 50), rand_range(-40, 50))
 		cargo.gen_info(1)
 	else:
-		print("archer")
+		item.position = marker.position + Vector2(rand_range(-40, 50), rand_range(-40, 50))
+		item.visible = true
+		item.enable()
+		add_child(item)
 
 
 func _unhandled_input(event):
