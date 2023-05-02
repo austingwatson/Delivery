@@ -1,14 +1,43 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/PressStartK-EX89.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/LoseScene.gd" type="Script" id=2]
+[ext_resource path="res://assets/ui_sheet.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 240, 120, 240, 144 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 276, 72, 48, 48 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
 font_data = ExtResource( 1 )
 
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 276, 12, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 300, 12, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 228, 12, 12 )
+
 [node name="LoseScene" type="Node"]
 script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 239, 157 )
+texture = SubResource( 2 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 322, 187 )
+texture = SubResource( 3 )
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
@@ -21,13 +50,32 @@ margin_right = 112.0
 margin_bottom = 9.5
 custom_colors/font_color = Color( 0.180392, 0.0666667, 0.105882, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "You Lose :(
-Press Any Button to continue"
+text = "You failed to deliver...
+Now the mine is lost.
+Think of the gold!
+
+
+
+
+Press anything to continue
+"
 align = 1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 236, 168 )
+texture = SubResource( 4 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 236, 168 )
+texture = SubResource( 5 )
+
+[node name="Sprite5" type="Sprite" parent="."]
+position = Vector2( 236, 106 )
+texture = SubResource( 6 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
