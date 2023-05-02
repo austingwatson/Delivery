@@ -1,5 +1,7 @@
 extends Area2D
 
+const inventory = preload("res://resources/inventory/inventory.tres")
+
 enum State {
 	IDLE,
 	MOVE,
@@ -15,9 +17,11 @@ export var health = 1
 var state = State.IDLE
 var in_action_range = false
 
+onready var collision_shape = $CollisionShape2D
 onready var animated_sprite = $AnimatedSprite
 onready var remove_timer = $RemoveTimer
 onready var idle_timer = $IdleTimer
+onready var action_shape = $ActionRange/CollisionShape2D
 
 
 func _ready():
@@ -26,6 +30,9 @@ func _ready():
 
 
 func _physics_process(delta):
+	if health <= 0:
+		return
+	
 	if state == State.MOVE:
 		move(delta)
 	elif state == State.ACTION:
@@ -44,12 +51,17 @@ func move(delta):
 
 
 func action_done():
-	print("goblin did action")
+	var item = inventory.drop_random_item()
+	if item != null:
+		item.drop_from_inventory()
+		item.global_position = global_position
 
 
 func damage(amount):
 	health -= amount
 	if health <= 0:
+		action_shape.set_deferred("disabled", true)
+		collision_shape.set_deferred("disabled", true)
 		animated_sprite.play("death")
 		state = State.DEATH
 		SoundManager.play_goblin_death()

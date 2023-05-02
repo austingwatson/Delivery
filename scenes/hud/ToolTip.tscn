@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/hud/ToolTip.gd" type="Script" id=1]
 [ext_resource path="res://assets/PressStartK-EX89.ttf" type="DynamicFontData" id=2]
@@ -33,6 +33,26 @@ region = Rect2( 200, 205, 9, 22 )
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 3 )
 region = Rect2( 66, 15, 173, 120 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 172, 206, 17, 19 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 75, 207, 18, 18 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 148, 207, 16, 18 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 3 )
+region = Rect2( 123, 207, 18, 18 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 3 )
+region = Rect2( 25, 209, 22, 14 )
 
 [node name="ToolTip" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -136,7 +156,6 @@ align = 2
 valign = 1
 
 [node name="Wagon" type="TextureRect" parent="."]
-visible = false
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -60.0
@@ -256,3 +275,100 @@ margin_top = 61.0
 margin_right = 150.0
 margin_bottom = 111.0
 color = Color( 0.768627, 0.541176, 0.376471, 1 )
+
+[node name="Health" type="HBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -240.0
+margin_right = 240.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="Upgrades" type="HBoxContainer" parent="."]
+margin_left = 69.0
+margin_top = 206.0
+margin_right = 156.0
+margin_bottom = 247.0
+
+[node name="Upgrades1" type="VBoxContainer" parent="Upgrades"]
+margin_right = 39.0
+margin_bottom = 41.0
+
+[node name="Health" type="HBoxContainer" parent="Upgrades/Upgrades1"]
+margin_right = 39.0
+margin_bottom = 19.0
+alignment = 2
+
+[node name="Icon" type="TextureRect" parent="Upgrades/Upgrades1/Health"]
+margin_right = 17.0
+margin_bottom = 19.0
+texture = SubResource( 9 )
+
+[node name="Button" type="TextureButton" parent="Upgrades/Upgrades1/Health"]
+margin_left = 21.0
+margin_right = 39.0
+margin_bottom = 19.0
+texture_normal = SubResource( 10 )
+
+[node name="Oxen" type="HBoxContainer" parent="Upgrades/Upgrades1"]
+margin_top = 23.0
+margin_right = 39.0
+margin_bottom = 41.0
+alignment = 2
+
+[node name="Icon" type="TextureRect" parent="Upgrades/Upgrades1/Oxen"]
+margin_left = 1.0
+margin_right = 17.0
+margin_bottom = 18.0
+texture = SubResource( 11 )
+
+[node name="Button" type="TextureButton" parent="Upgrades/Upgrades1/Oxen"]
+margin_left = 21.0
+margin_right = 39.0
+margin_bottom = 18.0
+texture_normal = SubResource( 10 )
+
+[node name="Upgrades2" type="VBoxContainer" parent="Upgrades"]
+margin_left = 43.0
+margin_right = 87.0
+margin_bottom = 41.0
+
+[node name="Carry" type="HBoxContainer" parent="Upgrades/Upgrades2"]
+margin_right = 44.0
+margin_bottom = 18.0
+alignment = 2
+
+[node name="Icon" type="TextureRect" parent="Upgrades/Upgrades2/Carry"]
+margin_left = 4.0
+margin_right = 22.0
+margin_bottom = 18.0
+texture = SubResource( 12 )
+
+[node name="Button" type="TextureButton" parent="Upgrades/Upgrades2/Carry"]
+margin_left = 26.0
+margin_right = 44.0
+margin_bottom = 18.0
+texture_normal = SubResource( 10 )
+
+[node name="SpeedBoost" type="HBoxContainer" parent="Upgrades/Upgrades2"]
+margin_top = 22.0
+margin_right = 44.0
+margin_bottom = 40.0
+alignment = 2
+
+[node name="Icon" type="TextureRect" parent="Upgrades/Upgrades2/SpeedBoost"]
+margin_right = 22.0
+margin_bottom = 18.0
+texture = SubResource( 13 )
+
+[node name="Button" type="TextureButton" parent="Upgrades/Upgrades2/SpeedBoost"]
+margin_left = 26.0
+margin_right = 44.0
+margin_bottom = 18.0
+texture_normal = SubResource( 10 )
+
+[connection signal="pressed" from="Upgrades/Upgrades1/Health/Button" to="." method="_on_health_button_pressed"]
+[connection signal="pressed" from="Upgrades/Upgrades1/Oxen/Button" to="." method="_on_oxen_button_pressed"]
+[connection signal="pressed" from="Upgrades/Upgrades2/Carry/Button" to="." method="_on_carry_button_pressed"]
+[connection signal="pressed" from="Upgrades/Upgrades2/SpeedBoost/Button" to="." method="_on_speedboost_button_pressed"]

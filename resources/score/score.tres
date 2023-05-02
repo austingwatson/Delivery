@@ -7,3 +7,7 @@ script = ExtResource( 1 )
 target_food = 10
 target_defense = 10
 target_attack = 10
+health_upg_cost = 1
+oxen_upg_cost = 2
+carry_upg_cost = 3
+speed_upg_cost = 4

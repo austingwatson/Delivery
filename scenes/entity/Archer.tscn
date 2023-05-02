@@ -140,7 +140,7 @@ tracks/0/keys = {
 "values": [ 60 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("ArrowSpawnPoint:position")
+tracks/1/path = NodePath("Bow/ArrowSpawnPoint:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -180,6 +180,7 @@ anims/backward = SubResource( 2 )
 anims/forward = SubResource( 3 )
 
 [node name="Attack" type="AnimationPlayer" parent="."]
+playback_speed = 2.0
 anims/RESET = SubResource( 4 )
 anims/attack = SubResource( 5 )
 
@@ -194,7 +195,7 @@ hframes = 20
 vframes = 22
 frame = 60
 
-[node name="ArrowSpawnPoint" type="Position2D" parent="."]
+[node name="ArrowSpawnPoint" type="Position2D" parent="Bow"]
 position = Vector2( 10, -1 )
 
 [node name="ReloadTimer" type="Timer" parent="."]

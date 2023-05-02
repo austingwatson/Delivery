@@ -6,7 +6,7 @@ onready var idle_player = $IdlePlayer
 onready var attack_player = $Attack
 onready var body = $Body
 onready var bow = $Bow
-onready var arrow_spawn_point = $ArrowSpawnPoint
+onready var arrow_spawn_point = $Bow/ArrowSpawnPoint
 onready var reload_timer = $ReloadTimer
 onready var idle_timer = $IdleTimer
 

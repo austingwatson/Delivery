@@ -7,6 +7,10 @@ const cargo_scene = preload("res://scenes/entity/Cargo.tscn")
 onready var cart = $Cart
 onready var pause_menu = $PauseMenu
 
+onready var food_bar = $ScoreProgress/VBoxContainer/Food
+onready var defense_bar = $ScoreProgress/VBoxContainer/Defense
+onready var attack_bar = $ScoreProgress/VBoxContainer/Attack
+
 
 func _ready():
 	cart.freeze()
@@ -53,6 +57,24 @@ func _ready():
 			cargo.position = cart.position + Vector2(100, rand_range(-100, 100))
 			cargo.gen_info(1)
 			score.current_gold -= 1
+			
+	var cargo = cargo_scene.instance()
+	add_child(cargo)
+	cargo.position = cart.position + Vector2(100, rand_range(-100, 100))
+	cargo.gen_info(3)
+	
+	cargo = cargo_scene.instance()
+	add_child(cargo)
+	cargo.position = cart.position + Vector2(100, rand_range(-100, 100))
+	cargo.gen_info(1)
+	
+	food_bar.max_value = score.target_food
+	defense_bar.max_value = score.target_defense
+	attack_bar.max_value = score.target_attack
+	
+	food_bar.value = score.current_food
+	defense_bar.value = score.current_defense
+	attack_bar.value = score.current_attack
 
 
 func _unhandled_input(event):

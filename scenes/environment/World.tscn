@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scripts/environment/World.gd" type="Script" id=1]
 [ext_resource path="res://scenes/environment/GoblinSpawner.tscn" type="PackedScene" id=2]
@@ -10,6 +10,49 @@
 [ext_resource path="res://assets/tree_card_upper.png" type="Texture" id=8]
 [ext_resource path="res://scenes/environment/FoilageSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/environment/ChickenSpawner.tscn" type="PackedScene" id=10]
+
+[sub_resource type="Curve" id=5]
+max_value = 100.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=8]
+max_value = 100.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=9]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=6]
+max_value = 100.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=7]
+max_value = 100.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=12]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=14]
+max_value = 100.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=15]
+max_value = 100.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=16]
+max_value = 100.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 480, 31 )
@@ -80,24 +123,26 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 1440, 132 )
 
 [node name="MudSpawner" parent="." instance=ExtResource( 3 )]
-total = 25
-min_timer = 3.0
-max_timer = 6.0
+total = SubResource( 5 )
+min_timer = SubResource( 8 )
+max_timer = SubResource( 9 )
 object_name = 1
 
 [node name="LogSpawner" parent="." instance=ExtResource( 3 )]
-total = 25
-min_timer = 3.0
-max_timer = 6.0
+total = SubResource( 6 )
+min_timer = SubResource( 10 )
+max_timer = SubResource( 11 )
 object_name = 2
 
 [node name="RockSpawner" parent="." instance=ExtResource( 3 )]
-total = 25
-max_timer = 3.0
+total = SubResource( 7 )
+min_timer = SubResource( 12 )
+max_timer = SubResource( 13 )
 
 [node name="GoblinSpawner" parent="." instance=ExtResource( 2 )]
-min_timer = 5.0
-max_timer = 10.0
+goblin_total = SubResource( 14 )
+min_timer = SubResource( 15 )
+max_timer = SubResource( 16 )
 y_spawn = 200
 
 [node name="ChickenSpawner" parent="." instance=ExtResource( 10 )]

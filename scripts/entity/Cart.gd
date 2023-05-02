@@ -5,7 +5,6 @@ const archer_scene = preload("res://scenes/entity/Archer.tscn")
 const ox_scene = preload("res://scenes/entity/Ox.tscn")
 
 const dirt_color = Color(89.0 / 255.0, 77.0 / 255.0, 77.0 / 255.0)
-const grass_color = Color(93.0 / 255.0, 155.0 / 255.0, 121.0 / 255.0)
 
 export var max_speed = 0.0
 export var oxen_speed_increase = 0.25
@@ -68,6 +67,13 @@ func _ready():
 		camera.offset.x *= -1
 	
 	sprites.material.set_shader_param("flash", false)
+	
+	fg_wheel_particles.color = dirt_color
+	bg_wheel_particles.color = dirt_color
+	
+	if inventory.current_oxen > 1:
+		for _i in inventory.current_oxen - 1:
+			add_ox()
 
 
 func _unhandled_input(event):
@@ -101,7 +107,7 @@ func _unhandled_input(event):
 	elif event.is_action_released("test"):
 		add_ox()
 		
-	elif event.is_action_pressed("charge") and can_charge:
+	elif event.is_action_pressed("charge") and can_charge and inventory.has_speed_boost:
 		can_charge = false
 		charge = true
 		charge_timer.start()
@@ -174,11 +180,6 @@ func move(delta):
 	if not on_trail:
 		speed *= trail_slowdown
 		animation_player.playback_speed *= trail_slowdown
-		fg_wheel_particles.color = grass_color
-		bg_wheel_particles.color = grass_color
-	else:
-		fg_wheel_particles.color = dirt_color
-		bg_wheel_particles.color = dirt_color
 	# check if on mud
 	if mud_count > 0:
 		speed *= mud_slowdown
@@ -226,6 +227,11 @@ func move_camera(delta):
 		camera.offset.x = min_camera_offset
 	elif camera.offset.x > max_camera_offset:
 		camera.offset.x = max_camera_offset
+		
+func remove_archer(side, i, j):
+	var child = slots.get_children()[16 + 1 * i]
+	for children in child.get_children():
+		children.queue_free()
 	
 
 func hit_rock():
@@ -239,6 +245,11 @@ func hit_rock():
 	for ox in oxen.get_children():
 		ox.play_anim("hurt")
 		ox.set_playback_speed(1)
+	
+	var item = inventory.drop_random_item()
+	if item != null:
+		item.drop_from_inventory()
+		item.global_position = global_position
 		
 
 func add_ox():

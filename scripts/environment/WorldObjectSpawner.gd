@@ -1,8 +1,8 @@
 extends Node
 
-export var total = 5
-export var min_timer = 1.0
-export var max_timer = 2.0
+export(Curve) var total
+export(Curve) var min_timer
+export(Curve) var max_timer
 export(int, "Rock", "Mud", "Log") var object_name
 
 var objects = []
@@ -10,8 +10,9 @@ var objects = []
 onready var spawn_timer = $SpawnTimer
 
 
-func _ready():	
-	for _i in range(total):
+func _ready():
+	var total_amount = round(total.interpolate(SceneManager.current_trail))
+	for _i in range(total_amount):
 		var object
 		match object_name:
 			0:
@@ -23,7 +24,14 @@ func _ready():
 		objects.append(object)
 		Entities.add_child(object)
 	
-	spawn_timer.start(rand_range(min_timer, max_timer))
+	spawn_timer.start(rand_range(min_timer.interpolate(SceneManager.current_trail), max_timer.interpolate(SceneManager.current_trail)))
+	
+
+func force_spawn(amount):
+	var total_amount = round(total.interpolate(SceneManager.current_trail))
+	for i in range(min(total_amount, amount)):
+		objects[i].enable()
+		objects[i].position = Entities.cart.position + Vector2(rand_range(-100, 400), rand_range(-100, 100))
 
 
 func _on_SpawnTimer_timeout():
@@ -32,4 +40,4 @@ func _on_SpawnTimer_timeout():
 			object.enable()
 			break
 	
-	spawn_timer.start(rand_range(min_timer, max_timer))
+	spawn_timer.start(rand_range(min_timer.interpolate(SceneManager.current_trail), max_timer.interpolate(SceneManager.current_trail)))

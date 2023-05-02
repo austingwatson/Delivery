@@ -10,6 +10,9 @@ func _ready():
 	cart.freeze()
 	
 	ToolTip.show_wagon()
+	ToolTip.show_health()
+	
+	ToolTip.connect("update_oxen", self, "_on_update_oxen")
 
 
 func _unhandled_input(event):
@@ -27,3 +30,7 @@ func leave():
 	ToolTip.hide_wagon()
 	cart.remove_all_cargo()
 	SceneManager.cart_direction = Vector2.RIGHT
+
+
+func _on_update_oxen():
+	cart.add_ox()

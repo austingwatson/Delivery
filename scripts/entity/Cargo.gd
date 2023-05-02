@@ -11,6 +11,8 @@ var info = {}
 var mouse_inside = false
 var mouse_down = false
 var emit_particle = false
+var add_launch_force = false
+var launch_y = 100.0
 
 onready var collision_shape = $CollisionShape2D
 onready var left_emitter = $LeftEmitter
@@ -52,10 +54,23 @@ func _physics_process(delta):
 		left_emitter.emitting = true
 		right_emitter.emitting = true
 		
+	if add_launch_force:
+		position.y -= launch_y * delta
+		launch_y -= 200 * delta
+		if launch_y < -100:
+			add_launch_force = false
+			enable()
+		
+		if SceneManager.cart_direction == Vector2.RIGHT:
+			position.x -= 50 * delta
+		else:
+			position.x += 50 * delta
+		
 
 func gen_info(gold):
 	info = cargo_gen.gen_info(gold)
 	setup()
+
 
 func setup():
 	sprite.texture = info.world_texture
@@ -63,9 +78,9 @@ func setup():
 	if info.type == 2:
 		sprite.hframes = 40
 		sprite.vframes = 22
-		sprite.frame = 762
+		sprite.frame = 762 - 40
 		
-		collision_shape.shape.extents = Vector2(6, 6)
+		collision_shape.shape.extents = Vector2(10, 10)
 	
 		right_emitter.position = Vector2(12, 12)
 		left_emitter.position = Vector2(-12, 12)
@@ -99,6 +114,14 @@ func enable():
 	set_deferred("mode", RigidBody2D.MODE_RIGID)
 	
 
+func drop_from_inventory():
+	get_parent().remove_child(self)
+	Entities.call_deferred("add_child", self)
+	visible = true
+	add_launch_force = true
+	launch_y = 100.0
+	
+
 func get_size():
 	return info.size
 	
@@ -123,5 +146,5 @@ func _on_Box_mouse_exited():
 
 func _on_CoinTimer_timeout():
 	sprite.frame += 1
-	if sprite.frame > 765:
-		sprite.frame = 762
+	if sprite.frame > 765 - 40:
+		sprite.frame = 762 - 40

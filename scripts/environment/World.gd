@@ -7,6 +7,9 @@ onready var first_marker = $FirstMarker
 onready var second_marker = $SecondMarker
 onready var last_marker = $LastMarker
 onready var foliage_spawner = $FoliageSpawner
+onready var mud_spawner = $MudSpawner
+onready var log_spawner = $LogSpawner
+onready var rock_spawner = $RockSpawner
 
 
 func _ready():
@@ -24,6 +27,9 @@ func _ready():
 
 func restart():
 	foliage_spawner.force_spawn(10)
+	mud_spawner.force_spawn(2)
+	rock_spawner.force_spawn(4)
+	log_spawner.force_spawn(1)
 
 
 func _physics_process(_delta):
