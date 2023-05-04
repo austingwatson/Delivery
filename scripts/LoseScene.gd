@@ -8,6 +8,7 @@ func _ready():
 	ToolTip.hide_health()
 	ToolTip.hide_tooltip()
 	ToolTip.hide_wagon()
+	SoundManager.stop_music()
 
 
 func _unhandled_input(event):

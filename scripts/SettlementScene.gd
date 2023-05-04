@@ -112,15 +112,15 @@ func _ready():
 	
 	food_progress.max_value = score.target_food
 	food_progress.value = score.current_food
-	food_label.text = str(score.current_food) + "/" + str(score.target_food)
+	food_label.text = str(min(score.current_food, score.target_food)) + "/" + str(score.target_food)
 	
 	defense_progress.max_value = score.target_defense
 	defense_progress.value = score.current_defense
-	defense_label.text = str(score.current_defense) + "/" + str(score.target_defense)
+	defense_label.text = str(min(score.current_defense, score.target_defense)) + "/" + str(score.target_defense)
 	
 	attack_progress.max_value = score.target_attack
 	attack_progress.value = score.current_attack
-	attack_label.text = str(score.current_attack) + "/" + str(score.target_attack)
+	attack_label.text = str(min(score.current_attack, score.target_attack)) + "/" + str(score.target_attack)
 	
 	cart.get_node("Camera2D").offset = Vector2(-75, 0)
 	cart.resort_ox()

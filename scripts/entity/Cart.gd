@@ -291,6 +291,7 @@ func add_ox():
 	#oxen.call_deferred("add_child", ox)
 	oxen.add_child(ox)
 	ox.position.y = ox_distance * ox_weave
+	ox.freeze()
 	
 	resort_ox()
 	
