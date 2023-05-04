@@ -5,12 +5,18 @@ const score = preload("res://resources/score/score.tres")
 
 var music_started = false
 
+onready var music_slider = $VBoxContainer/Music
+onready var sound_slider = $VBoxContainer/Sound
+
 
 func _ready():
 	inventory.restart()
 	score.restart()
 	ToolTip.restart()
 	SoundManager.restart_music()
+	
+	music_slider.value = AudioServer.get_bus_volume_db(SoundManager.music_db)
+	sound_slider.value = AudioServer.get_bus_volume_db(SoundManager.sound_db)
 
 
 func _input(event):

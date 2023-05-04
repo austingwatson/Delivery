@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://scripts/environment/World.gd" type="Script" id=1]
 [ext_resource path="res://scenes/environment/GoblinSpawner.tscn" type="PackedScene" id=2]
@@ -18,60 +18,74 @@
 [ext_resource path="res://assets/city_scene.png" type="Texture" id=16]
 [ext_resource path="res://assets/mining_camp.png" type="Texture" id=17]
 
-[sub_resource type="Curve" id=5]
-min_value = 1.0
-max_value = 10.0
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 10 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id=21]
+min_value = 0.1
+max_value = 0.4
+_data = [ Vector2( 0, 0.4 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.1 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Curve" id=8]
 min_value = 5.0
 max_value = 30.0
-_data = [ Vector2( 0, 5 ), 0.0, 0.0, 0, 0, Vector2( 1, 30 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 5 ), 0.0, 0.0, 0, 0, Vector2( 1, 5 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Curve" id=17]
 min_value = 10.0
 max_value = 40.0
-_data = [ Vector2( 0, 10 ), 0.0, 0.0, 0, 0, Vector2( 1, 40 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 10 ), 0.0, 0.0, 0, 0, Vector2( 1, 10 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Curve" id=6]
-min_value = 20.0
-max_value = 25.0
-_data = [ Vector2( 0, 20 ), 0.0, 0.0, 0, 0, Vector2( 1, 25 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id=23]
+min_value = 1.0
+max_value = 3.0
+_data = [ Vector2( 0, 3 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=12]
+min_value = 0.1
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=13]
+min_value = 1.0
+max_value = 2.0
+_data = [ Vector2( 0, 2 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=22]
+min_value = 2.0
+max_value = 5.0
+_data = [ Vector2( 0, 5 ), 0.0, 0.0, 0, 0, Vector2( 1, 2 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Curve" id=10]
 min_value = 5.0
 max_value = 10.0
-_data = [ Vector2( 0, 5 ), 0.0, 0.0, 0, 0, Vector2( 1, 10 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 10 ), 0.0, 0.0, 0, 0, Vector2( 1, 5 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Curve" id=11]
 min_value = 10.0
 max_value = 15.0
-_data = [ Vector2( 0, 10 ), 0.0, 0.0, 0, 0, Vector2( 1, 15 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="Curve" id=7]
-max_value = 100.0
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="Curve" id=12]
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="Curve" id=13]
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 15 ), 0.0, 0.0, 0, 0, Vector2( 1, 10 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Curve" id=14]
 min_value = 5.0
 max_value = 25.0
 _data = [ Vector2( 0, 5 ), 0.0, 0.0, 0, 0, Vector2( 1, 25 ), 0.0, 0.0, 0, 0 ]
 
+[sub_resource type="Curve" id=19]
+min_value = 1.0
+max_value = 3.0
+_data = [ Vector2( 0, 3 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
 [sub_resource type="Curve" id=18]
 min_value = 1.0
-max_value = 10.0
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 10 ), 0.0, 0.0, 0, 0 ]
+max_value = 5.0
+_data = [ Vector2( 0, 5 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Curve" id=16]
 min_value = 2.0
-max_value = 15.0
-_data = [ Vector2( 0, 2 ), 0.0, 0.0, 0, 0, Vector2( 1, 15 ), 0.0, 0.0, 0, 0 ]
+max_value = 10.0
+_data = [ Vector2( 0, 10 ), 0.0, 0.0, 0, 0, Vector2( 1, 2 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=20]
+min_value = 1.0
+max_value = 4.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 4 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 480, 31 )
@@ -142,26 +156,46 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 1440, 132 )
 
 [node name="MudSpawner" parent="." instance=ExtResource( 3 )]
-total = SubResource( 5 )
+first_spawn_time = SubResource( 21 )
 min_timer = SubResource( 8 )
 max_timer = SubResource( 17 )
 object_name = 1
 
+[node name="TopY" parent="MudSpawner" index="1"]
+position = Vector2( 0, -44 )
+
+[node name="BottomY" parent="MudSpawner" index="2"]
+position = Vector2( 0, 37 )
+
+[node name="RockSpawner" parent="." instance=ExtResource( 3 )]
+first_spawn_time = SubResource( 23 )
+min_timer = SubResource( 12 )
+max_timer = SubResource( 13 )
+
+[node name="TopY" parent="RockSpawner" index="1"]
+position = Vector2( 0, -148 )
+
+[node name="BottomY" parent="RockSpawner" index="2"]
+position = Vector2( 0, 148 )
+
 [node name="LogSpawner" parent="." instance=ExtResource( 3 )]
-total = SubResource( 6 )
+first_spawn_time = SubResource( 22 )
 min_timer = SubResource( 10 )
 max_timer = SubResource( 11 )
 object_name = 2
 
-[node name="RockSpawner" parent="." instance=ExtResource( 3 )]
-total = SubResource( 7 )
-min_timer = SubResource( 12 )
-max_timer = SubResource( 13 )
+[node name="TopY" parent="LogSpawner" index="1"]
+position = Vector2( 0, -84 )
+
+[node name="BottomY" parent="LogSpawner" index="2"]
+position = Vector2( 0, 77 )
 
 [node name="GoblinSpawner" parent="." instance=ExtResource( 2 )]
 goblin_total = SubResource( 14 )
+first_goblin_time = SubResource( 19 )
 min_timer = SubResource( 18 )
 max_timer = SubResource( 16 )
+goblin_spawn_amount = SubResource( 20 )
 y_spawn = 200
 
 [node name="ChickenSpawner" parent="." instance=ExtResource( 10 )]
@@ -179,7 +213,7 @@ position = Vector2( 0, -6 )
 shape = SubResource( 1 )
 
 [node name="LevelEnd" parent="." instance=ExtResource( 6 )]
-position = Vector2( 200, 0 )
+position = Vector2( 3000, 0 )
 
 [node name="LevelEndTimer" type="Timer" parent="."]
 one_shot = true
@@ -197,19 +231,22 @@ position = Vector2( 0, -62 )
 texture = SubResource( 4 )
 
 [node name="CityBG" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 16 )
 offset = Vector2( -240, 0 )
 
 [node name="SettlementBG" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 17 )
 offset = Vector2( 240, 0 )
 
 [node name="StoneWall" type="Sprite" parent="."]
-texture = ExtResource( 12 )
+visible = false
+texture = ExtResource( 13 )
 flip_h = true
 
-[node name="Interior" type="Sprite" parent="StoneWall"]
-texture = ExtResource( 13 )
+[node name="Gate" type="Sprite" parent="StoneWall"]
+texture = ExtResource( 12 )
 flip_h = true
 
 [node name="Exterior" type="Sprite" parent="StoneWall"]
@@ -217,6 +254,7 @@ texture = ExtResource( 11 )
 flip_h = true
 
 [node name="WoodWall" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 14 )
 
 [node name="Sprite" type="Sprite" parent="WoodWall"]
@@ -227,3 +265,7 @@ texture = ExtResource( 15 )
 [connection signal="area_exited" from="Trail" to="." method="_on_Trail_area_exited"]
 [connection signal="area_entered" from="LevelEnd" to="." method="_on_LevelEnd_area_entered"]
 [connection signal="timeout" from="LevelEndTimer" to="." method="_on_LevelEndTimer_timeout"]
+
+[editable path="MudSpawner"]
+[editable path="RockSpawner"]
+[editable path="LogSpawner"]

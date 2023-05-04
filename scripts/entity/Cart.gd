@@ -18,6 +18,8 @@ export var max_camera_offset = 100.0
 export var min_world_height = -100.0
 export var max_world_height = 100.0
 export var camera_speed_bonus = 1.0
+export(PoolVector2Array) var left_polygon
+export(PoolVector2Array) var right_polygon
 
 var move_up = false
 var move_down = false
@@ -50,6 +52,10 @@ onready var fg_wheel_particles = $Sprites/FGWheelParticle
 onready var bg_wheel_particles = $Sprites/BGWheelParticle
 onready var charge_timer = $ChargeTimer
 onready var charge_cd = $ChargeCD
+onready var cart_center = $CartCenter
+onready var collision_poly = $CollisionPolygon2D
+onready var right_poly = $RightPolygon
+onready var left_poly = $LeftPolygon
 
 
 func _ready():
@@ -77,6 +83,11 @@ func _ready():
 	
 	
 	oxen_speed = max_oxen_speed * oxen.get_child_count()
+	
+	if SceneManager.cart_direction == Vector2.RIGHT:
+		collision_poly.polygon = right_poly.polygon
+	else:
+		collision_poly.polygon = left_poly.polygon
 	
 
 func _unhandled_input(event):
@@ -107,9 +118,6 @@ func _unhandled_input(event):
 	elif event.is_action_released("camera_right"):
 		camera_right = false
 		
-	elif event.is_action_released("test"):
-		add_ox()
-		
 	elif event.is_action_pressed("charge") and can_charge and inventory.has_speed_boost:
 		can_charge = false
 		charge = true
@@ -125,6 +133,10 @@ func _physics_process(delta):
 	
 	for ox in oxen.get_children():
 		ox.set_rope(cart_rope_position.global_position)
+		
+
+func get_center():
+	return cart_center.global_position		
 		
 
 func set_direction(direction):
@@ -321,9 +333,6 @@ func freeze():
 		ox.set_rope(global_position)
 	fg_wheel_particles.emitting = false
 	bg_wheel_particles.emitting = false
-	
-	for mudsplat in $MudSplats.get_children():
-		mudsplat.freeze()
 
 
 func play_anim(anim_name):

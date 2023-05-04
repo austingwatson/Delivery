@@ -8,4 +8,8 @@ script = ExtResource( 1 )
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="TopY" type="Position2D" parent="."]
+
+[node name="BottomY" type="Position2D" parent="."]
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

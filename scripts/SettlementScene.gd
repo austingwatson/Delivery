@@ -127,11 +127,7 @@ func _ready():
 
 
 func _unhandled_input(event):
-	if event.is_action_released("print_inv"):
-		print(inventory.wagon_items)
-		print(inventory.front_items)
-	
-	elif event.is_action_pressed("charge"):
+	if event.is_action_pressed("charge"):
 		animation_player.play("cutscene")
 	
 	elif event.is_action_pressed("menu"):
@@ -176,6 +172,7 @@ func remove_item(item):
 	return gold_amount
 
 func leave():
+	Entities.clear()
 	cart.remove_all_cargo()
 
 

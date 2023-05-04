@@ -11,9 +11,10 @@ enum State {
 	DEATH,
 }
 
-export var speed = 10.0
-export var health = 1
+export(Curve) var max_speed
 
+var speed = 0.0
+var health = 2
 var state = State.IDLE
 var in_action_range = false
 
@@ -27,6 +28,8 @@ onready var action_shape = $ActionRange/CollisionShape2D
 func _ready():
 	animated_sprite.play("idle")
 	idle_timer.start()
+	
+	speed = max_speed.interpolate(SceneManager.current_trail)
 
 
 func _physics_process(delta):
@@ -36,16 +39,16 @@ func _physics_process(delta):
 	if state == State.MOVE:
 		move(delta)
 	elif state == State.ACTION:
-		if global_position.distance_to(Entities.cart.global_position) > 25:
+		if global_position.distance_to(Entities.cart.get_center()) > 25:
 			move(delta)
 
 
 func move(delta):
-	position += position.direction_to(Entities.cart.position) * speed * delta
+	position += global_position.direction_to(Entities.cart.get_center()) * speed * delta
 			
-	if global_position.x > Entities.cart.global_position.x:
+	if global_position.x > Entities.cart.get_center().x:
 		animated_sprite.flip_h = false
-	elif global_position.x < Entities.cart.global_position.x:
+	elif global_position.x < Entities.cart.get_center().x:
 		animated_sprite.flip_h = true
 			
 
@@ -54,7 +57,7 @@ func action_done():
 	var item = inventory.drop_random_item()
 	if item != null:
 		item.drop_from_inventory()
-		item.global_position = global_position
+		item.global_position = Entities.cart.get_center()
 
 
 func damage(amount):
@@ -94,9 +97,9 @@ func _on_AnimatedSprite_animation_finished():
 			state = State.TAUNT
 			SoundManager.play_goblin_laugh()
 		
-			if global_position.x > Entities.cart.global_position.x:
+			if global_position.x > Entities.cart.get_center().x:
 				animated_sprite.flip_h = false
-			elif global_position.x < Entities.cart.global_position.x:
+			elif global_position.x < Entities.cart.get_center().x:
 				animated_sprite.flip_h = true
 
 
@@ -117,9 +120,9 @@ func _on_IdleTimer_timeout():
 		state = State.TAUNT
 		SoundManager.play_goblin_laugh()
 		
-		if global_position.x > Entities.cart.global_position.x:
+		if global_position.x > Entities.cart.get_center().x:
 			animated_sprite.flip_h = false
-		elif global_position.x < Entities.cart.global_position.x:
+		elif global_position.x < Entities.cart.get_center().x:
 			animated_sprite.flip_h = true
 
 

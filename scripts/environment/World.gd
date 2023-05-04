@@ -17,6 +17,8 @@ onready var settlement_bg = $SettlementBG
 
 
 func _ready():
+	level_end.position.x += SceneManager.mode * 1000
+	
 	if SceneManager.cart_direction == Vector2.RIGHT:
 		level_end.position.x = abs(level_end.position.x)
 		first_marker.position.x = level_end.position.x * 0.3
@@ -37,10 +39,14 @@ func _ready():
 	city_bg.position = stone_wall.position
 	settlement_bg.position = wood_wall.position
 	
+	city_bg.visible = true
+	settlement_bg.visible = true
+	stone_wall.visible = true
+	wood_wall.visible = true
+	
 
 func restart():
 	foliage_spawner.force_spawn(10)
-	mud_spawner.force_spawn(2)
 
 
 func _physics_process(_delta):

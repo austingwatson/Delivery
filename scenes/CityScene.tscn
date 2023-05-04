@@ -112,36 +112,35 @@ z_index = 20
 texture = ExtResource( 6 )
 
 [node name="Cargo" parent="." instance=ExtResource( 3 )]
-position = Vector2( 134, -57 )
+position = Vector2( 186, 8 )
 force_archer = true
 
 [node name="Cargo2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 172, 11 )
+position = Vector2( 135, -70 )
 
 [node name="Cargo3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 77, -63 )
+position = Vector2( 93, -54 )
 
 [node name="Cargo4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 215, -3 )
+position = Vector2( 1, -69 )
 
 [node name="Cargo5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 204, 60 )
-force_archer = true
+position = Vector2( 186, 78 )
 
 [node name="Cargo6" parent="." instance=ExtResource( 3 )]
-position = Vector2( 200, -103 )
+position = Vector2( 213, -90 )
 
 [node name="Cargo7" parent="." instance=ExtResource( 3 )]
-position = Vector2( 194, -43 )
+position = Vector2( 210, -44 )
 
 [node name="Cargo8" parent="." instance=ExtResource( 3 )]
-position = Vector2( 134, -93 )
+position = Vector2( 155, -40 )
 
 [node name="Cargo9" parent="." instance=ExtResource( 3 )]
-position = Vector2( 19, -69 )
+position = Vector2( 45, -63 )
 
 [node name="Cargo10" parent="." instance=ExtResource( 3 )]
-position = Vector2( 106, -14 )
+position = Vector2( 222, 60 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 4 )]
 
@@ -149,6 +148,7 @@ position = Vector2( 106, -14 )
 position = Vector2( 66, 76 )
 
 [node name="ChickenSpot" type="Area2D" parent="."]
+visible = false
 collision_layer = 16384
 collision_mask = 16384
 

@@ -12,6 +12,14 @@ onready var timer = $Timer
 
 func _ready():
 	trail.scale_amount = max_size
+	
+
+func _enter_tree():
+	dont_use = false
+	
+
+func _exit_tree():
+	dont_use = true
 
 
 func set_direction(velocity):
@@ -19,10 +27,6 @@ func set_direction(velocity):
 	direction.x *= -1
 	direction.y *= -1
 	trail.direction = direction
-	
-
-func freeze():
-	dont_use = true
 
 
 func _on_MudSplat_area_exited(_area):

@@ -79,10 +79,7 @@ func remove_item(item):
 
 
 func _unhandled_input(event):
-	if event.is_action_released("print_inv"):
-		print(inventory.wagon_items)
-	
-	elif event.is_action_pressed("charge"):
+	if event.is_action_pressed("charge"):
 		animation_player.play("cutscene")
 		
 	elif event.is_action_pressed("menu"):
@@ -93,6 +90,7 @@ func _unhandled_input(event):
 		
 
 func leave():
+	Entities.clear()
 	ToolTip.hide_wagon()
 	cart.remove_all_cargo()
 

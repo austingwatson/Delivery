@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/wheel1.png" type="Texture" id=1]
 [ext_resource path="res://scenes/entity/Ox.tscn" type="PackedScene" id=2]
@@ -9,9 +9,6 @@
 [ext_resource path="res://shaders/damage.tres" type="Shader" id=7]
 [ext_resource path="res://scenes/environment/MudSplat.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/cart_basic_divider.png" type="Texture" id=9]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 26.5, 6.5 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 37, 18 )
@@ -276,7 +273,7 @@ tracks/20/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/21/type = "value"
-tracks/21/path = NodePath("CollisionShape2D:position")
+tracks/21/path = NodePath("MudSplats/MudSplat:position")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/imported = false
@@ -285,10 +282,10 @@ tracks/21/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -3.5, 8 ) ]
+"values": [ Vector2( 17, 14 ) ]
 }
 tracks/22/type = "value"
-tracks/22/path = NodePath("MudSplats/MudSplat:position")
+tracks/22/path = NodePath("MudSplats/MudSplat2:position")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/imported = false
@@ -297,10 +294,10 @@ tracks/22/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 17, 14 ) ]
+"values": [ Vector2( -30, 8 ) ]
 }
 tracks/23/type = "value"
-tracks/23/path = NodePath("MudSplats/MudSplat2:position")
+tracks/23/path = NodePath("MudSplats/MudSplat3:position")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/imported = false
@@ -309,10 +306,10 @@ tracks/23/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -30, 8 ) ]
+"values": [ Vector2( 7, 8 ) ]
 }
 tracks/24/type = "value"
-tracks/24/path = NodePath("MudSplats/MudSplat3:position")
+tracks/24/path = NodePath("MudSplats/MudSplat4:position")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/imported = false
@@ -321,10 +318,10 @@ tracks/24/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 7, 8 ) ]
+"values": [ Vector2( -19, 14 ) ]
 }
 tracks/25/type = "value"
-tracks/25/path = NodePath("MudSplats/MudSplat4:position")
+tracks/25/path = NodePath("Sprites/Slots/Slot1:position")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/imported = false
@@ -333,10 +330,10 @@ tracks/25/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -19, 14 ) ]
+"values": [ Vector2( -14, 10 ) ]
 }
 tracks/26/type = "value"
-tracks/26/path = NodePath("Sprites/Slots/Slot1:position")
+tracks/26/path = NodePath("Sprites/Slots/Slot2:position")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/imported = false
@@ -345,10 +342,10 @@ tracks/26/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -14, 10 ) ]
+"values": [ Vector2( -4, 10 ) ]
 }
 tracks/27/type = "value"
-tracks/27/path = NodePath("Sprites/Slots/Slot2:position")
+tracks/27/path = NodePath("Sprites/Slots/Slot3:position")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/imported = false
@@ -357,10 +354,10 @@ tracks/27/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -4, 10 ) ]
+"values": [ Vector2( 5, 10 ) ]
 }
 tracks/28/type = "value"
-tracks/28/path = NodePath("Sprites/Slots/Slot3:position")
+tracks/28/path = NodePath("Sprites/Slots/Slot4:position")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/imported = false
@@ -369,10 +366,10 @@ tracks/28/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 5, 10 ) ]
+"values": [ Vector2( 14, 10 ) ]
 }
 tracks/29/type = "value"
-tracks/29/path = NodePath("Sprites/Slots/Slot4:position")
+tracks/29/path = NodePath("Sprites/Slots/Slot5:position")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/imported = false
@@ -381,10 +378,10 @@ tracks/29/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 14, 10 ) ]
+"values": [ Vector2( -12, 11 ) ]
 }
 tracks/30/type = "value"
-tracks/30/path = NodePath("Sprites/Slots/Slot5:position")
+tracks/30/path = NodePath("Sprites/Slots/Slot6:position")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/imported = false
@@ -393,10 +390,10 @@ tracks/30/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -12, 11 ) ]
+"values": [ Vector2( -2, 11 ) ]
 }
 tracks/31/type = "value"
-tracks/31/path = NodePath("Sprites/Slots/Slot6:position")
+tracks/31/path = NodePath("Sprites/Slots/Slot7:position")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/imported = false
@@ -405,10 +402,10 @@ tracks/31/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -2, 11 ) ]
+"values": [ Vector2( 7, 11 ) ]
 }
 tracks/32/type = "value"
-tracks/32/path = NodePath("Sprites/Slots/Slot7:position")
+tracks/32/path = NodePath("Sprites/Slots/Slot8:position")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/imported = false
@@ -417,10 +414,10 @@ tracks/32/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 7, 11 ) ]
+"values": [ Vector2( 16, 11 ) ]
 }
 tracks/33/type = "value"
-tracks/33/path = NodePath("Sprites/Slots/Slot8:position")
+tracks/33/path = NodePath("Sprites/Slots/Slot9:position")
 tracks/33/interp = 1
 tracks/33/loop_wrap = true
 tracks/33/imported = false
@@ -429,10 +426,10 @@ tracks/33/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 16, 11 ) ]
+"values": [ Vector2( -10, 12 ) ]
 }
 tracks/34/type = "value"
-tracks/34/path = NodePath("Sprites/Slots/Slot9:position")
+tracks/34/path = NodePath("Sprites/Slots/Slot10:position")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/imported = false
@@ -441,10 +438,10 @@ tracks/34/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -10, 12 ) ]
+"values": [ Vector2( 0, 12 ) ]
 }
 tracks/35/type = "value"
-tracks/35/path = NodePath("Sprites/Slots/Slot10:position")
+tracks/35/path = NodePath("Sprites/Slots/Slot11:position")
 tracks/35/interp = 1
 tracks/35/loop_wrap = true
 tracks/35/imported = false
@@ -453,10 +450,10 @@ tracks/35/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 12 ) ]
+"values": [ Vector2( 9, 12 ) ]
 }
 tracks/36/type = "value"
-tracks/36/path = NodePath("Sprites/Slots/Slot11:position")
+tracks/36/path = NodePath("Sprites/Slots/Slot12:position")
 tracks/36/interp = 1
 tracks/36/loop_wrap = true
 tracks/36/imported = false
@@ -465,10 +462,10 @@ tracks/36/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 9, 12 ) ]
+"values": [ Vector2( 18, 12 ) ]
 }
 tracks/37/type = "value"
-tracks/37/path = NodePath("Sprites/Slots/Slot12:position")
+tracks/37/path = NodePath("Sprites/Slots/Slot13:position")
 tracks/37/interp = 1
 tracks/37/loop_wrap = true
 tracks/37/imported = false
@@ -477,10 +474,10 @@ tracks/37/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 18, 12 ) ]
+"values": [ Vector2( -8, 13 ) ]
 }
 tracks/38/type = "value"
-tracks/38/path = NodePath("Sprites/Slots/Slot13:position")
+tracks/38/path = NodePath("Sprites/Slots/Slot14:position")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/imported = false
@@ -489,10 +486,10 @@ tracks/38/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -8, 13 ) ]
+"values": [ Vector2( 2, 13 ) ]
 }
 tracks/39/type = "value"
-tracks/39/path = NodePath("Sprites/Slots/Slot14:position")
+tracks/39/path = NodePath("Sprites/Slots/Slot15:position")
 tracks/39/interp = 1
 tracks/39/loop_wrap = true
 tracks/39/imported = false
@@ -501,10 +498,10 @@ tracks/39/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 2, 13 ) ]
+"values": [ Vector2( 11, 13 ) ]
 }
 tracks/40/type = "value"
-tracks/40/path = NodePath("Sprites/Slots/Slot15:position")
+tracks/40/path = NodePath("Sprites/Slots/Slot16:position")
 tracks/40/interp = 1
 tracks/40/loop_wrap = true
 tracks/40/imported = false
@@ -513,10 +510,10 @@ tracks/40/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 11, 13 ) ]
+"values": [ Vector2( 20, 13 ) ]
 }
 tracks/41/type = "value"
-tracks/41/path = NodePath("Sprites/Slots/Slot16:position")
+tracks/41/path = NodePath("Sprites/Slots/Slot17:position")
 tracks/41/interp = 1
 tracks/41/loop_wrap = true
 tracks/41/imported = false
@@ -525,10 +522,10 @@ tracks/41/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 20, 13 ) ]
+"values": [ Vector2( 31, 8 ) ]
 }
 tracks/42/type = "value"
-tracks/42/path = NodePath("Sprites/Slots/Slot17:position")
+tracks/42/path = NodePath("Sprites/Slots/Slot18:position")
 tracks/42/interp = 1
 tracks/42/loop_wrap = true
 tracks/42/imported = false
@@ -537,10 +534,10 @@ tracks/42/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 31, 8 ) ]
+"values": [ Vector2( 35, 10 ) ]
 }
 tracks/43/type = "value"
-tracks/43/path = NodePath("Sprites/Slots/Slot18:position")
+tracks/43/path = NodePath("CartCenter:position")
 tracks/43/interp = 1
 tracks/43/loop_wrap = true
 tracks/43/imported = false
@@ -549,7 +546,7 @@ tracks/43/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 35, 10 ) ]
+"values": [ Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -797,7 +794,7 @@ tracks/19/keys = {
 "values": [ Vector2( 40, 0 ) ]
 }
 tracks/20/type = "value"
-tracks/20/path = NodePath("CollisionShape2D:position")
+tracks/20/path = NodePath("MudSplats/MudSplat4:position")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/imported = false
@@ -806,10 +803,10 @@ tracks/20/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 43, 8 ) ]
+"values": [ Vector2( 56, 15 ) ]
 }
 tracks/21/type = "value"
-tracks/21/path = NodePath("MudSplats/MudSplat4:position")
+tracks/21/path = NodePath("MudSplats/MudSplat3:position")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/imported = false
@@ -818,10 +815,10 @@ tracks/21/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 56, 15 ) ]
+"values": [ Vector2( 31, 10 ) ]
 }
 tracks/22/type = "value"
-tracks/22/path = NodePath("MudSplats/MudSplat3:position")
+tracks/22/path = NodePath("MudSplats/MudSplat2:position")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/imported = false
@@ -830,10 +827,10 @@ tracks/22/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 31, 10 ) ]
+"values": [ Vector2( 67, 10 ) ]
 }
-tracks/23/type = "value"
-tracks/23/path = NodePath("MudSplats/MudSplat2:position")
+tracks/23/type = "method"
+tracks/23/path = NodePath(".")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/imported = false
@@ -841,11 +838,13 @@ tracks/23/enabled = true
 tracks/23/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 67, 10 ) ]
+"values": [ {
+"args": [ -8 ],
+"method": "set_oxen_x"
+} ]
 }
-tracks/24/type = "method"
-tracks/24/path = NodePath(".")
+tracks/24/type = "value"
+tracks/24/path = NodePath("Sprites/Slots/Slot1:position")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/imported = false
@@ -853,13 +852,11 @@ tracks/24/enabled = true
 tracks/24/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ -8 ],
-"method": "set_oxen_x"
-} ]
+"update": 0,
+"values": [ Vector2( 22, 10 ) ]
 }
 tracks/25/type = "value"
-tracks/25/path = NodePath("Sprites/Slots/Slot1:position")
+tracks/25/path = NodePath("Sprites/Slots/Slot2:position")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/imported = false
@@ -868,10 +865,10 @@ tracks/25/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 22, 10 ) ]
+"values": [ Vector2( 13, 10 ) ]
 }
 tracks/26/type = "value"
-tracks/26/path = NodePath("Sprites/Slots/Slot2:position")
+tracks/26/path = NodePath("Sprites/Slots/Slot3:position")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/imported = false
@@ -880,10 +877,10 @@ tracks/26/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 13, 10 ) ]
+"values": [ Vector2( 4, 10 ) ]
 }
 tracks/27/type = "value"
-tracks/27/path = NodePath("Sprites/Slots/Slot3:position")
+tracks/27/path = NodePath("Sprites/Slots/Slot11:position")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/imported = false
@@ -892,10 +889,10 @@ tracks/27/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 4, 10 ) ]
+"values": [ Vector2( 0, 12 ) ]
 }
 tracks/28/type = "value"
-tracks/28/path = NodePath("Sprites/Slots/Slot11:position")
+tracks/28/path = NodePath("Sprites/Slots/Slot10:position")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/imported = false
@@ -904,10 +901,10 @@ tracks/28/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 12 ) ]
+"values": [ Vector2( 9, 12 ) ]
 }
 tracks/29/type = "value"
-tracks/29/path = NodePath("Sprites/Slots/Slot10:position")
+tracks/29/path = NodePath("Sprites/Slots/Slot9:position")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/imported = false
@@ -916,10 +913,10 @@ tracks/29/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 9, 12 ) ]
+"values": [ Vector2( 18, 12 ) ]
 }
 tracks/30/type = "value"
-tracks/30/path = NodePath("Sprites/Slots/Slot9:position")
+tracks/30/path = NodePath("Sprites/Slots/Slot8:position")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/imported = false
@@ -928,10 +925,10 @@ tracks/30/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 18, 12 ) ]
+"values": [ Vector2( -8, 11 ) ]
 }
 tracks/31/type = "value"
-tracks/31/path = NodePath("Sprites/Slots/Slot8:position")
+tracks/31/path = NodePath("Sprites/Slots/Slot7:position")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/imported = false
@@ -940,10 +937,10 @@ tracks/31/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -8, 11 ) ]
+"values": [ Vector2( 2, 11 ) ]
 }
 tracks/32/type = "value"
-tracks/32/path = NodePath("Sprites/Slots/Slot7:position")
+tracks/32/path = NodePath("Sprites/Slots/Slot4:position")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/imported = false
@@ -952,10 +949,10 @@ tracks/32/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 2, 11 ) ]
+"values": [ Vector2( -6, 10 ) ]
 }
 tracks/33/type = "value"
-tracks/33/path = NodePath("Sprites/Slots/Slot4:position")
+tracks/33/path = NodePath("Sprites/Slots/Slot5:position")
 tracks/33/interp = 1
 tracks/33/loop_wrap = true
 tracks/33/imported = false
@@ -964,10 +961,10 @@ tracks/33/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -6, 10 ) ]
+"values": [ Vector2( 20, 11 ) ]
 }
 tracks/34/type = "value"
-tracks/34/path = NodePath("Sprites/Slots/Slot5:position")
+tracks/34/path = NodePath("Sprites/Slots/Slot6:position")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/imported = false
@@ -976,10 +973,10 @@ tracks/34/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 20, 11 ) ]
+"values": [ Vector2( 11, 11 ) ]
 }
 tracks/35/type = "value"
-tracks/35/path = NodePath("Sprites/Slots/Slot6:position")
+tracks/35/path = NodePath("Sprites/Slots/Slot12:position")
 tracks/35/interp = 1
 tracks/35/loop_wrap = true
 tracks/35/imported = false
@@ -988,10 +985,10 @@ tracks/35/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 11, 11 ) ]
+"values": [ Vector2( -10, 12 ) ]
 }
 tracks/36/type = "value"
-tracks/36/path = NodePath("Sprites/Slots/Slot12:position")
+tracks/36/path = NodePath("Sprites/Slots/Slot13:position")
 tracks/36/interp = 1
 tracks/36/loop_wrap = true
 tracks/36/imported = false
@@ -1000,10 +997,10 @@ tracks/36/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -10, 12 ) ]
+"values": [ Vector2( 16, 13 ) ]
 }
 tracks/37/type = "value"
-tracks/37/path = NodePath("Sprites/Slots/Slot13:position")
+tracks/37/path = NodePath("Sprites/Slots/Slot14:position")
 tracks/37/interp = 1
 tracks/37/loop_wrap = true
 tracks/37/imported = false
@@ -1012,10 +1009,10 @@ tracks/37/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 16, 13 ) ]
+"values": [ Vector2( 7, 13 ) ]
 }
 tracks/38/type = "value"
-tracks/38/path = NodePath("Sprites/Slots/Slot14:position")
+tracks/38/path = NodePath("Sprites/Slots/Slot15:position")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/imported = false
@@ -1024,10 +1021,10 @@ tracks/38/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 7, 13 ) ]
+"values": [ Vector2( -2, 13 ) ]
 }
 tracks/39/type = "value"
-tracks/39/path = NodePath("Sprites/Slots/Slot15:position")
+tracks/39/path = NodePath("Sprites/Slots/Slot16:position")
 tracks/39/interp = 1
 tracks/39/loop_wrap = true
 tracks/39/imported = false
@@ -1036,10 +1033,10 @@ tracks/39/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -2, 13 ) ]
+"values": [ Vector2( -12, 13 ) ]
 }
 tracks/40/type = "value"
-tracks/40/path = NodePath("Sprites/Slots/Slot16:position")
+tracks/40/path = NodePath("Sprites/Slots/Slot17:position")
 tracks/40/interp = 1
 tracks/40/loop_wrap = true
 tracks/40/imported = false
@@ -1048,10 +1045,10 @@ tracks/40/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -12, 13 ) ]
+"values": [ Vector2( -19, 8 ) ]
 }
 tracks/41/type = "value"
-tracks/41/path = NodePath("Sprites/Slots/Slot17:position")
+tracks/41/path = NodePath("Sprites/Slots/Slot18:position")
 tracks/41/interp = 1
 tracks/41/loop_wrap = true
 tracks/41/imported = false
@@ -1060,10 +1057,10 @@ tracks/41/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -19, 8 ) ]
+"values": [ Vector2( -26, 10 ) ]
 }
 tracks/42/type = "value"
-tracks/42/path = NodePath("Sprites/Slots/Slot18:position")
+tracks/42/path = NodePath("CartCenter:position")
 tracks/42/interp = 1
 tracks/42/loop_wrap = true
 tracks/42/imported = false
@@ -1072,7 +1069,7 @@ tracks/42/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -26, 10 ) ]
+"values": [ Vector2( 40, 0 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -1332,7 +1329,7 @@ tracks/20/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/21/type = "value"
-tracks/21/path = NodePath("CollisionShape2D:position")
+tracks/21/path = NodePath("MudSplats/MudSplat:position")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/imported = false
@@ -1341,10 +1338,10 @@ tracks/21/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -3.5, 8 ) ]
+"values": [ Vector2( 20, 15 ) ]
 }
 tracks/22/type = "value"
-tracks/22/path = NodePath("MudSplats/MudSplat:position")
+tracks/22/path = NodePath("MudSplats/MudSplat2:position")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/imported = false
@@ -1353,10 +1350,10 @@ tracks/22/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 20, 15 ) ]
+"values": [ Vector2( -27, 10 ) ]
 }
 tracks/23/type = "value"
-tracks/23/path = NodePath("MudSplats/MudSplat2:position")
+tracks/23/path = NodePath("MudSplats/MudSplat3:position")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/imported = false
@@ -1365,10 +1362,10 @@ tracks/23/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -27, 10 ) ]
+"values": [ Vector2( 9, 10 ) ]
 }
 tracks/24/type = "value"
-tracks/24/path = NodePath("MudSplats/MudSplat3:position")
+tracks/24/path = NodePath("MudSplats/MudSplat4:position")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/imported = false
@@ -1377,10 +1374,10 @@ tracks/24/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 9, 10 ) ]
+"values": [ Vector2( -16, 15 ) ]
 }
 tracks/25/type = "value"
-tracks/25/path = NodePath("MudSplats/MudSplat4:position")
+tracks/25/path = NodePath("Sprites/Slots/Slot1:position")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/imported = false
@@ -1389,10 +1386,10 @@ tracks/25/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -16, 15 ) ]
+"values": [ Vector2( -14, 10 ) ]
 }
 tracks/26/type = "value"
-tracks/26/path = NodePath("Sprites/Slots/Slot1:position")
+tracks/26/path = NodePath("Sprites/Slots/Slot2:position")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/imported = false
@@ -1401,10 +1398,10 @@ tracks/26/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -14, 10 ) ]
+"values": [ Vector2( -4, 10 ) ]
 }
 tracks/27/type = "value"
-tracks/27/path = NodePath("Sprites/Slots/Slot2:position")
+tracks/27/path = NodePath("Sprites/Slots/Slot3:position")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/imported = false
@@ -1413,10 +1410,10 @@ tracks/27/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -4, 10 ) ]
+"values": [ Vector2( 5, 10 ) ]
 }
 tracks/28/type = "value"
-tracks/28/path = NodePath("Sprites/Slots/Slot3:position")
+tracks/28/path = NodePath("Sprites/Slots/Slot4:position")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/imported = false
@@ -1425,10 +1422,10 @@ tracks/28/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 5, 10 ) ]
+"values": [ Vector2( 14, 10 ) ]
 }
 tracks/29/type = "value"
-tracks/29/path = NodePath("Sprites/Slots/Slot4:position")
+tracks/29/path = NodePath("Sprites/Slots/Slot5:position")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/imported = false
@@ -1437,10 +1434,10 @@ tracks/29/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 14, 10 ) ]
+"values": [ Vector2( -12, 11 ) ]
 }
 tracks/30/type = "value"
-tracks/30/path = NodePath("Sprites/Slots/Slot5:position")
+tracks/30/path = NodePath("Sprites/Slots/Slot6:position")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/imported = false
@@ -1449,10 +1446,10 @@ tracks/30/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -12, 11 ) ]
+"values": [ Vector2( -2, 11 ) ]
 }
 tracks/31/type = "value"
-tracks/31/path = NodePath("Sprites/Slots/Slot6:position")
+tracks/31/path = NodePath("Sprites/Slots/Slot7:position")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/imported = false
@@ -1461,10 +1458,10 @@ tracks/31/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -2, 11 ) ]
+"values": [ Vector2( 7, 11 ) ]
 }
 tracks/32/type = "value"
-tracks/32/path = NodePath("Sprites/Slots/Slot7:position")
+tracks/32/path = NodePath("Sprites/Slots/Slot8:position")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/imported = false
@@ -1473,10 +1470,10 @@ tracks/32/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 7, 11 ) ]
+"values": [ Vector2( 16, 11 ) ]
 }
 tracks/33/type = "value"
-tracks/33/path = NodePath("Sprites/Slots/Slot8:position")
+tracks/33/path = NodePath("Sprites/Slots/Slot9:position")
 tracks/33/interp = 1
 tracks/33/loop_wrap = true
 tracks/33/imported = false
@@ -1485,10 +1482,10 @@ tracks/33/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 16, 11 ) ]
+"values": [ Vector2( -10, 12 ) ]
 }
 tracks/34/type = "value"
-tracks/34/path = NodePath("Sprites/Slots/Slot9:position")
+tracks/34/path = NodePath("Sprites/Slots/Slot10:position")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/imported = false
@@ -1497,10 +1494,10 @@ tracks/34/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -10, 12 ) ]
+"values": [ Vector2( 0, 12 ) ]
 }
 tracks/35/type = "value"
-tracks/35/path = NodePath("Sprites/Slots/Slot10:position")
+tracks/35/path = NodePath("Sprites/Slots/Slot11:position")
 tracks/35/interp = 1
 tracks/35/loop_wrap = true
 tracks/35/imported = false
@@ -1509,10 +1506,10 @@ tracks/35/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 12 ) ]
+"values": [ Vector2( 9, 12 ) ]
 }
 tracks/36/type = "value"
-tracks/36/path = NodePath("Sprites/Slots/Slot11:position")
+tracks/36/path = NodePath("Sprites/Slots/Slot12:position")
 tracks/36/interp = 1
 tracks/36/loop_wrap = true
 tracks/36/imported = false
@@ -1521,10 +1518,10 @@ tracks/36/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 9, 12 ) ]
+"values": [ Vector2( 18, 12 ) ]
 }
 tracks/37/type = "value"
-tracks/37/path = NodePath("Sprites/Slots/Slot12:position")
+tracks/37/path = NodePath("Sprites/Slots/Slot13:position")
 tracks/37/interp = 1
 tracks/37/loop_wrap = true
 tracks/37/imported = false
@@ -1533,10 +1530,10 @@ tracks/37/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 18, 12 ) ]
+"values": [ Vector2( -8, 13 ) ]
 }
 tracks/38/type = "value"
-tracks/38/path = NodePath("Sprites/Slots/Slot13:position")
+tracks/38/path = NodePath("Sprites/Slots/Slot14:position")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/imported = false
@@ -1545,10 +1542,10 @@ tracks/38/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -8, 13 ) ]
+"values": [ Vector2( 2, 13 ) ]
 }
 tracks/39/type = "value"
-tracks/39/path = NodePath("Sprites/Slots/Slot14:position")
+tracks/39/path = NodePath("Sprites/Slots/Slot15:position")
 tracks/39/interp = 1
 tracks/39/loop_wrap = true
 tracks/39/imported = false
@@ -1557,10 +1554,10 @@ tracks/39/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 2, 13 ) ]
+"values": [ Vector2( 11, 13 ) ]
 }
 tracks/40/type = "value"
-tracks/40/path = NodePath("Sprites/Slots/Slot15:position")
+tracks/40/path = NodePath("Sprites/Slots/Slot16:position")
 tracks/40/interp = 1
 tracks/40/loop_wrap = true
 tracks/40/imported = false
@@ -1569,10 +1566,10 @@ tracks/40/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 11, 13 ) ]
+"values": [ Vector2( 20, 13 ) ]
 }
 tracks/41/type = "value"
-tracks/41/path = NodePath("Sprites/Slots/Slot16:position")
+tracks/41/path = NodePath("Sprites/Slots/Slot17:position")
 tracks/41/interp = 1
 tracks/41/loop_wrap = true
 tracks/41/imported = false
@@ -1581,10 +1578,10 @@ tracks/41/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 20, 13 ) ]
+"values": [ Vector2( 31, 8 ) ]
 }
 tracks/42/type = "value"
-tracks/42/path = NodePath("Sprites/Slots/Slot17:position")
+tracks/42/path = NodePath("Sprites/Slots/Slot18:position")
 tracks/42/interp = 1
 tracks/42/loop_wrap = true
 tracks/42/imported = false
@@ -1593,10 +1590,10 @@ tracks/42/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 31, 8 ) ]
+"values": [ Vector2( 35, 10 ) ]
 }
-tracks/43/type = "value"
-tracks/43/path = NodePath("Sprites/Slots/Slot18:position")
+tracks/43/type = "method"
+tracks/43/path = NodePath(".")
 tracks/43/interp = 1
 tracks/43/loop_wrap = true
 tracks/43/imported = false
@@ -1604,11 +1601,13 @@ tracks/43/enabled = true
 tracks/43/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 35, 10 ) ]
+"values": [ {
+"args": [ 48 ],
+"method": "set_oxen_x"
+} ]
 }
-tracks/44/type = "method"
-tracks/44/path = NodePath(".")
+tracks/44/type = "value"
+tracks/44/path = NodePath("CartCenter:position")
 tracks/44/interp = 1
 tracks/44/loop_wrap = true
 tracks/44/imported = false
@@ -1616,10 +1615,8 @@ tracks/44/enabled = true
 tracks/44/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ 48 ],
-"method": "set_oxen_x"
-} ]
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Curve" id=13]
@@ -1645,11 +1642,18 @@ process_mode = 0
 limit_top = -220
 limit_bottom = 220
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -3.5, 8 )
-shape = SubResource( 1 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="LeftPolygon" type="Polygon2D" parent="."]
+color = Color( 1, 1, 1, 0 )
+polygon = PoolVector2Array( 74, 3, 74, 7, 58, 18, 18, 18, 13, 13, 13, 9, 24, 3 )
+
+[node name="RightPolygon" type="Polygon2D" parent="."]
+color = Color( 1, 1, 1, 0 )
+polygon = PoolVector2Array( -34, 3, -34, 7, -18, 18, 22, 18, 27, 13, 27, 9, 16, 3 )
 
 [node name="CartContents" type="Area2D" parent="."]
+visible = false
 collision_layer = 128
 collision_mask = 64
 
@@ -1833,6 +1837,8 @@ one_shot = true
 
 [node name="CartRopePosition" type="Position2D" parent="."]
 position = Vector2( 33, 6 )
+
+[node name="CartCenter" type="Position2D" parent="."]
 
 [node name="Oxen" type="YSort" parent="."]
 position = Vector2( -11, 4 )
