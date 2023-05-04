@@ -6,6 +6,7 @@ export var min_rock_location = -70.0
 export var max_rock_location = 50.0
 
 var in_use = false
+var stun_length = 0.0
 
 onready var collision_shape = $CollisionShape2D
 onready var sprite = $Sprite
@@ -38,6 +39,7 @@ func enable():
 	var rock = world_objects.get_random_log()
 	sprite.texture = rock.texture
 	collision_shape.shape.extents = rock.size / 2
+	stun_length = rock.stun_length
 
 
 func disable():
@@ -47,5 +49,5 @@ func disable():
 
 
 func _on_Log_area_entered(area):
-	area.hit_rock()
+	area.hit_rock(stun_length)
 	disable()

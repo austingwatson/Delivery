@@ -8,13 +8,16 @@ func _ready():
 	ToolTip.hide_health()
 	ToolTip.hide_tooltip()
 	ToolTip.hide_wagon()
+	
+	SoundManager.stop_music()
+	SoundManager.play_congrats(0)
 
 
 func _unhandled_input(event):
 	if not can_use_input:
 		return
 	
-	if event is InputEventKey and event.is_pressed():
+	if event is InputEventKey or event is InputEventMouseButton:
 		SceneManager.change_scene("MenuScene")
 
 

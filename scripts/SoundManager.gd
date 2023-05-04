@@ -73,6 +73,11 @@ func _ready():
 	menu_music = load_sound("res://assets/sounds/menusong.wav", true)
 	trail_music = load_sound("res://assets/sounds/Song1.wav", true)
 	
+	#menu_music.play()
+	#trail_music.play()
+	#menu_music.stream_paused = true
+	#trail_music.stream_paused = true
+	
 	wagon_move.play()
 	stop_wagon_move()
 	
@@ -109,8 +114,8 @@ func play_chicken_death():
 	chicken_death.play()
 
 
-func play_congrats():
-	get_random_sound(congrats).play()
+func play_congrats(i):
+	congrats[i].play()
 	
 
 func play_gate():
@@ -177,3 +182,14 @@ func play_trail_music():
 		if menu_music.playing:
 			menu_music.stop()
 		trail_music.play()
+
+func stop_music():
+	trail_music.stream_paused = true
+	menu_music.stream_paused = true
+	
+
+func restart_music():
+	if trail_music != null:
+		trail_music.stream_paused = false
+	if menu_music != null:
+		menu_music.stream_paused = false

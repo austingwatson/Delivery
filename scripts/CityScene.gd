@@ -14,6 +14,10 @@ var mouse_in = false
 
 
 func _ready():
+	if SceneManager.current_trail > 0.0:
+		SoundManager.play_congrats(1)
+	
+	SceneManager.cart_direction = Vector2.RIGHT
 	SoundManager.play_menu_music()
 	ToolTip.tooltip_opposite = false
 	
@@ -54,6 +58,7 @@ func _ready():
 	ToolTip.connect("update_oxen", self, "_on_update_oxen")
 	
 	cart.get_node("Camera2D").offset = Vector2(20, 0)
+	cart.resort_ox()
 
 
 func remove_item(item):
@@ -90,14 +95,13 @@ func _unhandled_input(event):
 func leave():
 	ToolTip.hide_wagon()
 	cart.remove_all_cargo()
-	SceneManager.cart_direction = Vector2.RIGHT
 
 
 func start_cutscene():
 	cart.play_anim("move_right")
 	cart.get_node("Camera2D").current = false
 	ToolTip.hide_wagon()
-	ToolTip.show_hide_gold()
+	ToolTip.hide_gold()
 	ToolTip.hide_health()
 	
 

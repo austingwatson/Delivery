@@ -10,6 +10,7 @@ func _ready():
 	inventory.restart()
 	score.restart()
 	ToolTip.restart()
+	SoundManager.restart_music()
 
 
 func _input(event):

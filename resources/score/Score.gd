@@ -1,7 +1,6 @@
 class_name Score
 extends Resource
 
-signal won_game
 signal gold_changed
 
 export var target_food = 0
@@ -12,6 +11,7 @@ export var oxen_upg_cost = 0
 export var carry_upg_cost = 0
 export var speed_upg_cost = 0
 
+var won_game = false
 var current_gold = 0
 var current_food = 0
 var current_defense = 0
@@ -19,6 +19,7 @@ var current_attack = 0
 
 
 func restart():
+	won_game = false
 	current_gold = 0
 	current_food = 0
 	current_defense = 0
@@ -32,7 +33,9 @@ func add_to_score(gold, food, defense, attack):
 	current_defense += defense
 	current_attack += attack
 	
-	if current_food >= target_food and current_defense >= target_defense and current_attack >= target_attack:
+	if not won_game and current_food >= target_food and current_defense >= target_defense and current_attack >= target_attack:
+		won_game = true
+		print("win game")
 		SceneManager.change_scene("WinScene")
 	
 func add_gold(amount):

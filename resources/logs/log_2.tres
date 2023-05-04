@@ -11,3 +11,4 @@ region = Rect2( 27, 74, 19, 46 )
 script = ExtResource( 1 )
 texture = SubResource( 1 )
 size = Vector2( 19, 46 )
+stun_length = 1.0

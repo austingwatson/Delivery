@@ -19,7 +19,7 @@ func _on_Timer_timeout():
 	if chicken_total > 0:
 		return
 		
-	for i in range(chicken_group):
+	for _i in range(chicken_group):
 		var chicken = chicken_scene.instance()
 		Entities.add_to_ysort(chicken)
 		if SceneManager.cart_direction == Vector2.RIGHT:

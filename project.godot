@@ -57,14 +57,15 @@ config/icon="res://assets/icon.png"
 [autoload]
 
 Entities="*res://scenes/Entities.tscn"
+ToolTip="*res://scenes/hud/ToolTip.tscn"
 SceneManager="*res://scenes/SceneManager.tscn"
 SoundManager="*res://scripts/SoundManager.gd"
-ToolTip="*res://scenes/hud/ToolTip.tscn"
 
 [debug]
 
 settings/fps/force_fps=60
 gdscript/warnings/shadowed_variable=false
+gdscript/warnings/return_value_discarded=false
 
 [display]
 

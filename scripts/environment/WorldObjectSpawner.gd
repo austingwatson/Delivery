@@ -22,7 +22,11 @@ func _ready():
 			2:
 				object = preload("res://scenes/environment/Log.tscn").instance()
 		objects.append(object)
-		Entities.add_child(object)
+		
+		if object_name == 0:
+			Entities.call_deferred("add_to_ysort", object)
+		else:
+			Entities.add_child(object)
 	
 	spawn_timer.start(rand_range(min_timer.interpolate(SceneManager.current_trail), max_timer.interpolate(SceneManager.current_trail)))
 	

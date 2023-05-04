@@ -30,7 +30,7 @@ func _physics_process(delta):
 			queue_free()
 		
 
-func damage(damage):
+func damage(_damage):
 	#queue_free()
 	#if not is_instance_valid(Entities.cart) or Entities.cart == null:
 	#	return
@@ -74,7 +74,7 @@ func _on_DeathTimer_timeout():
 	queue_free()
 	
 
-func _on_ChickenSpot_area_exited(area):
+func _on_ChickenSpot_area_exited(_area):
 	direction = -direction
 	if direction.x > 0:
 		animated_sprite.flip_h = false

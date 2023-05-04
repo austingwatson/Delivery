@@ -10,6 +10,7 @@ func _ready():
 	ToolTip.hide_tooltip()
 	ToolTip.show_health()
 	ToolTip.hide_wagon()
+	ToolTip.hide_gold()
 	ToolTip.tooltip_opposite = true
 	
 	Entities.restart()

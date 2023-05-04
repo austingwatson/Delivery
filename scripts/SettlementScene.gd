@@ -22,7 +22,9 @@ var wagon_shown = true
 
 
 func _ready():
+	SceneManager.cart_direction = Vector2.LEFT
 	SoundManager.play_menu_music()
+	SoundManager.play_congrats(1)
 	
 	ToolTip.hide_health()
 	ToolTip.show_wagon(true)
@@ -121,6 +123,7 @@ func _ready():
 	attack_label.text = str(score.current_attack) + "/" + str(score.target_attack)
 	
 	cart.get_node("Camera2D").offset = Vector2(-75, 0)
+	cart.resort_ox()
 
 
 func _unhandled_input(event):
@@ -174,7 +177,6 @@ func remove_item(item):
 
 func leave():
 	cart.remove_all_cargo()
-	SceneManager.cart_direction = Vector2.LEFT
 
 
 func _on_WaitTimer_timeout():

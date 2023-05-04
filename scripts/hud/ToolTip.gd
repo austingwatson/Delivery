@@ -67,6 +67,11 @@ func restart():
 	max_health = 5
 	health_amount = max_health
 	
+	health_upg.visible = true
+	oxen_upg.visible = true
+	carrr_upg.visible = true
+	charge_upg.visible = true
+	
 
 func show_gold_ui():
 	gold_bg.visible = true

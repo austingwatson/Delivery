@@ -25,6 +25,7 @@ func play_anim(anim_name):
 		SoundManager.play_oxen_snort()
 	elif anim_name == "hurt":
 		SoundManager.play_oxen_hurt()
+		
 	
 func flip_h(flip_h):
 	sprite.flip_h = flip_h

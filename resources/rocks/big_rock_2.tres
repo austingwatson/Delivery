@@ -5,9 +5,10 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
-region = Rect2( 24, 0, 24, 24 )
+region = Rect2( 25, 2, 22, 20 )
 
 [resource]
 script = ExtResource( 1 )
 texture = SubResource( 1 )
-size = Vector2( 24, 24 )
+size = Vector2( 11, 5 )
+stun_length = 0.5

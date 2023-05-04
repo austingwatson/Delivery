@@ -6,6 +6,7 @@ const ox_scene = preload("res://scenes/entity/Ox.tscn")
 
 const dirt_color = Color(89.0 / 255.0, 77.0 / 255.0, 77.0 / 255.0)
 
+export var max_oxen_speed = 0.0
 export var max_speed = 0.0
 export var oxen_speed_increase = 0.25
 export var max_ox_distance = 8
@@ -16,6 +17,7 @@ export var min_camera_offset = 100.0
 export var max_camera_offset = 100.0
 export var min_world_height = -100.0
 export var max_world_height = 100.0
+export var camera_speed_bonus = 1.0
 
 var move_up = false
 var move_down = false
@@ -24,6 +26,7 @@ var camera_left = false
 var camera_right = false
 var input_blocked = false
 
+var oxen_speed = 0.0
 var speed = 0.0
 var on_trail = true
 var mud_count = 0
@@ -34,7 +37,6 @@ var charge = false
 var archers = []
 var ox_distance = 0
 var ox_weave = 1
-var oxs = []
 
 onready var camera = $Camera2D
 onready var sprites = $Sprites
@@ -52,8 +54,6 @@ onready var charge_cd = $ChargeCD
 
 func _ready():
 	populate_wagon()
-	
-	oxs.append(oxen.get_child(0))
 	
 	sprites.material.set_shader_param("flash", false)
 	
@@ -74,7 +74,10 @@ func _ready():
 			ox.play_anim("move_left")
 		
 		camera.offset.x *= -1
-
+	
+	
+	oxen_speed = max_oxen_speed * oxen.get_child_count()
+	
 
 func _unhandled_input(event):
 	if event.is_action_pressed("move_up"):
@@ -186,7 +189,7 @@ func move(delta):
 		return
 	
 	var velocity = SceneManager.cart_direction
-	speed = max_speed
+	speed = max_speed + oxen_speed
 	
 	if not input_blocked:
 		if move_up:
@@ -210,16 +213,17 @@ func move(delta):
 	for ox in oxen.get_children():
 		ox.set_playback_speed(animation_player.playback_speed)
 	
-	position += velocity * speed * delta
+	velocity *= speed * delta
+	position += velocity
 	
 	if position.y < min_world_height:
-		position.y -= velocity.y * speed * delta
+		position.y -= velocity.y
 	elif position.y > max_world_height:
-		position.y -= velocity.y * speed * delta
+		position.y -= velocity.y
 	
-	oxen.position.y += velocity.y * speed * delta * oxen_speed_increase
+	oxen.position.y += velocity.y * oxen_speed_increase
 	if abs(oxen.global_position.y - global_position.y) > max_ox_distance:
-		oxen.position.y -= velocity.y * speed * delta * oxen_speed_increase
+		oxen.position.y -= velocity.y * oxen_speed_increase
 	
 	if velocity.y == 0 and abs(oxen.position.y) > -2:
 		var dy = oxen.position.y - 2
@@ -228,7 +232,7 @@ func move(delta):
 		elif dy < 0:
 			dy = 1
 		
-		oxen.position.y += dy * speed * delta * oxen_speed_increase
+		oxen.position.y += dy * oxen_speed_increase
 	
 
 func move_camera(delta):
@@ -237,17 +241,21 @@ func move_camera(delta):
 	
 	var dx = 0.0
 	if camera_left:
-		dx -= 2
+		dx -= 1
+		if SceneManager.cart_direction == Vector2.RIGHT:
+			dx *= 2		
 	if camera_right:
 		dx += 1
+		if SceneManager.cart_direction != Vector2.RIGHT:
+			dx *= 2
 		
-	camera.offset.x += dx * speed * delta
+	camera.offset.x += dx * speed * delta * camera_speed_bonus
 	if camera.offset.x < min_camera_offset:
 		camera.offset.x = min_camera_offset
 	elif camera.offset.x > max_camera_offset:
 		camera.offset.x = max_camera_offset
 		
-func remove_archer(side, i, j):
+func remove_archer(_side, i, _j):
 	if i < 0 or i > 1:
 		return
 	
@@ -256,22 +264,23 @@ func remove_archer(side, i, j):
 		children.queue_free()
 	
 
-func hit_rock():
+func hit_rock(stun_length):
 	sprites.material.set_shader_param("flash", true)
 	flash_timer.start()
 	
 	stunned = true
-	stun_timer.start()
+	stun_timer.start(stun_length)
 	animation_player.stop()
 	
 	for ox in oxen.get_children():
 		ox.play_anim("hurt")
 		ox.set_playback_speed(1)
 	
-	var item = inventory.drop_random_item()
-	if item != null:
-		item.drop_from_inventory()
-		item.global_position = global_position
+	if stun_length >= 0.5:
+		var item = inventory.drop_random_item()
+		if item != null:
+			item.drop_from_inventory()
+			item.global_position = global_position
 		
 
 func add_ox():
@@ -279,16 +288,29 @@ func add_ox():
 	ox_weave *= -1
 	
 	var ox = ox_scene.instance()
-	oxen.call_deferred("add_child", ox)
+	#oxen.call_deferred("add_child", ox)
+	oxen.add_child(ox)
 	ox.position.y = ox_distance * ox_weave
 	
-	oxs.append(ox)
+	resort_ox()
+	
+
+func resort_ox():
+	var oxs = oxen.get_children()
 	oxs.sort_custom(OxSorter, "sort_ox")
 	
 	var dx = 0
+	var dxx = 1
+	if SceneManager.cart_direction != Vector2.RIGHT:
+		dxx = -1
+	
 	for oxx in oxs:
 		oxx.position.x = dx
-		dx += 4
+		dx += 4 * dxx
+		
+	for ox in oxen.get_children():
+		ox.set_rope(cart_rope_position.global_position)
+
 		
 func freeze():
 	set_physics_process(false)
