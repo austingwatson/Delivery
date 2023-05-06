@@ -3,6 +3,7 @@ extends Node
 var cart_direction = Vector2.RIGHT
 var current_trail = -0.1
 var mode = 0
+var new_game = true
 
 onready var menu_scene = preload("res://scenes/MenuScene.tscn")
 onready var city_scene = preload("res://scenes/CityScene.tscn")
@@ -26,12 +27,13 @@ func change_scene(scene_name):
 	match scene_name:
 		"MenuScene":
 			call_deferred("add_child", menu_scene.instance())
-			current_trail = -0.1 + (mode * 0.4)
+			current_trail = -0.1 + (mode * 0.3)
 		"CityScene":
 			add_child(city_scene.instance())
 		"TrailScene":
 			add_child(trail_scene.instance())
 			current_trail += 0.1 + (mode * 0.1)
+			print(mode, ", ", current_trail)
 			if current_trail > 1.0:
 				current_trail = 1.0
 		"SettlementScene":

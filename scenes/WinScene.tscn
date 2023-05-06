@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/PressStartK-EX89.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/WinScene.gd" type="Script" id=2]
 [ext_resource path="res://assets/ui_sheet.png" type="Texture" id=3]
+[ext_resource path="res://assets/game_cover.png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 3 )
@@ -27,8 +28,12 @@ region = Rect2( 36, 228, 12, 12 )
 [node name="WinScene" type="Node"]
 script = ExtResource( 2 )
 
+[node name="BG" type="Sprite" parent="."]
+position = Vector2( 320, 256 )
+texture = ExtResource( 4 )
+
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 239, 149 )
+position = Vector2( 240, 135 )
 texture = SubResource( 2 )
 
 [node name="Label" type="Label" parent="."]
@@ -36,10 +41,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -116.0
-margin_top = -15.0
-margin_right = 116.0
-margin_bottom = 59.0
+margin_left = -115.0
+margin_top = -29.0
+margin_right = 117.0
+margin_bottom = 45.0
 custom_colors/font_color = Color( 0.180392, 0.0666667, 0.105882, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "You delivered the goods!
@@ -51,21 +56,21 @@ The prince thanks you.
 Press anything to continue."
 align = 1
 
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 237, 151 )
+texture = SubResource( 3 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 237, 151 )
+texture = SubResource( 4 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 237, 89 )
+texture = SubResource( 5 )
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 autostart = true
-
-[node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( 236, 165 )
-texture = SubResource( 3 )
-
-[node name="Sprite3" type="Sprite" parent="."]
-position = Vector2( 236, 165 )
-texture = SubResource( 4 )
-
-[node name="Sprite4" type="Sprite" parent="."]
-position = Vector2( 236, 103 )
-texture = SubResource( 5 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -5,8 +5,8 @@
 
 [sub_resource type="Curve" id=41]
 min_value = 100.0
-max_value = 150.0
-_data = [ Vector2( 0, 100 ), 0.0, 0.0, 0, 0, Vector2( 1, 150 ), 0.0, 0.0, 0, 0 ]
+max_value = 130.0
+_data = [ Vector2( 0, 100 ), 0.0, 0.0, 0, 0, Vector2( 1, 130 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 9 )
@@ -210,7 +210,7 @@ frames = SubResource( 39 )
 animation = "idle"
 
 [node name="RemoveTimer" type="Timer" parent="."]
-wait_time = 120.0
+wait_time = 3.0
 one_shot = true
 
 [node name="IdleTimer" type="Timer" parent="."]

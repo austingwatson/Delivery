@@ -23,10 +23,14 @@ func start_timer():
 
 func _on_GoblinSpawnTimer_timeout():
 	var goblin_total = get_tree().get_nodes_in_group("Goblin").size()
-	if goblin_total > self.goblin_total.interpolate(SceneManager.current_trail):
-		return
 	
-	var amount = max(1, round(goblin_spawn_amount.interpolate(SceneManager.current_trail)))
+	print("goblin total in world: ", goblin_total)
+	
+	goblin_total = self.goblin_total.interpolate(SceneManager.current_trail) - goblin_total
+	var amount = min(goblin_total, round(goblin_spawn_amount.interpolate(SceneManager.current_trail)))
+	
+	print("goblins to spawn: ", amount)
+	
 	for i in range(amount):
 		Entities.add_random_goblin(y_spawn)
 	start_timer()

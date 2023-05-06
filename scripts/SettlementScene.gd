@@ -86,7 +86,7 @@ func _ready():
 	#		cargo.position = marker.position + Vector2(rand_range(-50, 50), rand_range(-50, 50))
 	#		cargo.gen_info(1)
 	#		score.current_gold -= 1
-			
+	
 	var cargo = cargo_scene.instance()
 	add_child(cargo)
 	cargo.position = marker.position + Vector2(rand_range(-50, 50), rand_range(-50, 50))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/MenuScene.gd" type="Script" id=1]
 [ext_resource path="res://assets/game_cover.png" type="Texture" id=3]
@@ -22,6 +22,26 @@ region = Rect2( 324, 72, 96, 24 )
 [sub_resource type="DynamicFont" id=2]
 size = 12
 font_data = ExtResource( 6 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 5 )
+region = Rect2( 444, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 5 )
+region = Rect2( 444, 23, 24, 24 )
+
+[sub_resource type="StyleBoxEmpty" id=20]
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxEmpty" id=17]
+
+[sub_resource type="StyleBoxEmpty" id=18]
+
+[sub_resource type="StyleBoxEmpty" id=19]
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 5 )
@@ -52,18 +72,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -48.0
-margin_top = -58.0
-margin_right = 48.0
-margin_bottom = 58.0
+margin_left = -66.0
+margin_top = -72.0
+margin_right = 66.0
+margin_bottom = 72.0
 
 [node name="Play" type="TextureButton" parent="VBoxContainer"]
-margin_right = 96.0
+margin_right = 132.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 96, 24 )
 texture_normal = SubResource( 1 )
 texture_pressed = SubResource( 4 )
 texture_hover = SubResource( 3 )
+expand = true
 
 [node name="Label" type="Label" parent="VBoxContainer/Play"]
 anchor_right = 1.0
@@ -74,10 +95,31 @@ text = "Play"
 align = 1
 valign = 1
 
-[node name="Music" type="HSlider" parent="VBoxContainer"]
+[node name="Difficulty" type="CheckBox" parent="VBoxContainer"]
 margin_top = 28.0
-margin_right = 96.0
+margin_right = 132.0
 margin_bottom = 52.0
+custom_colors/font_color_disabled = Color( 0.180392, 0.0666667, 0.105882, 1 )
+custom_colors/font_color_focus = Color( 0.180392, 0.0666667, 0.105882, 1 )
+custom_colors/font_color_hover_pressed = Color( 0.180392, 0.0666667, 0.105882, 1 )
+custom_colors/font_color = Color( 0.180392, 0.0666667, 0.105882, 1 )
+custom_colors/font_color_hover = Color( 0.180392, 0.0666667, 0.105882, 1 )
+custom_colors/font_color_pressed = Color( 0.180392, 0.0666667, 0.105882, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_icons/checked = SubResource( 10 )
+custom_icons/unchecked = SubResource( 13 )
+custom_styles/hover = SubResource( 20 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 16 )
+custom_styles/disabled = SubResource( 17 )
+custom_styles/hover_pressed = SubResource( 18 )
+custom_styles/normal = SubResource( 19 )
+text = "Hardmode"
+
+[node name="Music" type="HSlider" parent="VBoxContainer"]
+margin_top = 56.0
+margin_right = 132.0
+margin_bottom = 80.0
 custom_icons/grabber_highlight = SubResource( 5 )
 custom_icons/grabber = SubResource( 6 )
 custom_styles/slider = SubResource( 7 )
@@ -97,9 +139,9 @@ align = 1
 valign = 1
 
 [node name="Sound" type="HSlider" parent="VBoxContainer"]
-margin_top = 56.0
-margin_right = 96.0
-margin_bottom = 80.0
+margin_top = 84.0
+margin_right = 132.0
+margin_bottom = 108.0
 custom_icons/grabber_highlight = SubResource( 5 )
 custom_icons/grabber = SubResource( 6 )
 custom_styles/slider = SubResource( 7 )
@@ -119,13 +161,14 @@ align = 1
 valign = 1
 
 [node name="Exit" type="TextureButton" parent="VBoxContainer"]
-margin_top = 84.0
-margin_right = 96.0
-margin_bottom = 108.0
+margin_top = 112.0
+margin_right = 132.0
+margin_bottom = 136.0
 rect_min_size = Vector2( 96, 24 )
 texture_normal = SubResource( 1 )
 texture_pressed = SubResource( 4 )
 texture_hover = SubResource( 3 )
+expand = true
 
 [node name="Label" type="Label" parent="VBoxContainer/Exit"]
 anchor_right = 1.0
@@ -137,6 +180,7 @@ align = 1
 valign = 1
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="toggled" from="VBoxContainer/Difficulty" to="." method="_on_Difficulty_toggled"]
 [connection signal="value_changed" from="VBoxContainer/Music" to="." method="_on_Music_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Sound" to="." method="_on_Sound_value_changed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_Exit_pressed"]

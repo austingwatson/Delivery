@@ -1,6 +1,7 @@
 extends Area2D
 
 const inventory = preload("res://resources/inventory/inventory.tres")
+const coin_scene = preload("res://scenes/entity/Cargo.tscn")
 
 enum State {
 	IDLE,
@@ -79,6 +80,16 @@ func _on_AnimatedSprite_animation_finished():
 		State.DEATH:
 			animated_sprite.stop()
 			animated_sprite.frame = 6
+			
+			var rng = randf()
+			var target = 0.33 - (SceneManager.mode * 0.23)
+			
+			if rng <= target:
+				var coin = coin_scene.instance()
+				Entities.add_child(coin)
+				coin.global_position = global_position
+				coin.gen_info(1)
+			
 			remove_timer.start()
 		State.HURT:
 			animated_sprite.play("idle")

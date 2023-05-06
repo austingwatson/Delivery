@@ -35,6 +35,7 @@ func _unhandled_input(event):
 		if info.type == 2:
 			score.add_gold(1)
 			SoundManager.play_coin_sound()
+			ToolTip.hide_tooltip()
 			queue_free()
 		
 		mouse_down = true
@@ -91,6 +92,7 @@ func setup():
 	
 		right_emitter.position = Vector2(12, 12)
 		left_emitter.position = Vector2(-12, 12)
+		set_as_world_object()
 		
 		coin_timer.start()
 	else:

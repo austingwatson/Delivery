@@ -26,6 +26,12 @@ func _input(event):
 			SoundManager.play_menu_music()
 
 
+func leave():
+	SceneManager.current_trail = -0.1 + (SceneManager.mode * 0.3)
+	score.restart()
+	SceneManager.new_game = true
+
+
 func _on_Play_pressed():
 	SceneManager.change_scene("CityScene")
 
@@ -48,3 +54,11 @@ func _on_Sound_value_changed(value):
 
 func _on_Exit_pressed():
 	get_tree().quit()
+
+
+func _on_Difficulty_toggled(button_pressed):
+	if button_pressed:
+		print("set mode to 1")
+		SceneManager.mode = 1
+	else:
+		SceneManager.mode = 0

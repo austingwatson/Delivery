@@ -14,7 +14,7 @@ var mouse_in = false
 
 
 func _ready():
-	if SceneManager.current_trail > 0.0:
+	if not SceneManager.new_game:
 		SoundManager.play_congrats(1)
 	
 	SceneManager.cart_direction = Vector2.RIGHT
