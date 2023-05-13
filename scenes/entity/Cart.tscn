@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/wheel1.png" type="Texture" id=1]
 [ext_resource path="res://scenes/entity/Ox.tscn" type="PackedScene" id=2]
@@ -549,10 +549,13 @@ tracks/43/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="Animation" id=15]
+resource_name = "collision"
+
 [sub_resource type="Animation" id=14]
 resource_name = "move_left"
 loop = true
-step = 0.05
+step = 0.025
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/BGWheelBack:frame")
 tracks/0/interp = 1
@@ -563,7 +566,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 0, 3, 2, 1 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprites/BGWheelFront:frame")
@@ -575,7 +578,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 0, 3, 2, 1 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprites/BGBody:position")
@@ -611,7 +614,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 0, 3, 2, 1 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Sprites/FGWheelFront:frame")
@@ -623,7 +626,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 0, 3, 2, 1 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Sprites/Slots:position")
@@ -1620,7 +1623,7 @@ tracks/44/keys = {
 }
 
 [sub_resource type="Curve" id=13]
-_data = [ Vector2( 0, 0.745454 ), 0.0, 0.0, 0, 0, Vector2( 0.238636, 1 ), 4.18182, 4.18182, 0, 0, Vector2( 1, 0.136364 ), -4.73044, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.527273 ), 0.0, 0.0, 0, 0, Vector2( 0.0397727, 1 ), 7.45882, 7.45882, 0, 0, Vector2( 0.394886, 0.876136 ), -1.6, -1.6, 0, 0, Vector2( 1, 0.254545 ), 0.0, 0.0, 0, 0 ]
 
 [node name="Cart" type="Area2D"]
 collision_mask = 4118
@@ -1681,22 +1684,25 @@ material = SubResource( 8 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites"]
 root_node = NodePath("../..")
 anims/RESET = SubResource( 5 )
+anims/collision = SubResource( 15 )
 anims/move_left = SubResource( 14 )
 anims/move_right = SubResource( 6 )
 
 [node name="BGWheelParticle" type="CPUParticles2D" parent="Sprites"]
 position = Vector2( -30, 11 )
-lifetime = 1.5
+amount = 24
+lifetime = 2.5
 randomness = 1.0
+lifetime_randomness = 0.4
 local_coords = false
 direction = Vector2( -10, -3 )
-spread = 15.0
+spread = 20.0
 gravity = Vector2( 0, 4 )
-initial_velocity = 0.5
+initial_velocity = 3.0
 initial_velocity_random = 0.25
 damping = 5.0
-scale_amount = 3.0
-scale_amount_random = 0.25
+scale_amount = 4.0
+scale_amount_random = 0.5
 scale_amount_curve = SubResource( 13 )
 color = Color( 0.866667, 0.807843, 0.74902, 0.784314 )
 
@@ -1708,15 +1714,19 @@ hframes = 4
 
 [node name="FGWheelParticle" type="CPUParticles2D" parent="Sprites"]
 position = Vector2( -19, 17 )
-lifetime = 1.5
+amount = 24
+lifetime = 2.5
 randomness = 1.0
+lifetime_randomness = 0.4
 local_coords = false
 direction = Vector2( -10, -3 )
-spread = 15.0
-gravity = Vector2( 0, 5 )
-initial_velocity = 1.0
+spread = 20.0
+gravity = Vector2( 0, 4 )
+initial_velocity = 3.0
+initial_velocity_random = 0.25
 damping = 5.0
-scale_amount = 3.0
+scale_amount = 4.0
+scale_amount_random = 0.5
 scale_amount_curve = SubResource( 13 )
 color = Color( 0.866667, 0.807843, 0.74902, 0.784314 )
 
